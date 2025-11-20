@@ -1,0 +1,942 @@
+%!TeX program = xelatex
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+\usetikzlibrary{arrows.meta}%画箭头用的包
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Birational Geometry}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+\section{Rationality}
+
+Let $ X $ be a irreducible projective smooth surface over $ \mathbb{C} $, and assume its canonical divisor $ K_X $ is not nef.
+\subsection{Rationality theorem}
+
+First we state a lemma about irrational numbers:
+\begin{lem}
+  If $ r>0 $ is a irrational number, then there are infinitely many pairs $ (u,v)\in \mathbb{Z} $ such that
+  \[ 0<\frac{v}{u}-r< \frac{1}{3u}\]
+\end{lem}
+
+\begin{thm}
+  (Rationality theorem). Let $ A $ be an ample (cartier) divisor on X, define
+  \[ r_A:=\sup \{ r\in \mathbb{R}_{>0}:L_r=A+rK_X \text{ is nef  } \} \]
+  $ r_A $ is called  the canonical threshold of $ A $. Then $ r_A\in \mathbb{Q} $, and $ L_{r_A} $ is nef but NOT ample.
+\end{thm}
+
+\begin{proof}
+  For any $ 0<r<r_A $, the $ \mathbb{R} $-divisor $ L_r=A+rK_X $ is ample. Indeed, $ L_r=(r_A-r)A+L_{r_A} $, where $ (r_A-r)A $ is ample, and $ L_{r_A} $ is nef, hence $ L_r $ is ample. Since $ K_X $ is not nef, there is a curve $ C $, such that $ (C.K_X)<0 $. Therefore  $ (C.L_r)<0 $ for $ r\gg 0 $, hence $ L_r $ is not nef. This shows $ r_A<+\infty $.
+
+  Consider a function $ P(x,y)=\chi (xA+yK_X), x,y\in \mathbb{Z} $. This is a polynomial in $ x,y $ of degree $ 2 $. Let $ P_{(u,v)}(k)=P(uk,vk) $, which is a polynomial in $ k $ of degree at most $ 2 $. $ P_{(u,v)}(k)\equiv0 $ if and only if the line $ uy-vx=0 $ contained in the zero locus $ P(x,y)=0 $. But $ P(x,y) $ is a polynomial of degree $ 2 $, so there are only finitely many pairs $ (u,v) $ such that $ P_{(u,v)}\equiv 0 $.
+
+  We prove the theorem by oantradiction: If $ r_A $ is irrational, by the lemma above, we can take such a pair $ (u_0,v_0) $ and $ P_{(u_0,v_0)}(k) $ is not identically $ 0 $. Take $ k_0\in \{1,2,3\} $ such that $ P_{(u_0,v_0)}(k_0)\neq 0  $. Set
+  \[ M=k_0(u_0A+v_0K_X)=K_X+k_0u_0(A+\frac{k_0v_0-1}{k_0u_0}K_X) \]
+  By the choice of $ (u_0,v_0) $ and $ k_0 $, $ 0<\frac{k_0v_0-1}{k_0u_0}<r_A $, therefore $ A+\frac{k_0v_0-1}{k_0u_0}K_X $ is an ample $ \mathbb{Q} $-cartier divisor, and $ k_0u_0(A+\frac{k_0v_0-1}{k_0u_0}K_X)  $ is an ample Cartier divisor. By Kodaira vanishing theorem,
+  \[\chi(M)=h^0(M)=P_{(u_0,v_0)}(k_0)\neq 0 \]
+  By following lemma, this implies $ r_A\in \mathbb{Q} $, which is a contradicion.
+
+  Assume $ L=L_{r_A} $ is ample, since it is a $ \mathbb{Q} $-Cartier divisor, there is  an integer $ m\gg0 $ such that $ mL-A $ is ample. Then
+  \[ (m-1)A+mr_AK_X=(m-1)(A+\frac{m}{m-1}r_AK_X) \]
+  is ample. But $ \frac{m}{m-1}r_A>r_A $, this is contradict to the definition of $ r_A $, and implies that $ L $ is not ample.
+\end{proof}
+
+
+\begin{lem}
+  If there is a rational number $ r_0>r_A $ such that $ L_{r_0}=A+r_0K_X $ is effective ( $ h^0(kL_{r_0})\neq 0 $ for some large integer $ k $), then $ r_A $ is rational.
+\end{lem}
+\begin{proof}
+  If $ kL_{r_0} $ is an effective Cartier divisor, then we may assume $ kL_{r_0}\sim \sum_{i=1}^{n}d_iD_i  $, where $ D_i $ are irreducible curves on $ X $, and $ d_i>0 $. Then for $ 0<r\leqslant r_A< r_0 $,
+  \[ L_r=A+rK_X=\frac{r_0-r}{r_0}A+\frac{r}{kr_0} \sum_{i=1}^{n}d_iD_i \]
+  Thus $ L_r $ is nef if and only if
+  \[ (C.L_r)=\frac{r_0-r}{r_0}(C.A)+\frac{r}{kr_0} \sum_{i=1}^{n}d_i(C.D_i) \geqslant 0\]
+  for all curves $ C $. Notice that $ A $ is ample, and $ D_i $ are irreducible curves, this fails only when  $ C=D_j $ for some $ j $. Set $ f_j(r):=(D_j.L_r)=ar+b $, by definition of $ r_A $ and $ r_0 $, $ a,b\in\mathbb{Q} $ and $  f_j(r)\geqslant0 $ for $ r\leqslant r_A $. If  $ f_j(r)<0 $ for some $ r>r_A $, then $ a<0 $. Let $ r_j $ be the solution of $ f_j(r)=0 $, then
+  \[ r_A=\min\{r_j>0\} \]
+  Notice that $ r_0 $ is rational and there are only finitely many $ D_i $, $ r_A $ is rational.
+\end{proof}
+
+\subsection{Base point free thm}
+Let $ X $ be a smooth projective surface. A \emph{pencil}  or a \emph{fibration}  on $ X $ is a surjiective morphism $ f:X\to C $ to a smooth irreducible curve $ C $ with connected fibres. Let $ F=\sum_{i=1}^{m}n_iF_i , n_i>0$ be a fibre of $ f $, and $ F_i $ are irreducible components of $ F $. Then $ F^2=0 $, and
+\[ n_j^2F_j^2=(n_jF_j.F-\sum_{i\neq j}n_iF_i)=-\sum_{i\neq j}n_in_j(F_i.F_j)<0 \]
+$ \sum_{i\neq j}(F_i.F_j) >0$ since $ F $ is connected.
+\begin{lem}
+  (Zarisiki lemma). Let $ f:X\to C $ be a pencil  and $ F $ is a fibre. Suppose $ D $ is a non-zero curve  in $ Div(X)\otimes \mathbb{Q} $ such that $ \mathrm{Supp}\,D \subset \mathrm{Supp}\,F  $. Then $ D^2\leqslant 0 $, and equality holds if and only if $ D=kF $ for some $ k\in \mathbb{Q} $.
+\end{lem}
+\begin{proof}
+  Suppose $ F=\sum_{i=1} ^{m}n_iF_i, n_i\in \mathbb{Z}_{>0}$ and $ D=\sum_{i=1} ^{m}d_in_iF_i, d_i\in \mathbb{Q}_{\geqslant0} $. Let $ G_i=n_iF_i $, then
+  \begin{equation*}
+    \begin{aligned}
+      D^2 & =\sum_{i=1}^{m}d_i^2G_i^2+2\sum_{i<j}d_id_jG_iG_j=\sum_{i=1}^{m}d_i^2(G_i.F-\sum_{j\neq i}G_j)+ 2\sum_{i<j}d_id_jG_iG_j \\
+          & =-\sum_{i<j}(d_i^2+d_j^2-2d_id_j)G_iG_j=-\sum_{i<j}(s_i-s_j)^2G_iG_j\leqslant0
+    \end{aligned}
+  \end{equation*}
+  The equlity holds if and only if $ s_i=s_j $ for all $ G_i.G_j>0 $. But $ F $ is connected, hence $ s_i=s_j $ for all $ i,j $.
+\end{proof}
+
+\begin{thm}
+  (Base point free theorem). Let $ L=A+r_AK_X=A+rK_X $ as in the rationality theorem. Then $ lL $ is base point free for $ l\in\mathbb{N}, l\gg 0, lr_A\in \mathbb{N} $.
+\end{thm}
+\begin{proof}
+  We prove it in three cases: a: $  L^2>0$ ; b: $ L^2=0$ but $ L\not\equiv 0 $ and c: $ L\equiv0 $. Since $ r=\frac{p}{q} $ is rational, we can replace $ A $ by $ qA $, then $ r=p $ is an integer, $ L $ is a cartier divisor.
+
+  \textbf{case a}: Since $ L^2>0 $ and $ L $ is nef but not ample, by criterion of ampleness, there is an irreducible curve $ E $ such that $ 0=(L.E)=A.E+rE.K_X>rK_X.E $. By Hodge index theorem, $ E^2L^2\leqslant (E.L)^2=0 $, and the equality holds only for $ L\equiv E $, but then $ 0=E^2=L^2>0 $,   hence $ E^2L^2< (E.L)^2=0 $ and $ E^2<0 $. Then $ \deg K_E =(K_X+E).E<0 $, therefore $ E\cong \mathbb{P}^1 $ and $ E^2=L.E=-1 $. Blowing down this curve via a birational morphism $ f:X\to Y $, then
+  \begin{itemize}
+    \item $ Y $ is a smooth projective surface, and $ f(E) $ is a point, $ \rho (Y)=\rho(X)-1 $;
+    \item $ f^*K_Y=K_X-E, f_*K_X=K_Y $;
+    \item $ L':=f_*L $ is a cartier divisor, since $ L.E=0 $. Suppose $ f^*L'=L +aE $, then $ 0=L'.f(E)=(L+aE).E=aE^2 $, therefore $ a=0,f^*L'=L $. Furthermore, $ L'  $ is nef: for any curve $ C' $ on $ Y $, let $ C $ be strict transform of $ C' $ on $ X $, then $ L'.C'=L.C\geqslant0 $.
+    \item $ A':=f_*A=L'-rK_Y $ is a cartier divisor. $ A' $ is ample: indeed,
+          \[ f^*A'=f^*(L'-rK_Y)=L-r(K_X-E)=A+rE \]
+          Any curve $ C' $ on $ Y $, take strict transform $ C $ on $ X $, then $ A'.C'=(A+rE).C>0 $; $ L.E=A.E+rK_X.E=A.E-r=0 $, $ A'^2=A'.f_*A=f^*A'.A=(A+E).A=A^2+r>0 $.
+  \end{itemize}
+  If $ L' $ is ample, then $ lL' $ is base point free, and so is $ lL=f^*lL' $; If $ L' $ is nef but not ample, then replace $ X,A,L $ by $ Y,A',L' $ and repeat the agrument. Since picard number goes down, this ends in finitely many steps.
+
+  \textbf{case b}: $ L=A+rK_X\equiv 0 $, then $ -K_X\equiv 1/rA $ is ample, and so is $ lL-K_X $ for all integers $ l $. By Riemann-Roch:
+  \[ \chi (lL)=\chi+\frac{1}{2}lL.(lL-K_X)=\chi \]
+  By Kodaira vanishing, $ lL-K_X $ ample $ \Rightarrow h^i(lL)=0,i>0$; $ K_X $ ample $ \Rightarrow h^i(K_X-K_X)=0,i>0$. Hence $ \chi(lL)=h^0(lL)=\chi=h^0(\mathcal{O}_X)=1 $. This shows $ lL $ is effective, corresponding to an effective $ C $. But $ L\equiv 0 $, for any very ample divisor $ H $ we have $ C.H>0 $ unless $ C=0 $, therefore $ lL=\mathcal{O}_X $ is base point free.
+
+  \textbf{case c}: $ L^2=0$ but $ L\not\equiv 0 $. Take an irreducibe curve $ C $ such that $ L.C>0 $. First we show that $ K_X.L<0 $. Indeed, take $ h\gg0 $ such that $ hA-C $ is effective, then
+  \[ L.hA=L.(hA-C)+L.C\geqslant L.C>0 \]
+  so that $ L.A>0 $, but then
+  \[ 0=L^2=L.A+rL.K_X>rL.K_X \]
+  therefore $ L.K_X<0 $.
+
+  Notice that $ lL-K_X=\frac{1}{r}A+\frac{lr-1}{r}L $, which is ample for $ l\gg 0 $, then by Kodaira vanishing and Riemann-Roch
+  \[ h^0(lL)=\chi(lL)=\chi+\frac{1}{2}L.(L-K_X)=-\frac{L.K_X}{2}l+\chi>0 \]
+  $ lL $ is effective, hence we can write $ |lL|=|M|+F $ where effective divisor  $ F $ is the fixed part and $ |M| $ is movable part ( this means a bijection: $ (D\in |lL|)\mapsto D-F\in |M| $). Claim that $ M $ is nef: assume $ M=\sum_{i=1}^{k}m_iM_i, m_i>0 $, if there is an irreducible curve $ C $ such that $ C.M<0 $, $ C $ must be one of $ M_i $. But $ M $ is the movable part, one can find $ M'\in |M| $ and $ C $ is not a componet of $ M' $, then $ C.M'\geqslant 0 $, therefore $ M $ is nef. Then
+  \[ 0\leqslant M^2<M.(M+F)=M.L\leqslant(M+F).L=L^2=0  \]
+  implies $ M^2=M.F=F^2=0 $. Notice that $ M^2=0 $ and $ M $ nef, then $ M $ is base point free. Otherwise, there is a point $ x\in X $ such that $ x\in M'  $ for any $ M'\in |M| $. Take $ M'\in |M| $ such that $ \dim M\cap M'=0 $, then $ 0=M^2=M.M'\geqslant\#M\cap M'\geqslant1 $.
+
+  $ |M| $ induces a moprhism $ X$ to the projective space $ |M| $. Let $f:X\to Y $ be the closed image,  then there is an ample divisor $ \mathcal{O}_{|M|}(1)|_Y=N $ on $ Y $ such that $ f^*N=M $. Furthermore, $ h^0(X,alL)=h^0(X,aM)=h^0(Y,aN)=-\frac{lL.K_X}{2}a+\chi $ is a polynomial of degree $ 1 $ in $ a $, hence $ \dim Y=1 $.  By Stein factorization theorem, there are  maps $ f':X\to Y' $ and $ g:Y'\to Y $, where $ f'_*\mathcal{O}_X=\mathcal{O}_{Y'} $ and $ Y'\to Y $ is finite. Furthermore, $ Y' $ is normal, hence is smooth. Replace $ Y $ by $ Y' $, then $ N=f_*M $ is an ample divisor of form $ \sum_{i=1}^{r}n_iy_i, n_i>0 $, i.e. sum of fibres of the pencile. Suppose $ F=\sum f_iF_i, f_i>0 $, if $ F_i $ contained in some fibre of the pencil, then $ M.F=0 $ ($ M $ is sum of fibres); if $ F_i $ is not contained in a fibre, then $ f(F_i)=Y $ and $ F_i.M>0 $. But $ M.F=0 $, this shows $ F=\sum_{j}G_j $ cotained in the union of fibres, such that $ f(G_j)=f(\sum g_{j,k}G_k)=y_j $ for distinct $ y_j\in Y $. Notice that $ G_i.G_j=0, i\neq j $ and $ F^2=0 $, we have $ G_j^2=0 $. By zarisiki lemma, $ G_j=g_jf^{-1}(y_j), g_j>0 $. Therefore,
+  \[ lL=M+F=f^*N+\sum g_jf^*y_j=f^*(N+\sum g_jy_j) \]
+  is pull back of an ample divisor on $ Y $, hence is base point free.
+\end{proof}
+\section{Introduction}
+
+\subsection{Brief introduction to MMP}
+\begin{thm}
+  (KM Prop 2.5)Assume $ X $ is a normal projective $ \mathbb{Q} $-factorial varity, and $ K_X $ is not nef, then as in then case of surfaces, by rationality, cone theory, base point free theory and contraction theory, one can find an extremal ray and corresponding contraction morphism $ f:X\to Y $. But there is three cases in higher dimension :
+  \begin{itemize}
+    \item (Divisorial contraction) $ f $ is birational morphism and $ E=\mathrm{Exc} (f) $ is a divisor. In fact, $ E $ is an irreducible divisor, and $ Y $ is $ \mathbb{Q} $-factorial. Furthermore, $ \rho(X)=\rho(Y)-1 $. This case is "good" in the sence that one can continue the program with picard number strictly going down.
+    \item (Mori fibre space, or MFS) $ \dim Y<\dim X $. In this case Mori's program ends.
+    \item (Small contraction) $ \mathrm{codim}\,\mathrm{Exc}(f)\geqslant 2 $. This never happens for surfaces.  This is a "bad" case, since $ K_Y $ is not $ \mathbb{Q} $-factorial. Otherwise, if $ mK_Y $ is cartier for some $ m>0 $, take a curve $ C $ contained in $ \mathrm{Exc}(f) $, then
+    \[ f^*mK_Y .C=mK_Y.f(C)=0\]
+    But $ f $ is the contraction corresponding to an extremal ray $ R $, therefore class of the curve $ C $ is in the ray $ R $, and $ K_X.C<0 $, which is a contradiction.
+    
+    In this case, $ -K_X $ is $ f $-ample, since $ \overline{NE}(X/Y)=0 $.
+  \end{itemize}
+\end{thm}
+
+We have two difficulties in higher dimensional varieties:
+\begin{itemize}
+  \item For a contraction $ f:X\to Y $, even $ X $ is smooth, $ Y $ may not be \emph{smooth} but with singularities;
+  \item Small contraction.
+\end{itemize}
+
+Let $ f:X\to Y $ be a small contraction, we define a filp as following:
+\begin{defn}
+  Let $ f:X\to Y $ be a proper birational morphism such that $ \mathrm{codim}\,\mathrm{Exc}(f)\geqslant 2 $. Assume  $ -K_X $ is $ \mathbb{Q} $-cartier and $ f $-ample, then a \emph{flip} is a variety $ X^+ $ and a proper birational morphism $ f^+:X^+\to Y $ such that
+  \begin{itemize}
+    \item $ K_{X^+} $ is $ \mathbb{Q} $-cartier;
+    \item $ K_{X^+} $ is $ f^+ $-ample,
+    \item $ \mathrm{codim}\,\mathrm{Exc}(f^+)\geqslant 2 $.
+  \end{itemize}
+  Sometimes the rational map $ \phi:X\dashrightarrow X^+ $ is also called a flip.
+\end{defn}
+\begin{rmk}
+  $ \phi:X\dashrightarrow X^+ $ is an isomorphism in codimension $ 2 $, hence is a birational map. $ X^+ $ is $ \mathbb{Q} $-cartier if $ X $ is, and $ \rho(X)=\rho(X^+) $.
+\end{rmk}
+Now we can continue the program  replacing $ X $ by $ X^+ $. But there are still two problems:
+\begin{itemize}
+  \item Exsitence of filps (Solved);
+  \item Termination of filps.
+\end{itemize}
+
+\subsection{Examples for difficulties in higher dimensional MMP}
+This section gives examples of the difficulties in higher dimension mentioned above.
+
+
+\textbf{Example of non-smoothness}(Intro to Mori, Example 3-1-3): Let $ A $ be an abelian threefold, $ i $ the involution, then we have a quotient: $ q:A\to A/(i)=Y $ where $ Y $ has $ 2^6=64 $ isolated singluar points, each of which is analytically isomorphic to 
+\[ 0\in \mathrm{Spec}\,\mathbb{C}[x,y,z]^{(i)}, i:(x,y,z)\to (-x,-y,-z) \]
+Since $ \mathbb{C}[x,y,z]^{(i)}=\mathbb{C}[x^2,y^2,z^2,xy,yz,zx] $, this is also isomorphic to the vertix of the cone of the Veronese surface $ \mathbb{P}^2 \hookrightarrow \mathbb{P}^5$. Denote $ U=\mathrm{Spec}\,\mathbb{C}[x^2,y^2,z^2,xy,yz,zx] $ and $ \pi:\tilde{U}\to U $ is the blowing up of $ U $ at the origin (which is the only singularity), then $ E=\mathrm{Exc}\,\pi\cong \mathbb{P}^2 $ and $ \mathcal{O}_E(E)\cong \mathcal{O}_{\mathbb{P}^2}(-2) $. Let $ f:X\to Y $ be the blowup of all $ 64 $ singular points of $ Y $, then
+\begin{itemize}
+  \item $ X $ is smooth (only need to show $ \tilde{U} $ is smooth, but why?);
+  \item $ Y $ is $ \mathbb{Q} $-factorial, and 
+  \[ 2K_Y=q_*q^*K_Y=q_*K_A\sim 0\]
+  ($ q^*K_Y=K_A,K_A\sim 0 $)
+  \item $ \mathcal{O}_{E_i}(E_i)\cong \mathcal{O}_{\mathbb{P}^2}(-2) $ and
+    \[
+      (K_X+E_i)|_{E_i}=K_{E_i}=\mathcal{O}_{\mathbb{P}^2}(-3)
+    \]
+\end{itemize}
+Assume $ K_X=f^*K_Y+\sum_{i=1}^{64}a_iE_i $, then 
+\begin{equation*}
+\begin{aligned}
+-3H=K_{\mathbb{P}^2}=K_{E_0}=(K_X+E_0)|_{E_0}&=(f^*K_Y+\sum a_iE_i+E_0)|_{E_0}=(a_0+1)E_0|_{E_0}\\
+&=(a_0+1)\mathcal{O}_{E_0}(E_0)=(a_0+1)(-2H)
+\end{aligned}
+\end{equation*}
+ where $ H $ is hyperplane divisor of $ \mathbb{P}^2 $. This shows $ a_i =\frac{1}{2}$, and $ K_X=\sum_{i=1}^{64}\frac{1}{2}E_i $. 
+ 
+If $ C $ is an irreducible $ K_X $-negative curve generating an extremal ray, then $ C\subset E_i $ for some $ i $. Conversely, if $ C $ is a curve contained in $ E_i $, then it generates an extremal ray. This implies that contraction of $ X $ is blowing down for a divisor $ E_i $, therefore maps to a singular variety.
+
+
+
+\textbf{Example of flip}(KM, Example 2.7): Let $ Y:=\{ xy-uv=0 \}\subset \mathbb{C}^4 $, then the origin is the only singularity. Blow it up and denote $ \tilde{X}:=Bl_0P $, then the exceptional divisor $ Q $ is the projective quadric $ \{ xy-uv \}\subset \mathbb{P}^3 $. On $ Q $ we have two families of rational lines. Blow them down resprctively and we have two smooth threefold $ X $ and $ X^+ $. In fact, $ X $ (resp. $ X^+ $) can be obtained by blowing up ideal $ (x,v) $ (resp. $ (x,u) $) on $ Y $. This gives a diagram:
+$$ \xymatrix{
+  &\tilde{X}\ar[ld]\ar[rd]&\\
+  X\ar[rd]\ar@{.>}[rr]&&X^+\ar[ld]\\
+  &Y&
+} $$ 
+This shows $ X^+\to Y $ is a flip of $ X\to Y $.
+
+Let $ G=\mu_n=\left <\sigma\right > $ be the cyclic group of order $ n $, acting on $ Y $ by 
+\[ \sigma: (x,y,u,v)\to (\zeta x,y,\zeta u,v) \]
+where $ \zeta $ is $ n $-th root of unit. In fact, this action can be extended to all varieties above. The corresponding quotients are denoted by a subscript $ n $. Then we have another digram:
+$$ \xymatrix{
+  &\tilde{X}_n\ar[ld]\ar[rd]&\\
+  X_n\ar[rd]\ar@{.>}[rr]&&X^+_n\ar[ld]\\
+  &Y_n&
+} $$ 
+In this case, $ X^+_n\to Y_n $ is also a flip of $ X_n\to Y_n $. Furthermore, $ X^+_n $ is smooth but $ X_n $ is NOT. That implies that flip is "better" than original one.
+\subsection{questions}
+In the first example, there are questions:
+\begin{itemize}
+  \item  For blowing up $ \tilde{U}\to U $, why $ E=\mathrm{Exc}\,\pi\cong \mathbb{P}^2 $ and $ \mathcal{O}_E(E)\cong \mathcal{O}_{\mathbb{P}^2}(-2) $, and $ \tilde{U} $ is smooth? What about more general case, for example, quotient singularities and (log) resolutions?
+  \item Why $ Y $ is $ \mathbb{Q} $-cartier and $ 2K_Y\sim 0 $?
+\end{itemize}
+
+\begin{prop}
+  (Algebraic Varieties: Minimal Models and Finite Generation, Prop 1.10.6) For a algebraic variety $ X $ with only quotient singularity, the pair $ (X,0) $ is klt.
+\end{prop}
+\begin{proof}
+  Assume $ X $ is global quotient variety $ q:\tilde{X}\to X=\tilde{X}/G $. Then $ X $ is $ \mathbb{Q} $-cartier by following lemma. Take a (log) resolution $ f:Y\to X $ and denote 
+  \[ K_Y=f^*K_X+C \]
+  Let $ \tilde{Y} $ be normalization of $ Y $ in $ K(\tilde{X}) $, then induces folloing digram:
+  \[ \xymatrix{
+    \tilde{Y}\ar[r]^{g}\ar[d]_{p}&\tilde{X}\ar[d]^q\\
+    Y\ar[r]^f&X
+  } \]
+  Write $ K_{\tilde{Y}}=g^*K_{\tilde{X}}+\tilde{C} $ and take a prime divisor $ E $ on $ Y $ contained in $ \mathrm{Exc}\, f $. Take a prime divisor $ \tilde{E} $ on $ \tilde{Y} $ such that $ p(\tilde{E})=E $. Denote coefficient of $ E $ ($ \tilde{E} $) in $ C $ ($ \tilde{C} $) by $ a $ ($ \tilde{a} $), and denote ramification index of $ \tilde{E} $ w.r.t. $ q $ by $ e $, then
+  \[ ae=\tilde{a}+e-1 (?)\]
+  Since $ \tilde{X} $ is smooth,  $ \tilde{a}\leqslant0 $, thus $ a<1 $.
+\end{proof}
+
+\begin{lem}
+  (KM98, lemma5.16) Let $ f:X\to Y $ be a finte surjective morphism of normal varities. If $ X $ is $ \mathbb{Q} $-factorial, then so is $ Y $.
+\end{lem}
+\begin{proof}
+  Let $ F $ be any prime divisor on $ X $, claim that $ f(F) $ is $ \mathbb{Q} $-cartier on $ Y $. Assume $ aF $ is cartier on $ X $, then any $ x\in X $, there is an open neighborhood $ U $ of $ x $ such that $ aF$ is defined by $ \phi=0 $ on $ U $. Notice that $ f $ is surjective and finite (hence proper), then $ V=f(U)=Y-f(X-U) $ is open. ($ f|_U $ is surjective and finite, if $ U $ is affine, then $ V $ is affine.) Then norm $ \mathrm{Nm}\, \phi $ of $ \phi $ defines a closed subset as $ f(F) $. Therefore $ f(aF) $ is $ \mathbb{Q} $-cartier. 
+\end{proof}
+
+\section{Singularity}
+\subsection{Define Discrepancy}
+Let $ X $ be a normal variety such that $ mK_X $ is a cartier divisor with $ m>0 $. Suppose $ f:Y\to X $ is a birational morphism (NOT necessary proper) and $ mK_Y $ is cartier. Let $ E $ be an irreducible exceptional divisor, locally defined by $ y_1=0 $, where $ y_1,\ldots ,y_n $ are local coordinates near a general point $ e\in E $. Assume $ mK_X $ is defined by $ \phi=0 $near $ f(e)=x $, then near $ e $ we have
+\[ f^*(\phi)=y_1^{m\cdot a(E,X)}\cdot (\text{unit})\cdot (dy_1\wedge\cdots\wedge y_n)^{\otimes m} \]
+Then $ a(E,X) $ is called discrepancy of $ E $ with respect to $ X $. If $ f:Y\to X $ is birational proper morphism from a normal varity $ Y $ and $ K_Y $ is $ \mathbb{Q} $-cartier, then
+\[ K_Y\equiv f^*K_X+\sum_i a(E_i,X)E_i \]
+\begin{rmk}
+  $ a(E,X) $ is independent to the choice of $ f:Y\to X $: since $ Y $ is birational to $ X $, they have same rational function field $ K(X)=K(Y) $. Let $ \eta  $ be the generic point of $ E $, then $ \mathcal{O}_{Y,\eta}=R\subset K(Y)=K(Y) $ is a valuation ring, independent on the choice of $ Y $. Assume $ mK_X $ is defined by $ \phi $ locally, then $ m\cdot a(E,X)=v_R(\phi) $.
+\end{rmk}
+
+\begin{defn}
+  Let $ X $ be a variety, a divisor $ E $ is called over $ X $ if there is a birational map $ f:Y\to X $ from a normal variety $ Y $ and $ E\subset Y $ is an irreducible divisor on $ Y $. The closure of $ f(E) $ is called center of $ E $, denoted as $ center_E $, which is dependent only on the valuation but not the choice of $ f:Y\to X $.
+\end{defn}
+
+Now we consider the pairs: let $ X $ be a normal variety and $ B=\sum_ia_iD_i $ sum of prime divisors (here $ a_i\in \mathbb{Q} $ are arbitrary). $ (X,B) $ is a pair and $ B $ is the boundary. Assume $ m(K_X+B) $ is cartier and $ f:Y\to X $ is a birational map from a normal variey $ Y $. Take $ f^{-1}_*B=\sum_ia_if^{-1}_*D_i $ and $ E=\mathrm{Exc}\,f $ ($ f^{-1}:X\dashrightarrow Y $ is a rational map and $ f^{-1}_*D_i $ is the pushforward of weil divisor $ D_i $), then 
+\[ \mathcal{O}_Y(m(K_Y+ f^{-1}_*B))|_{Y-E}\cong f^*\mathcal{O}_X(m(K_X+B))|_{X-f(E)} \]
+naturally. Let $ E_i\subset E $ be irreducible exceptional divisors, then we can define dicrepency $ a(E_i;X,B) $ of $ E_i $ w.r.t. $ (X,B) $ by
+\[ \mathcal{O}_Y(m(K_Y+ f^{-1}_*B))\cong f^*\mathcal{O}_X(m(K_X+B))\otimes\mathcal{O}_Y(m\sum_ia(E_i;X,B)E_i ) \]
+or more clearly
+\[ K_Y+f^{-1}_*B\equiv f^*(K_X+B)+\sum_{E_i\text{ exceptional divisors}}a(E_i;X,B)E_i \]
+or 
+\[ K_Y\equiv f^*(K_X+B)+\sum_{E_i\text{ arbitrary}}a(E_i;X,B)E_i \]
+Then we can define the discrepany of pair $ (X,B) $:
+\[ discrep(X,B)=\inf \{a(E;X,B):E \text{ is exceptional divisor}\} \]
+and
+\[ totdiscrep(X,B)=\inf \{a(E;X,B):E \text{ arbitrary divisor}\} \]
+\subsection{Compute discrepancy}
+Let $ (X,B) $ be a pair, $ X $ is a normal variety.
+\begin{lem}
+  Assume $ B' $ is an effective $ \mathbb{Q} $-cartier divisor, then \[ a(E;X,B)\geqslant a(E;X,B+B') \]
+  and strictly inequality holds if and only if $ center_E\subset \mathrm{Supp}\, B' $.
+\end{lem}
+\begin{proof}
+  Compare
+  \[ K_Y+f^{-1}_*B\equiv f^*(K_X+B)+\sum_{E_i\text{ exceptional divisors}}a(E_i;X,B)E_i \]
+  and
+  \[ K_Y+f^{-1}_*B+f^{-1}_*B'\equiv f^*(K_X+B+B')+\sum_{E_i\text{ exceptional divisors}}a(E_i;X,B+B')E_i \]
+  we have
+  \[ \sum_{E_i\text{ exceptional divisors}}[a(E;X,B)- a(E;X,B+B')]=f^*B'-f^{-1}_*B' \]
+\end{proof}
+ To compute the discrepancy, we need to know how it behaves under blowing up:
+ \begin{lem}
+  Let $ (X,B=\sum_ia_iD_i) $ be a pair and $ X $ is smooth. Let $ Z\subset X $ be a smooth subvariety of codimension $ k $. Blowing up  $ X $ along the smooth center $ Z $ we obtain a birational proper map: $ p:Y=\mathrm{Bl}_ZX\to X $. Then $ E=\mathrm{Exc}\, p $ is an irreducible exceptional divisor and
+  \[ a(E;X,B)=k-1-\sum_ia_i\mathrm{mult}_ZD_i \]
+ \end{lem}
+\begin{proof}
+  This is local, we may assume $ X=\mathbb{A}^n $, $ D_i $ is defined by $ (f_i),f_i\in \mathbb{C}[x_1,\ldots,x_n] $ and $ Z=V(x_1,\ldots,x_{k}) $. Then $ Y\hookrightarrow X\times \mathbb{P}^{k-1} $ is defined by $ \{ x_iy_j-x_jy_i\} $. Take an open subset 
+  \[ V=\{ y_1=1 \} =\mathrm{Spec}\frac{\mathbb{C}[x_1,\ldots,x_n,1,y_2,\ldots,y_k]}{\left <x_j-y_jx_1 \right >_{1\leqslant j\leqslant k}}\]
+   of $ Y $, then 
+   \begin{equation*}
+    \begin{aligned}
+     p^*(dx_1\wedge\cdots\wedge dx_n)&=dx_1\wedge (d(y_2x_1)\wedge\cdots\wedge d(y_kx_1))\wedge dx_{k+1}\wedge\cdots\wedge dx_n\\
+     &=x_1^{k-1}dx_1\wedge (dy_2\wedge\cdots\wedge y_k)\wedge dx_{k+1}\wedge\cdots\wedge dx_n 
+    \end{aligned}
+   \end{equation*}
+   And $ m_i=\mathrm{mult}_ZD_i $,
+   \[
+     f_i\in I^{m_i}-I^{m_i+1}, I=\left <x_1,\ldots,x_k\right >
+   \]
+\end{proof}
+
+Assume $ f:Y\to X $ is a proper birational map between normal varieties such that $ K_Y+B_Y=f^*(K_X+B_X) $ and $ f_*B_Y=B_X $, where $ B_X $ ($ B_Y $) is $ \mathbb{Q} $-cariter divisor on $ X $ ($ Y $), then is called "crepancy". Then
+\begin{lem}
+  For any divisor $ F $ over $ X $ (which is also over $ Y $), 
+  $$ a(F;X,B_X)=a(F;Y,B_Y) $$. 
+\end{lem}
+
+Let $ (X,B=\sum_ia_iD_i) $ be  a pair. We can take a log resolution $ f:Y\to X $ such that $ \mathrm{Exc}\,f\cap \mathrm{Supp}f^{-1}_*B $ is snc and $ Y $ is smooth, by blowing up along smooth centers.
+
+\begin{cor}
+  Assume $ B $ is $ \mathbb{Q} $-cartier, then
+  \begin{enumerate}[(1)]
+    \item Either $ a(E;X,B)=-\infty $ or 
+    \[ -1\leqslant \mathrm{totdiscrep}(X,B)\leqslant \mathrm{discrep }(X,B)\leqslant 1 \]
+    \item If $ X $ is smooth, then $ \mathrm{discrep}X=1 $;
+    \item Assume $ X $ is smooth and $ \sum_i D_i $ is snc and $ a_i\leqslant 1 $, then
+    $$ \mathrm{discrep}(X,B)=\min \{  \min_{D_i\cap D_j\neq \emptyset,i\neq j}\{1-a_i-a_j\}, \min\neq \{1-a_i\},1\} $$ 
+  \end{enumerate}
+\end{cor} 
+\begin{proof}
+  \begin{enumerate}[(1)]
+    \item Take a smooth subvariety $ Z\subset X $ of codimension $ 2 $ which intersects $ X-\mathrm{Sing}\,X-\mathrm{Supp}\,B $. Then by the lemma above, the exceptional divisor $ E $ has discrepency $ a(E;X,B)=1 $, thus $ \mathrm{discrep }(X,B)\leqslant 1  $;
+    
+    If $ -1>\mathrm{totdiscrep}(X,B) $, there is a divisor $ E$ over $ X $ such that $ a(E;X,B)=-1-c,c>0 $. By taking a smooth resolution $ f:Y\to X $ we may assume $ center_YE $ is a dvisor on $ Y $, and denote $ K_Y+B_Y=f^*(K_X+B_X)$ . Then construct a series exceptional divisors by blowing up: let $ Z_0 $ be a smooth subvariety of codimension $ 2 $ contained in $ E $ but not intersects with other exceptional divisors or $ B_Y $. Blowing up smooth center $ Z_0 $  we get $ g_1:Y=\mathrm{Bl}_{Z_0}Y\to Y $, and let $ E_1 $ be the exceptional divisor. Coefficient of $ E $ in $ B_Y $ is $ 1+c $. Apply the lemma and we have 
+    \[ a(E_1;Y,B_Y)=a(E_1;X,B_X)=2-1-(1+c)\mathrm{mult}_{Z_0}E=-c \]
+    Consider the pair $ (Y_1,B_1=g_1^*(K_Y+B_Y)-K_{Y_1}) $, then coefficient of $ E_1 $ in $ B_{Y_1} $ is $ c $. Let $ Z_1 $ be the intersection of $ E_1 $ and strict transform of $ E $,  and blow up $ Y_1 $ along $ Z_1 $, then we have $ g_2:Y_2=\mathrm{Bl}_{Z_1}Y_1\to Y_1 $ with exceptional divisor $ E_2 $. Then
+    $$ a(E_2;Y_2,B_{Y_2})=a(E_2;X,B_X)=2-1-(c\cdot\mathrm{mult}_{Z_1}E_1+(1+c)\mathrm{mult}_{Z_1}E)=-2c $$  
+    Inductively, blowing up $ E_i\cap E $ and $ a(E_{i+1};X,B_X)=-(i+1)c $, therefore Either $ a(E;X,B)=-\infty $.
+    
+    By definition, $ \mathrm{totdiscrep}(X,B)\leqslant \mathrm{discrep }(X,B) $ .
+    \item This is a consequence of $ (3) $;
+    \item Let $ r=r(X,B) $ be the right hand of the equation. First we prove $ \mathrm{discrep}(X,B)\leqslant r $: For every $ D_i\cap D_j\neq \emptyset $, blowing up $ D_i\cap D_j $ , which is a smooth locus since $ B $ is snc, we get a birational map $ g:Y_{ij}\to X $ and exceptional divisor $ E_{ij} $ such that 
+    \[ a(E_{ij};X,B)=2-1-(a_i+a_j)=1-a_i-a_j \]
+    For any $ D_i $, take a smooth subvariety $ Z $ of $ D_i $, which has no intersection with other $ D_j $. Blow it up and we get $ Y_i\to X $ and exceptional divisor $ E_i $ such that
+    \[ a(E_i;X,B)=1-a_i \]
+    Therefore,  $ \mathrm{discrep}(X,B)\leqslant r $.
+    Then we prove $ \mathrm{discrep}(X,B)\geqslant r $. Only need to show for any exceptional divisor $ E $, $ a(E;X,B)\geqslant r $. Assume $ E\subset Y\to X $ where $ g:Y\to X $ is composition of $ t $ blowing up along smooth centers. Induction on $ t $: 
+    
+    $ t=1 $, i.e. $ g:Y\to X $ is blowing up a smooth center. By shrinking $ X $ (notice that $ r(X,B) $ does not decrease ) we may assume $ g(E) $ is a smooth closed subvariety on $ X $. Blow up $ X $ along $ g(E) $ : $ h_1: X_1\to X $ with exceptional divisor $ E_1 $,  and  shrink $ X $ such that $ E_1\cap h^{-1}_{1*}B $ is snc. Then  we have a rational map $ Y\dashrightarrow X $. Shrink $ Y $ and we may assume $ g_1:Y\to X_1 $ is a morphism. Then actually
+    \[
+      a(E;X,B)=a(E_1;X,B)
+    \]
+    \[ \xymatrix{
+    Y\ar[d]_{g_1}\ar[rd]^g&\\
+    X\ar[r]_{h_1}&X }\]
+    Since $ E $ is an exceptional divisor,  denote $ \mathrm{codim}\, g(E)=k\geqslant 2 $. Assume $ g(E)\subset D_i  $ if and only if $ i\leqslant b $ for some $ b\leqslant k $ (This is because $ \sum D_i $ is snc, if $ g(E)\subset \cap_{i=1}^m $ then $ \mathrm{codim}\, g(E)\geqslant m $). By the lemma, we have 
+    \[ a(E_1;X,B)=k-1-\sum_{i=1}^{i=b}a_i \]
+    \begin{itemize}
+      \item $ b=0 $, then $ a(E_1;X,B)=k-1\geqslant 1\geqslant r $;
+      \item $ b=1 $, then $ a(E_1;X,B)=k-1-a_1\geqslant 1-a_i\geqslant r  $;
+      \item $ b\geqslant 2 $, then 
+      
+      $ a(E_1;X,B)=(k-b-1)+\sum_{i=1}^{i=b}(1-a_i)\geqslant -1+(1-a_i)+(1-a_2)\geqslant r  $.
+    \end{itemize}
+  Therefore $ t=1 $ case is done. Denote $ B_1 $ by $ K_{X_1}+B_1=h_1^*(K_X+B) $, then
+  \begin{equation*}
+    \begin{aligned}
+    r(X_1,B_1)&\geqslant\min\{ r(X,B),1+a(E_1;X,B)-\max_{D_i\cap g(E)\neq \emptyset}a_i  \}\\
+          &\geqslant\min\{  r(X,B),  a(E_1;X,B) \}\geqslant r(X,B)
+    \end{aligned}
+  \end{equation*}
+  
+  By induction, replace $ (X,B) $ by $ (X_1,B_1) $, then $ a(E;X,B)\geqslant r(X_1,B_1)\geqslant r(X,B) $.
+  \end{enumerate}
+\end{proof}
+
+\begin{cor}
+  Given $ X $ normal, let $ f:Y\to X $ be a smooth resolution, and  $E_i\subset  E $ irreducible componets of exceptional divisor. Suppose $ 1\geqslant \min\{a(E_i,X)\}\geqslant 0 $, then
+  \[ \mathrm{discrep}(X)=\min\{a(E_i,X)\} \]
+\end{cor}
+\begin{proof}
+  Denote $ K_Y+B=f^*K_X $, and $ B=-\sum_ia(E_i;X)E_i\leqslant0 $. By lemma, $ \mathrm{discrep}\,(Y,B)\geqslant \mathrm{discrep}\,Y=1 $, then
+  \[ \mathrm{discrep}\,(X)=\min\{ \mathrm{discrep}\,(Y,B), \min\{a(E_i,X)\}\} =\min\{a(E_i,X)\}\]
+\end{proof}
+\begin{cor}
+  Given  $ X $ normal and boundary $ B=\sum_ia_iD_i $ with $ a_i\leqslant 1 $. Take a resolution $ f:Y\to X $ such that $ Y $ is smooth and $ f^{-1}_*D_i $ smooth, $ \sum f^{-1}_*D_i \cup E$ snc. Suppose $ a(E_j;X,B)\geqslant -1 $ for every irreducible exceptional divisor $ E_j $, then
+  \[ \mathrm{discrep}\, (X,B)=\min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\} \]
+\end{cor}
+\begin{proof}
+  Denote $ K_Y+B_Y=f^*(K_X+B) $, and $ b_j=-a(E_j;X,B)\leqslant 1 $ is coefficient of $ E_j $ in $ B_Y $. Again we have
+  \begin{equation*}
+  \begin{aligned}
+  \mathrm{discrep}\,(X,B)&=\min\{ \mathrm{discrep}\,(Y,B_Y), \min\{a(E_i,X,B)\}\}\\
+  &=\min\{ \mathrm{discrep}\,(Y,B), \min\{-b_j\}\}
+  \end{aligned}
+  \end{equation*}
+  By proposition,  notice that $ B_Y $ has componets $ f^{-1}_*D_i $ and $ E_j $, then
+  
+  \[ \mathrm{discrep}\,(Y,B_Y)=\min \{ 1-a_i-b_j, 1-b_j-b_{j'}, 1-a_i, 1-b_j,1 \} \]
+  There is no $ 1-a_i-a_{i'} $ since $ f^{-1}_*D_i $ and $ f^{-1}_*D_{i'} $ are disjoint. Furthermore, $ -b_j\leqslant 1-b_j-b_{j'} $ and $ -b_j\leqslant 1-b_j-a_i $, then 
+  \begin{equation*}
+  \begin{aligned}
+  &\mathrm{discrep}\, (X,B)\\
+  =&\min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\}\\
+  =&\min\{ \min \{ 1-a_i-b_j, 1-b_j-b_{j'}, 1-a_i, 1-b_j,1 \}, \min\{-b_j\}\} \\
+  =&\min\{  1-a_i,-b_j,1 \} \\
+  =&\min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\}
+  \end{aligned}
+  \end{equation*}
+  
+\end{proof}
+\subsection{singularities}
+
+\begin{defn}
+  ([KM98], Definition 2.34) Let $ (X,B) $ be a pair where $ X $ is a normal variety and $ B=\sum a_iD_i $ is sum of distinct prime divisors with rational coefficients. Assume $ (K_X+B) $ is $ \mathbb{Q} $-cartier, then we call $ (X,B) $ is 
+  \begin{itemize}
+    \item \textbf{terminal} if $ \mathrm{discrep}(X,B) >0$;
+    \item \textbf{canonical} if $ \mathrm{discrep}(X,B) \geqslant 0$;
+    \item \textbf{klt} if $ \mathrm{discrep}(X,B) >-1$ and $ a_i<1 $;
+    \item \textbf{plt} if $ \mathrm{discrep}(X,B) >-1$;
+    \item \textbf{lc} if $ \mathrm{discrep}(X,B) \geqslant -1 $. 
+    \item If $ B=0 $, then klt, plt, dlt coincide, and is called \textbf{log terminal};
+  \end{itemize}
+\end{defn}
+
+\begin{prop}
+  ([KM98], 2.35) Let $ (X,B) $ be a pair, and $ B' $ be  an effective $ \mathbb{Q} $-cartier divisor, then
+  \begin{enumerate}
+    \item If $ (X, B+B') $ is terminal/canonical/klt/plt/lc, then so is $ (X,B) $;
+    \item If $ (X,B) $ is terminal/klt, then so is $ (X,B+\epsilon B') $ for $ 0<\epsilon\ll 1 $;
+    \item If $ (X,B) $ is plt, then so is $ (X,B+\epsilon B') $ for $ 0<\epsilon\ll 1 $, assuming $ B $ and $ B' $ have no common irreducible components;
+    \item Suppose $ (X,B) $ is terminal, then $ (X,B+B') $ is canonical if and only if $ (X,B+cB') $ is terminal for all $ 0<c<1 $;
+    \item Suppose $ (X,B) $ is klt/plt, then $ (X,B+B') $ is lc if and only if $ (X,B+cB') $ is klt/plt for all $ 0<c<1 $.
+  \end{enumerate}
+\end{prop}
+  rmk: (4),(5) is strange
+  
+\begin{proof}
+  \begin{enumerate}
+    \item by lemma which says $ a(E;X,B)\geqslant a(E;X,B+B') $;
+    \item klt/terminal is an 'open' condition, and by corollary saying
+    
+    Given  $ X $ normal and boundary $ B=\sum_ia_iD_i $ with $ a_i\leqslant 1 $. Take a resolution $ f:Y\to X $ such that $ Y $ is smooth and $ f^{-1}_*D_i $ smooth, $ \sum f^{-1}_*D_i \cup E$ snc. Suppose $ a(E_j;X,B)\geqslant -1 $ for every irreducible exceptional divisor $ E_i $, then
+    \[ \mathrm{discrep}\, (X,B)=\min\{\min\{a(E_i;X,B)\},\min\{1-a_i\},1\} \]
+    \item Take a log resolution $ (Y,B_Y) $ of $ (X,B) $, then consider $ (Y,B_Y+\epsilon B') $, using corollary above;
+    \item 
+    \item  
+  \end{enumerate}
+\end{proof}
+
+\section{Vanishing}
+
+\begin{thm}
+  Let $ X $ be a projective smooth variety of dimension $ n $ over $ \mathbb{C} $, and let  $ A $ be an ample divisor. Then
+  \[ H^i(X,-A)=0,i<n \]
+  or by serre duality, equivalent to
+  \[ H^i(X,K_X+A)=0,i>0  \]
+\end{thm}
+
+Our main method to prove such theorem is to find another better variety $ f:Y\to X $ and line bundle $ A' $ on $ Y $, such that
+\begin{itemize}
+  \item $ H^i(Y,-A')=0,i<n  $ or $ H^i(Y,K_Y+A')=0,i>0  $;
+  \item $ H^i(Y,-A')=0 \Rightarrow H^i(X,-A)=0,i<n  $  or
+  
+  $ H^i(Y,K_Y+A')=0 \Rightarrow  H^i(X,K_X+A)=0,i>0 $.
+\end{itemize}
+ We find such $ f:Y\to X $ by cover map and log resolution.
+
+\subsection{Prepare}
+\begin{lem}
+  (Atiyah.11.24) Let $ A $ be a noetherian local ring, then $ A $ is regular if and only if $ \hat{A} $ is regular.
+\end{lem}
+
+\begin{lem}
+  Suppose categories and functors $ \mathscr{C}\xrightarrow{F}\mathscr{D}\xrightarrow{G}\mathscr{E} $ "good enough", then we have a spectral sequence
+  \[ E_2^{p,q}=R^pGR^qFX\Rightarrow R^{p+q}(G\circ F)X \]
+\end{lem}
+\subsection{log resolution}
+\begin{prop}
+  (Laza,4.1.3) Let $ X $ be an irreducible complex variety (possibly singular), and $ D\subset X $ an effective cartier divisor. Then 
+  \begin{itemize}
+    \item There is a projective birational morphism 
+    \[ f:Y\to X \]
+    such that $ Y $ is smooth and $ \mathrm{Supp}\,f^*D\cup\mathrm{Exc}\,f $ is snc;
+    \item Furthermore, one can take $ f $ as compositions of blowing up along smooth centers supported on singular loci of $ X $ and $ D $. In particular, $ f $ is isomorphism over $ X-\mathrm{Sing}\, X\cup \mathrm{Supp}\,D $.  
+  \end{itemize}
+\end{prop}
+By [Hartshorne, prop.7.10],  if $ X $ admits an ample line bundle $ \mathcal{L} $, then  $\pi: \underline{Proj}\mathcal{S}\to X $ is projective, and $ \mathcal{O}(1)\otimes \pi^*\mathcal{L}^m $ is very ample over $ X $  for all $ m\gg 0 $. Therefore, we have 
+\begin{prop}
+  ([KM 1.45]) Let $ f:X\to Y $ be a morphism of projective varieties with $ M $ an ample cartier divisor on $ Y $. If $ L $ is a $ f $-ample cartier divisor on $ X $, then $ L+mf^*M $ is ample for $ m\gg 0 $. 
+\end{prop}
+
+In [JK], let $ X $ be an algebraic variety, and $ B $ a closed subset. The set of points  in a neighborhood of which $ X $ is smooth and $ B $ is normal crossing divisor , is an open subset of $ X $, and denoted by $ \mathrm{Reg}(X,B) $. Its completement $ \mathrm{Sing}(X,B)=X-\mathrm{Reg}(X,B) $ is called \textbf{singular locus} of
+\[
+  (X,B)
+\]
+\begin{thm}
+  ([JK], Theorem 1.6.1) For any algebraic variety $ X $ over a field of character $ 0 $ with a proper closed subset $ B $ , there is a \textbf{strong log resolution} $ f:Y\to X $:
+  \begin{enumerate}
+    \item $ f $ is a birational projective morphism;
+    \item There is a normal crossing divisor $ C $ on $ Y $, such that set-theoretic inverse $ f^{-1}(B) $ is union of serveral irreducible components of $ C $, and $ \mathrm{Exc}(f) $ is union of serveral irreducible components of $ C $;
+    \item $ f $ is isomorphic on $ \mathrm{Reg}(X,B) $;
+    \item $ \mathrm{Exc}(f) $ coincides with set-theoretic inverse $ f^{-1}(\mathrm{Sing}(X,B)) $;
+    \item There is  an effective  $ f $-execptional divisor $ F $ such that $ -F $ is $ f $-ample.
+  \end{enumerate}
+Furthermore, this resolution can be obtained by blowing up along smooth centers (contained in $ \mathrm{Sing}(X,B) $) finitely times.
+\end{thm}
+
+\subsection{covering}
+% TODO: add this subsection
+\section{BPF etc}
+\subsection{prepare}
+
+\begin{lem}
+  Let $ f:Y\to X $ be a proper birational morphism of varieties, and $ X $ a normal variety. Let $ D $ be a cartier divisor on $ X $, and $ F $ an exceptional effecitve cartier divisor on $ Y $, and $ E=\mathrm{Exc}(f) $, then 
+  $$ H^0(X,D)\cong H^0(Y,f^*D+F) $$ 
+\end{lem}
+\begin{proof}
+  Since $ f $ is birational proper, then $  \underline{\mathrm{Spec}}f_*\mathcal{O}_Y\xrightarrow{\sim}X $, and $ f_*\mathcal{O}_Y\cong \mathcal{O}_X $. By projection formula, 
+  \[ H^0(Y,f^*\mathcal{O}_X(D))=H^0\left(X,f_*\left(f^*\mathcal{O}_X(D)\otimes \mathcal{O}_Y\right)\right)=H^0(X,\mathcal{O}_X(D))\]
+  Since $ F $ is effective,
+  \[ H^0(Y,f^*D)\subset H^0(Y,f^*D+F) \]
+  Since $ F $ is exceptional, i.e. $ F\subset E $,
+  \[ H^0(Y,f^*D+F)\subset H^0(Y-E,f^*D) \]
+  Notice that $ Y-E\cong X-f(E)  $,
+  \[ H^0(Y-E,f^*D)= H^0(X-f(E),D) \]
+  But $ X $ is normal, and $ \mathrm{codim} f(E)\geqslant 2 $,
+  \[  H^0(X-f(E),D) =H^0(X,D) \]
+  Now we have 
+  \[ H^0(X,D) \subset H^0(Y,f^*D+F)\subset H^0(X,D) \]
+\end{proof}
+
+By [Hartshorne, prop.7.10],  if $ X $ admits an ample line bundle $ \mathcal{L} $, then  $\pi: \underline{Proj}\mathcal{S}\to X $ is projective, and $ \mathcal{O}(1)\otimes \pi^*\mathcal{L}^m $ is very ample over $ X $  for all $ m\gg 0 $. Therefore, we have 
+\begin{prop}
+  ([KM], 1.45]) Let $ f:X\to Y $ be a morphism of projective varieties with $ M $ an ample cartier divisor on $ Y $. If $ L $ is a $ f $-ample cartier divisor on $ X $, then $ L+mf^*M $ is ample for $ m\gg 0 $. 
+  
+  Or equivalently, $ f^*M+\epsilon L $ is ample for all $ 0<\epsilon \ll 1 $.
+\end{prop}
+
+\begin{lem}
+  ([KM98], lemma 2.62) Let $ f:Y\to X $ be a birational map. Assume  $ Y $ is projective and $ X $ is $ \mathbb{Q} $-cartier. Then there is an effective $ f $-exceptional divisor $ F $ such that $ -F $ is $ f $-ample. 
+\end{lem}
+
+\begin{lem}
+  ([D], lemma 7.29) Let $ X $ be a complex projective variety and $ M $ big and nef $ \mathbb{Q} $-cartier divisor, then  there is a desigularization $ f:Y\to X $ and a s.n.c $ f $-exceptional reduced divisor $ \sum F_i $ on $ Y $, such that for any $ \epsilon>0 $, there are rational numbers $ p_i\in (0,\epsilon) $ , and $ f^*M-\sum p_iF_i $ ample. 
+\end{lem}
+
+\begin{lem}
+  (weak R-R) Let $ X $ be an irreducible projective variety of dimensional $ n $, and $ D $ is a divisor. Denote
+  \[ h_{\mathcal{F},D}(m):=\chi (X,\mathcal{F}\otimes \mathcal{O}_X(mD)) \]
+  Then 
+  \[ h_{\mathcal{F},D}(m)=\mathrm{rk}\,\mathcal{F}\cdot \frac{D^n}{n!}\cdot m^n+ O (m^{n-1})\]
+\end{lem}
+
+\begin{prop}
+  ([KM98], prop 2.61) Let $ X $ be a projective variety of dimension $ n $ over a field of character $ 0 $, and $ D $ a cartier divisor. Then TFAE:
+  \begin{enumerate}
+    \item $ D $ is nef and big;
+    \item $ D $ is nef and $ D^n>0 $;
+    \item There is an effective divisor $ E $ such that for any $ k\gg 0 $, there is an ample $ \mathbb{Q} $-cartier divisor $ A_k $ such that $ D\equiv A_k+\frac{1}{k}E $;
+    \item For any divisor $ B $, there is a log resolution $ f:Y\to X $ and an effective divisor $ E' $ on $ Y $, such that $ \mathrm{Exc}(f)\cup E'\cup f^*B $ snc, and for any $ k\gg 0 $, there is an ample $ \mathbb{Q} $-cartier divisor $ A_k $ and $ f^*D\equiv A'+\frac{1}{k}E' $.  
+  \end{enumerate}
+\end{prop}
+\begin{rmk}
+  $ D $ nef and big. Take $ H $ ample effective. By bigness, find a effective $ E'\sim mD-H $. Let $ E=\frac{E'}{m} $, then
+  $$ D=(\frac{t}{m}H+(1-t)D)+tE $$ 
+  Thus there is a effective $ E $ such that for all rational $ t\in (0,1]  $, $ D-tE $ is ample $ \mathbb{Q} $-cartier.
+\end{rmk}
+\subsection{Idea}
+We first assuming Non-vanishing theroem:
+\begin{thm}
+  ([KM98], Theorem 3.4) Let $ X $ be a proper variety, $ D $ a nef cartier divisor and $ G $ a $ \mathbb{Q} $-cartier divisor. Suppose $ aD+G-K_X $ is nef and big $ \mathbb{Q} $-cartier for some $ a>0 $ and $ (X,-G) $ is klt, then $ H^0(X,mD+\lceil G \rceil)\neq 0 $ for all $ m\gg 0 $.
+\end{thm}
+Notice that $ (X,-G) $ klt implies coefficients of $ G $ is $ >-1 $, then $ \lceil G\rceil $ is effective.
+
+Another version of non-vanishing:
+\begin{thm}
+  Let $ (X,B) $ be a klt pair, $ D $ nef cartier divisor, $ G\geqslant0 $ cartier divisor, such that $ aD+F-(K_X+B) $ is nef and big for some rational number $ a>0 $, then $ H^0(X,mD+F)\neq 0 $ for all $ m\gg 0 $.
+\end{thm}
+($ B=-G, F=\lceil G\rceil $)?
+
+Now we state the theorem:
+\begin{thm}
+  ([KM98],Theorem 3.3) Let $ (X,B) $ be a proper ( or projective? ) klt pair and $ B\geqslant 0 $, let $ D $ be a nef cartier divisor such that $ aD-(K_X+B) $ is nef and big for some $ a>0 $, then $ bD $ is base point free for all $ b\gg 0 $.
+\end{thm}
+First we show that $ |aD| \neq \emptyset $ for all $ a\gg 0 $ by non-vanishing. Notice that if $ u|v $ for integral $ 0<u<v $, then $ Bs(vD)\subset Bs(uD) $, therefore by noetherian condition, for any  integer $ s>0 $, the sequence $ Bs(s^nD) $ stabililzes, denoted by $ B_s $.
+
+Claim that $ B_s=\emptyset $ for any $ s $, in particular for $ s,t $ such that $ \mathrm{gcd}(s,t)=1 $. Suppose $ B_s=Bs(s^mD) $ and $ B_t=Bs(t^nD) $, then for any $ b\gg 0$, we have $ b=xs^m+yt^n $, and $ \mathcal{O}_X(bD)=\mathcal{O}_X(xs^mD)\otimes\mathcal{O}_X(yt^nD) $ is base point free. 
+
+We show the claim by contradiction: If $ Z=B_s=Bs(mD)\neq \emptyset $, then there is a section of $ kmD $, NOT everywhere vanishing on $ Z $, for all $ k\gg 0 $, thus $ Z $ is not the limit of the sequence. 
+
+
+Replace $ X $ by blowing up it along $ Z $, we may assume $ X $ is smooth, $ B=0 $, and $ M $ ample cartier divisor. Let $ F $ be an irreducible exceptional divisor, then we have SES:
+\[ 0\to \mathcal{O}_X(K_X+M)\to \mathcal{O}_X(K_X+M+F)\to \mathcal{O}_F(K_F+M|_F)\to 0 \]
+By vanishing for $ K_X+M $, we have surjection
+$$ H^0(X,K_X+M+F)\to H^0(F,K_F+M|_F)\to 0 $$  
+Assume $ bD-K_X=M+F $, i.e. $ bD=K_X+M+F $, and $ 0\neq t\in H^0(F,K_F+M|_F)\neq 0 $ by non-vanishing. Then section $ s\in H^0(X,K_X+M+F) $ with image $ t $ is the asking section.
+\subsection{Details}
+$ aD-(K_X+B) $ is nef and big, then $ aD-(K_X+B)\equiv A_k+\frac{1}{k}E $ for $ k\gg 0 $ where $ A_k $ is ample and $ E $ is effective. Take $ B'=B+\frac{1}{k}E $ such that $ (X,B') $ is still klt, then  $ aD-(K_X+B')\equiv A_k $ is ample. Replacing $ B $ by $ B' $,  we can assume $ A=aD-(K_X+B) $ is ample. 
+
+\textbf{Step1}: Showing that $ |mD|\neq \emptyset $ for all $ m\gg 0 $:
+
+Take a log resolution $ f:Y\to X $ of $ (X,B) $ such that
+\begin{enumerate}
+  \item $ K_Y=f^*(K_X+B)+\sum a_iF_i $ with all $ a_i>-1 $;
+  \item $ f^*(aD-(K_X+B))-\sum p_iF_i $ ample for some $ a>0 $ and $ 0\leqslant p_i\ll 1 $.
+\end{enumerate}
+
+Furthermore, we can take a strong log resolution in sense of [JK], and 
+\begin{enumerate}[(a)]
+  \item Since $ (X,B) $ is klt and $ B $ is effective, coefficients of $ B $ are in $ (0,1) $, and $ \sum a_iF_i=-f^{-1}_*B+\sum_{exceptional}a_iF_i $. Therefore $ a_i>0 $ implies $ F_i $ is exceptional.
+  \item By the theorem of strong resolution, we have an effective exceptional divisor $ F $, such that $ -F $ is $ f $- ample, thus $ f^*(aD-(K_X+B))+\epsilon(-F) $ is ample for all $ 0<\epsilon\ll 1 $. In other words, $ \sum p_iF_i=\epsilon F $.
+\end{enumerate}
+
+On $ Y $ we have
+\begin{equation*}
+  \begin{aligned}
+  &f^*(aD-(K_X+B))-\sum p_iF_i\\
+  =&af^*D+\sum(a_i-p_i)F_i-(f^*(K_X+B)+\sum a_iF_i)\\
+  =&a^*D+G-K_Y
+  \end{aligned}
+\end{equation*}
+By non-vanishing, $ H^0(Y,mf^*D+\lceil G\rceil )\neq 0 $ for all $ m\gg 0 $. By (b), we can take suitable $ p_i $ such that $ (a_i-p_i)>-1 $, and by (a) we have $ \lceil G\rceil  $ effective and $ f $-exceptional. Thus  $ H^0(X,mD)= H^0(Y,mf^*D+\lceil G\rceil ) $. This  finishes step 1.
+
+\textbf{Step 2}: Showing that $ B_s=\emptyset $ for all $ s $. Otherwise, we may assume $ B_s=Bs(s^kD)=Bs(mD) $, we can assume $ m\gg 0 $ such that $ H^0(X,mD)\neq 0 $. 
+
+Take a strong log resolution $ f:Y\to X $, (with closed subset $ B\cup B_s $?), in the sense of [JK], then 
+\[ f^*mD=L+\sum r_iF_i , r_i\geqslant 0\]
+
+
+\begin{ques}
+  Why $ L $ base point free? We may use [H], II, example 7.17.3 first:
+  \[ \xymatrix{
+  \tilde{X}\ar[rrd]\ar[d]_{\pi}\\
+  X&U\ar@{_(->}[l]\ar[r]_{|L|}&\mathbb{P}^n_A 
+  } \]
+where $ L $ is base point free on $ U $, and $ \pi $ is blowing up of $ X $ along $ X-U $. In particular, $ \cup \{ f(F_i), r_i>0\}=Bs(mD) $.
+\end{ques}
+
+\begin{rmk}
+  To use the trick shown in the idea above, we need $ bf^*D=K_Y+M+F $ where $ M $ is ample and $ F $ is an exceptional irreducible divisor. However, 
+  \begin{equation*}
+  \begin{aligned}
+  &bf^*D=(b-a)f^*D+f^*(aD-(K_X+B))+f^*(K_X+B)\\
+  =&(b-a)f^*D\text{(nef)}+[f^*(aD-(K_X+B))-\sum a_iF_i]\text{(ample)}+[K_Y+\sum (p_i-a_i)F_i]\\
+  =&[(b-a)f^*D+f^*(aD-(K_X+B))-\sum a_iF_i]+K_Y+\sum (p_i-a_i)F_i
+  \end{aligned}
+  \end{equation*}
+  Notice that $ [(b-a)f^*D+f^*(aD-(K_X+B))-\sum a_iF_i]=M $ is ample, then we should modify $ \sum (p_i-a_i)F_i $ part by $ f^*mD=L+\sum r_iF_i $ and taking up round.
+\end{rmk}
+
+Take any rational $ c>0 $, and $ b>cm+a $, we have 
+\begin{equation*}
+\begin{aligned}
+bf^*D=&(b-cm-a)f^*D+f^*(aD-(K_X+B))+f^*(K_X+B)+cf^*mD\\
+=&(b-cm-a)f^*D\text{(nef)}+[f^*(aD-(K_X+B))-\sum a_iF_i]\text{(ample)}\\
+&+cL\text{(bpf)}\\
+&+[K_Y+\sum (cr_i+p_i-a_i)F_i]\\
+=&[(b-cm-a)f^*D+f^*(aD-(K_X+B))-\sum a_iF_i]\text{(ample)}\\
+&+K_Y+\sum (cr_i+p_i-a_i)F_i\\
+=&M+K_Y+\sum(cr_i+p_i-a_i)F_i
+\end{aligned}
+\end{equation*} 
+
+Or $ M=bf^*D-K_Y+\sum (a_i-cr_i-p_i)F_i $. Take $ c $ such that 
+\[ \min\{ a_i-cr_i-p_i \}=-1 \]
+ and there is only one $ F_i $ with coefficient $ a_i-cr_i-p_i=-1 $, denoted by $ S $.
+ \begin{rmk}
+  Notice that $ a_i>-1, r_i,p_i\geqslant0 $, and and $ p_i $ is given by $ \epsilon F $ for any $ 1\gg \epsilon>0 $. In fact, take 
+  \[ c=\min\{  a_i-cr_i-p_i\geqslant -1\} \]
+  We can take $ \epsilon $ small enough such that if $ r_i=0 $, then $ a_i-cr_i-p_i>-1 $ always holds; 
+  
+  If $ a_i-cr_i-p_i=a_j-cr_j-p_j=-1 $,\underline{\textbf{What if } $ a_i=a_j,r_i=r_j,p_i=p_j $\textbf{?}}
+  
+  cf:[JK],proof of BPF, Theorem 2.1.1, \textit{tie breaking}
+  
+  Let $ \sum (a_i-cr_i-p_i)F_i=A-S $, we can write $ M=bf^*D-K_Y+A-S $, and $ \lceil M\rceil =bf^*D-K_Y+\lceil A\rceil-S $where $ \lceil A\rceil $ is effective. Furthermore, if $ a_i-cr_i-p_i>0 $, then $ a_i>0 $, and $ F_i $ is exceptional, hence $ \lceil A\rceil $ is $ f $-exceptional. 
+ \end{rmk}
+\textbf{Step 3}: Find a section $ \alpha $ such that $ X_\alpha\cap B_s\neq \emptyset  $:
+
+Since $ S $ is an irreducible divisor on $ Y $, we have a SES:
+\[ 0\to \mathcal{O}_Y(-S)\to \mathcal{O}_Y\to \mathcal{O}_S\to 0 \]
+Tensoring with $ \lceil M\rceil +K_Y+S $, then by kodaira vanishing, $ H^1(Y,\lceil M\rceil +K_Y)=0 $, hence there is surjection:
+\[ H^0(Y,bf^*D+\lceil A\rceil)\to H^0(S,\lceil M\rceil|_S +K_S)\to 0 \]
+
+Notice that $ M|_S=af^*D|_S+A|_S-K_S $ is ample, and $ S $ smooth, $ (S,-A|_S) $ klt, by nonvanishing, 
+\[ H^0(S,af^*D|_S+\lceil A\rceil|_S)=H^0(S,\lceil M\rceil|_S +K_S)\neq 0 \]
+Let $ \alpha $ be a lifting of a nonzero section of $ H^0(S,\lceil M\rceil|_S +K_S) $ in $ H^0(Y,bf^*D+\lceil A\rceil) $. Notice that $ \lceil A\rceil $ is effective exceptional, thus $ \alpha \in H^0(Y,bf^*D+\lceil A\rceil)=H^0(X,bD) $. Then $ \alpha $ is not every vanishing along $ f(S) $. However, $ S $ is one of $ F_i $ with $ r_i>0 $, therefore $ f(S)\subset B_s $. This implies $ Bs(bD)\subsetneq B_s $ for all $ b\gg 0 $. This gives the contradiction stated in the idea.
+\subsection{Relative version}
+cf:[JK], Theorem 2.1.1
+
+\begin{thm}
+  (proof of [JK], Theorem 2.1.1) : Let $ (X,B) $ be a klt pair, $ f:X\to S $ projective morphism \textbf{(Is $ S $ projective variety? )}, and $ D,E $ cartier divisors on $ X $. Assume
+  \begin{enumerate}
+    \item $ D $ is relatively nef;
+    \item $ aD+E-(K_X+B) $ is relatively nef and relatively big for some positive integer $ a $;
+    \item $ E $ effective, and there is a positive integer $ m_1 $ such that for all $ m>m_1 $, the natural map 
+    \[ f_*(mD)\to f_*(mD+E) \]
+    is an isomorphism;
+  \end{enumerate}
+  Then there is a positive integer $ M $ such that any $ m>M $, we have $ H^0(X,mD)\neq \emptyset $.
+\end{thm}
+
+\begin{thm}
+  ([JK], Theorem 2.1.1): Let $ (X,B) $ be a klt pair, $ f:X\to S $ projective morphism \textbf{(Is $ S $ projective variety? )}, and $ D,E $ cartier divisors on $ X $. Assume
+  \begin{enumerate}
+    \item $ D $ is relatively nef;
+    \item $ aD+E-(K_X+B) $ is relatively nef and relatively big for some positive integer $ a $;
+    \item $ E $ effective, and there is a positive integer $ m_1 $ such that for all $ m>m_1 $, the natural map 
+    \[ f_*(mD)\to f_*(mD+E) \]
+    is an isomorphism;
+  \end{enumerate}
+  Then there is a positive integer $ M $ such that any $ m>M $, $ mD $ is relatively free, i.e.
+  \[ f^*f_*\mathcal{O}_X(mD)\to \mathcal{O}_X(mD) \]
+  is surjective.
+\end{thm}
+\begin{proof}
+  This is actually local on the target, so we may assume $ S=\mathrm{Spec}\,A $ is affine, and need to show 
+  \[ \mathcal{O}_X \otimes H^0(X,mD)\to \mathcal{O}_X(mD)\]
+  is surjective. Notice that klt is an open condition, we may assume every thing is $ \mathbb{Q} $-cartier and $ aD+E-(K_X+B) $ is relatively ample. 
+\end{proof}
+\subsection{application}
+
+\begin{thm}
+  Let $ (X,B) $ be a proper klt pair, and $ B\geqslant 0 $. Assume $ K_X+B $ is nef and big, then the canonical ring
+  \[ \bigoplus_{m\in \mathbb{N}}H^0(X,mK_X+m\lfloor B\rfloor) \]
+  is finitely generated.
+\end{thm}
+\begin{proof}
+  Denote $ R:=\bigoplus_{m\in \mathbb{N}}H^0(X,mK_X+m\lfloor B\rfloor) $. By base point free theorem, assume $ r>0 $ such that $ r(K_X+B) $ is a base point free cartier divisor, therefore induces a morphism $ f:X\to Z $ and an ample divisor $ L $ on $ Z $ such that $ f^*L=r(K_X+B) $. By stein factorization theorem, we may assume $ f_*\mathcal{O}_X=\mathcal{O}_Z $. Since $ Z $ admits an ample divisor, $ L^m $ is very ample and $ Z $ is projective with $ \mathcal{O}_Z(1)=L^m $. In fact we can replace $ L $ by $ L^m $ and assume $ L=\mathcal{O}_Z(1) $ is very ample. Thus
+  \[
+    R^{(r)}=
+  \]
+  \[ R^{(r)}=\bigoplus_{m\in \mathbb{N}}H^0(X,f_*\mathcal{O}_X(mr(K_X+B)))=\bigoplus_{m\in \mathbb{N}}H^0(Z,\mathcal{O}_Z(m)) \]
+  is a finitely generated graded ring. Conisder graded $ R^{(r)} $-model
+  $$ R_j=\bigoplus H^0(X, mr(K_X+B)+j\lfloor B\rfloor))=\bigoplus H^0(Z, f_*\mathcal{O}_X(j\lfloor B\rfloor)(m))$$ 
+  Since we have surjection
+  \[ H^0(Z,\mathcal{O}_Z(1))\times H^0(Z, f_*\mathcal{O}_X(j\lfloor B\rfloor)(m))\twoheadrightarrow H^(Z, f_*\mathcal{O}_X(j\lfloor B\rfloor)(m+1)) \]
+  for $ m\gg0 $ and $ H^0(X, mr(K_X+B)+j\lfloor B\rfloor) $ is finitely generated $ k $-module, $ R_j $ is finitely generated $ R^(r) $ - module. Hence 
+  \[ R=\bigoplus_{j=0}^{m-1}R_j \]
+  is finitely generated $ R^{(r)} $- module, thus is finitely generated ring.
+\end{proof}
+%10.12 end
+
+%10.14 start
+
+\begin{rmk}
+  If $ X $ is weak Fano variety, i.e. $ -K_X $ is big and nef. Take $ B=0 $ and $ D=-K $, then $ -bK_X $ is base point free. 
+\end{rmk}
+\begin{rmk}
+  If $ (X,B) $ is proper klt pair. Assume $ B $ is effective and $ K_X+B $ is nef and big, then 
+  \[ R(X):=\bigoplus_{m\in \mathbb{N}}H^0(X,\mathcal{O}_X(mK_X+m\lfloor B\rfloor)) \]
+  is finitely generated. Then filp exsits:
+  \[
+    X^+=\mathrm{Proj}\,R(X)
+  \]
+\end{rmk}
+
+\section{Cone}
+ Cone theorem, Lectures on birational geometry, Theorem 7.1
+\subsection{part of proof}
+%10.8 start wyz
+\begin{lem}
+  $ K=K_X+B $ not nef, $ M $ is closure of $  N_{K\geqslant 0}+\sum R $, where $ R $ are extremal rays. Assume $ M\subsetneq N $, and $ 0\neq c\in N-M $, and $ G $ divisor such that $ G(N)>0,G(c)<0 $. Then there is a rational number $ a>0 $ such that $ G-aK $ is ample.
+\end{lem}
+
+\begin{proof}
+  Let $ H $ be an ample divisor, consider $ N'=N\cap \{H=1\} $ and $ M'=M\cap \{H=1\} $, both closed bounded compact subset, and we can assume $ H.x=1 $. 
+  \begin{itemize}
+    \item Consider $ L_t=G-tK, t>0 $, claim that for $ t\gg 0 $, $ L_t $ ample on $ N_{K\leqslant 0} $, i.e. $ L_t(N'_2 \cup N'_3)>0 $. Indeed, 
+    \[ N'=N'_{K\geqslant 0}\cup N'_{K\leqslant 0,G\geqslant 0}\cup N'_{G\leqslant 0}=N'_1\cup N'_2 \cup N'_3 \]
+    Notice that $ M'\subsetneq N'_1\cup N'_2=N'_{G\geqslant 0} $ since $ G(M')>0 $. For all $ t>0 $, we have $ L_t(N'_2)\geqslant0 $. As for $ N'_3 $, since $ G:N_1(X)\to \mathbb{R} $ is continous, and $ N'_3 $ is compact, $ |G(N'_3)|\leqslant b $ is bounded. Same for $ K(N'_3)=[-c,-d] $, and $ d\geqslant 0 $. In fact, $ d>0 $. Otherwise, we have $ x'\in N'_3 $ and $ K(x')=0, G(x')\leqslant 0 $, then $ x'\in N'_1 $, but $ G(N'_1)>0 $, contradiction. Therefore, take $ t> \frac{b}{d} $, then $ L_t(N'_3)\geqslant -b+td>0 $.
+    \item   Consider threshold for nef on $ N_{K\leqslant 0} $:
+    \[ s=\min \{t: L_t(N_{K\leqslant 0})\geqslant0  \} \]
+    Denote $ D=L_s $, claim that $ D $ is positivite on $ N'_1 $. Indeed, by choice of $ s $, there is $ x'\in N'_{K\leqslant 0} $ such that $ D(x')=0 $ \textbf{Why?}. If $ K(x')=0 $, then $ x'\in M' $, thus $ G(x')>0 $, contradiction. Hence $ x'\in N'_{K<0} $. If $ D $ is not positivite on $ N'_1 $, then there is $ x''\in N_1 $ such that $ D(x'')\leqslant 0 $. If $ K(x'')=0 $, then $ G(x'')\leqslant 0 $, but $ G(x'')>0 $, hence $ K(x'')>0 $. Now $ D(x')=0,K(x')<0 $ and $ D(x'')\leqslant 0,K(x'')>0 $, then there is  a point $ x''' $ on the line $ [x',x''] $ such that  $ K(x''')=0,D(x''')\leqslant 0 $,  therefore $ G(x''')=0 $. However $ K(x''')=0 $ implies $ x'''\in M' $, and $ G(x''')>0 $, contradiction. Hence $ D $ is positivite on $ N'_1 $.
+    \item $ D=G-sK $ is nef. Claim that for all $ 0<\epsilon \ll 1 $, $ D'=D-\epsilon K $ is ample. Need to show $ D'(N')>0 $. Since $ D $ is strictly positive on $ N'_1 $, we can take $ \epsilon $ small enough such that $ D' $ is positive on $ N'_1 $. As above, $ D' $ non-negative on $ N'_2 $, if $ D'(x_2)=G(x_2)-(\epsilon +s)K(x_2)=0$ for some $ x_2\in N'_2 $, then $ G(x_2)\geqslant 0,K(x_2)\leqslant 0 $ implies $ G(x_2)=K(x_2)=0 $. However $ K(x_2)=0 $ implies $ x_2\in M' $ and $ G(x_2)>0 $;  Similarily, $ K(N'_3)<0 $, therefore $ D'(N'_3)>0 $. Thus $ D' $ is ample. One can take $ \epsilon $ such that $ s+\epsilon $ rational, and $ H=D-\epsilon K $ is $ \mathbb{Q} $-cartier ample divisor.
+    \item If consider nef threshold for $ H $,
+    \[ \lambda=\max\{r: H-rK \text{ nef}\} \]
+    by rational theorem, $ r=\epsilon $ and $ s $ is also rational.
+  \end{itemize}
+  
+  
+  
+\end{proof}
+
+
+(Following is part of proof of cone th and contraction th.)
+\begin{prop}
+  Let $ (X,B) $ be a projective klt divisor, $ K=K_X+B $ not nef. Let $ D $ be a nef $ \mathbb{Q} $-cartier divisor, and $ F_D=\{F_D=0\}\cap \overline{NE(X)} $ is an extremay face. Let $ N=\overline{NE(X)} $. Claim that closure $ M $ of
+  \[
+    N_{K\geqslant 0}+\sum F_D
+  \]
+  is $ N $, where $ F_D $ run over all nef $ D $ such that $ \dim F_D=1 $. 
+\end{prop}
+\begin{proof}
+  Otherwise, there is a point $ c\in N $ and $ c\notin M  $. Assume $ G $ is a cartier divisor such that 
+  \[ G(M-0)>0,G(c)<0 \]
+  This is a separating hyperplane of $ M $ and $ c $. Claim: there is a rational number $ a>0 $ such that $ G-aK $ is ample.
+\end{proof}
+
+\subsection{cone}
+
+To prove uniqueness of contraction, we need rigidity lemma:
+\begin{lem}
+  uniqueness of contraction:([D] lemma 1.15) Let $ X,Y,Z $ varieties and $ f:X\to Y,g:X\to Z $ proper morphism, and $ f_*\mathcal{O}_X=\mathcal{O}_Y $, then
+  \begin{enumerate}
+    \item If point $ y_0\in Y $ such that $ g(f^{-1}(y_0))=z_0 $ is a point in $ Z $, then there is a open neighborhood $ V\subset Y $ of $ y_0 $  and $ h:V\to Z $ such that $ g|_{f^{-1}V}:f^{-1}V\to Z $ factors through $ Y $:
+      \[
+        \xymatrix{
+          X\ar[d]_{f}&f^{-1}V\ar[l]\ar[d]\ar[r]^{g}&Y\\
+          Y&V\ar[l]\ar[ur]_{h}
+        }
+      \]
+    \item If $ g $ contracts every fibre of $ f $, then $ g $ factors through $ Y $.
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  Consider $ \phi=(f,g):X\to Y\times Z $. Let  $ W $ be the image (closed subscheme of $ Y\times Z $), and  $ p:W\to Y,q:W\to Z $ be then projection.
+  \[ \xymatrix{
+    X\ar[rrd]^g\ar[ddr]_f\ar[rd]_{\phi}\\
+    &W\ar[d]^p\ar[r]_q&Z\\
+    &Y
+    } \]
+  $ p^{-1}(y_0)=(y_0,z_0)  $ is a single point in $ W $. By upper continous of dimension of fibres, there is an open neighborhood $ V $ of $ y_0 $ in $ Y $ such that $ W_0=p^{-1}V\to V $ is quasi-finite ( relative dimension 0). Let $ X_0=f^{-1}V=\phi^{-1}W_0 $ . Since  $ p_0:W_0\to V $ is quasi-finite and proper, $ p_0 $ is a finite morphism. This implies $ X_0\to W_0 $ is surjective, and $ W_0\to V $ is also surjective. (AG-pb 6, $ f:Y\to X $ for $ X $ reduced, then sch-th dominant iff dominant). Thus $ \mathcal{O}_{W_0}\subset \phi_*\mathcal{O}_{X_0} $ and $ \mathcal{O}_V\subset p_*\mathcal{O}_{W_0}  $. Therefore
+  \begin{equation*}
+  \begin{aligned}
+  \mathcal{O}_{V}&\subset p_*\mathcal{O}_{W_0} \text{(dominant)}\\
+  &\subset p_*\phi_* \mathcal{O}_{X_0} \text{(dominat and left exactness)}\\
+  &=f_*\mathcal{O}_{X_0}=\mathcal{O}_V
+  \end{aligned}
+  \end{equation*}
+  $ p $ is finite and $ \mathcal{O}_{V}= p_*\mathcal{O}_{W_0} $ shows that $ \mathcal{O}_{W_0}\cong \mathcal{O}_V $, and induces \[ h:V\to W_0\to W\to Z \]
+  For the second claim, we can take $ V=Y $ and is done.
+\end{proof}
+
+\subsection{application}
+\begin{prop}
+  ([KM] Theorem 3.17) Let $ (X,B) $ be a projective klt pair, and $ R\subset \overline{NE}(X) $ be a $ (K_X+B) $-negative extremay ray. Let $ g_R:X\to Z $ be the corresponding contraction morphism. Let $ C $ be the curve on $ X $ generating $ R $, then we have an exact sequence
+  \[ 0\to \mathrm{Pic}\,Z\xrightarrow{L\mapsto g_R^*L}\mathrm{Pic}\,X\xrightarrow{M\mapsto M.C} \mathbb{Z} \]
+  Therefore we have $ \rho(X)=\rho(Z)+1 $. 
+\end{prop}
+\begin{lem}
+  Let $ f:X\to Y $ be a birational morphism of norman varieties. Assume $ D_1,D_2 $ are  Cartier divisors on $ X $, linearly equivalent as cartier divisors. Then $ f_*D_1,f_*D_2 $ are weil divisors on $ Y $, equivalent as weil divisors, i.e. there is a rational functor $ h\in K(Y) $ such that $ (h)= f_*D_1-f_*D_2$.
+\end{lem}
+
+\begin{prop}
+  Let $ g_R $ be as above. If $ X $ is $ \mathbb{Q} $-factorial and $ g_R $ is either divisorial or Fano, then $ Z $ is also   $\mathbb{Q} $-factorial .
+\end{prop}
+\section{Rational}
+
+\subsection{lemmas}
+\begin{lem}
+  Take $ a\in \mathbb{Z}_{>0} $ and $ r\in \mathbb{R}_{>0} $, define 
+  \[ \Lambda_\epsilon:=\{ (x,y)\in \mathbb{Z}^2 : 0<ay-rx<\epsilon \} \]
+  Then 
+  \begin{enumerate}
+    \item If $ r $ is irrational, then $ \#\Lambda_{\epsilon} =+\infty$;
+    \item If $ r $ is rational, then $ \Lambda_{\epsilon} $ is either empty or infinite;
+    \item If $ r=\frac{u}{v} $ rational and $ v> \frac{a}{\epsilon} $, then $ \#\Lambda_{\epsilon} =+\infty$.
+  \end{enumerate}
+\end{lem}
+\begin{rmk}
+  If $ r $ is either irrational or $ r=\frac{u}{v} $ rational with $ v\geqslant a(n+1) $, then $ \#\Lambda_{\frac{1}{n}}=+\infty $;
+  
+  Let $ L_{x,y}=xH+yK $, then $ L_{p,q} $ is not nef and $ L_{p,q-1} $ is nef.
+\end{rmk}
+\begin{lem}
+  Let $ P(x,y) $ be a polynomial of degree atmost $ n $. If there is $ q_0 $ such that $ P(p,q)=0 $ for all $ q>q_0 $ and $ (p,q)\in \Lambda_{\epsilon} $, and $ \#\Lambda_{\frac{\epsilon}{n+1}}=+\infty  $, then $ Q(x,y)\equiv 0 $.
+\end{lem}
+\begin{proof}
+  We can find infinitely many lines ( of form $ qx-py=0 $) where $ Q $ vanishes.
+\end{proof}
+
+\subsection{Hint}
+\begin{thm}
+  Let $ (X,B) $ be a proper klt pair and $ B $ effective, with $ K=K_X+B $ not nef and $ a(K_X+B) $ is cartier.  Let $ H $ be a nef and big cartier divisor. Define 
+  \[ r:=\sup \{t: H+t(K_X+B) \text{ is nef }\} \]
+  Then $ r=\frac{u}{v} $, and $ v\leqslant a(n+1) $.
+\end{thm}
+\begin{rmk}
+  Since $ K_X+B $ is not nef, $ r\neq +\infty $; If $ H $ is ample (nef and big), then $ H+tK $ is ample (nef and big) for all $ 0<t<r $;
+\end{rmk}
+\begin{proof}
+  We proof by contradicton: otherwise, $\# \Lambda_{\frac{1}{n}}=+\infty $. \textbf{Reduction}: First we reduce to the case where  $ H $ and $ H+aK $ is base point free.
+  
+  \textbf{Step1}: Find a stable base locus for $ L_{p,q}:=pH+qaK $ with $ (p,q)\in \Lambda_1 $. Since $ L_{p,q} $ is  not nef, hence has base locus. Claim that for any $ (p,q)\in \Lambda_1 $, there is  a pair $ (p_0,q_0)\in \Lambda_1 $ such that any $ (p,q)\in \Lambda_1$ with $ q>q_0 $, the base locus $ Bs(L_{p,q})\subset Bs(L_{p_0,q_0}) $. By Noetherian condation, there are minimal elements in $ \{Bs(L_{p,q}):(p,q)\in \Lambda_1\} $. But by claim, in fact there is only one minimal element $ B_0=Bs(L_{p_0,q_0}) $ for some $ (p,q)\in \Lambda_1 $, and $ Bs(L_{p,q})=B_0 $ for any $ q>q_0 $.
+  
+  \textbf{Step2}: Show that $ B_0\neq X $, i.e. $ H^0(X, L_{p,q})\neq 0 $  for sufficiently large $ q $ and $ (p,q)\in \Lambda_1 $. Define a polynomial of degree atmost $ n $:
+  \[ P(x,y):=\chi (X,xH+yK) \]
+  For any $ (p,q)\in \Lambda_1 $, since $ pH+(q-1)K $ is big and nef, by K-V vanishing theorem, $ H^i(pH+qK)=0, i>0 $, therefore $ P(p,q)=H^0(pH+qK) $. If $ P $ vanishes on all sufficiently large pairs in $ \Lambda_1 $, since $ \Lambda_{\frac{1}{n}} $ infinty, by the lemma we have $ P\equiv 0 $. But if take $ y=0 $, then $ P(x,0)=\chi (X,xH) $ not identivally zero since $ H $ is nef and big. This implies $ P(p,q)=H^0(pH+qK)\neq 0 $ for arbitary large pairs in $ \Lambda_1$. Therefore $ B_0\neq X $. On the other hand, $ L_0 $ is not nef, thus $ B_0\neq \emptyset $.
+  
+  \textbf{Step3}: Find a  log resolution with a 'good' effective divisor. Let $ L_0=L_{p_0,q_0} $. Take a log  resolution $ f^*Y\to X $ w.r.t. $ B_0\cup B $ in strong sense such that 
+  \begin{enumerate}
+    \item $ f^*L_0=M+\sum_ir_iF_i $, with $ M=f^*L_0-\sum_ir_iF_i $ base point free, $ r_i\geqslant 0 $, $ F_i $ exceptional, and $ \cup_{r_i\neq 0}f(F_i)=B_0 $;
+    \item $ f^*(p_0H+(q_0a-1)K)-\sum p_iF_i $ ample, where $ p_i>0 $ can be arbitrarily small such that $ a_i-p_i>-1 $;
+    \item $ K_Y\sim f^*(K_X+B)+\sum_ia_iF_i $, $ \sum_iF_i $ is snc, $ Y $ is smooth,  $ a_i<-1 $ (since $ (X,B) $ is klt);
+  \end{enumerate}
+Same as bpf, take $ c=\min_{r_i\neq 0} \{ \frac{1+a_i-p_i}{r_i} \}\in \mathbb{Q}_{>0} $, thus $ \min \{ -cr_i+a_i-p_i \}=-1 $. Therefore
+\begin{equation*}
+  \begin{aligned}
+  N_{p,q}:=&f^*(pH+qaK)-K_Y+\sum(-cr_i+a_i-p_i)F_i\\
+  =&f^*((p-(c+1)p_0)H+(q-(c+1)q_0)aK)\\
+  &+c(f^*L_0-\sum_ir_iF_i )\\
+  &+f^*(p_0H+(q_0a-1)K)-\sum p_iF_i
+  \end{aligned}
+\end{equation*}
+Let $ \epsilon=\min\{1,(c+1)aq_0+rp_0\} $. For any $ (p,q)\in \Lambda_{\epsilon} $ and $ q>(c+1)q_0=:q_1 $, we have $ \frac{(q-(c+1)q_0)a}{p-(c+1)p_0}<r $, therefore $ N_{p,q}=(nef)+(bpf)+(ample) $ is ample. By wiggling $ p_i $  we may assume only one $ i=i_0 $ with $ -cr_i+a_i-p_i=-1 $, and denote $ \sum(-cr_i+a_i-p_i)F_i=A-S $ where $ S=F_{i_0} $. Then 
+\[ N_{p,q}=f^*(pH+qaK)-K_Y+A-S \] 
+and $ \lceil A\rceil\geqslant 0 $ is $ f $-exceptional. $ A $ and $S  $ has no common componet, $ A\cup S $ is snc. Thus on $ S $, $ \lceil A\rceil|_S $ is snc effective divisor. Let $ B_S=\lceil A\rceil|_S-A_S $, then $ (S,B_S) $ is klt, and
+$$ f^*(pH+qaK)|_S+\lceil A\rceil|_S=N_{p,q}|_S+(K_S+B_S) $$ 
+Consider the  SES:
+\[ 0\to \mathcal{O}_Y(-S)\to \mathcal{O}_Y\to \mathcal{O}_S\to 0    \]
+Tensoring with $ K_Y+\lceil N_{p,q}\rceil +S=f^*(pH+qaK)+\lceil A\rceil $:
+\[ 0\to \mathcal{O}_Y(K_Y+\lceil N_{p,q}\rceil)\to \mathcal{O}_Y(f^*(pH+qaK)+\lceil A\rceil)\to \mathcal{O}_S(\lceil N_{p,q}\rceil|_S+(K_S+B_S))\to 0    \]
+
+By KV vanishing, $ H^i(Y,\lceil N_{p,q}\rceil +K_Y)=0, i>0 $, thus we have surjection
+\[ H^0(X,pH+qaK)=H^0(Y,f^*(pH+qaK)+\lceil A\rceil)\twoheadrightarrow H^0(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S)) \]
+
+
+
+\textbf{Step4}: Define a polynomial and conclude a contradiction. Define
+\[ Q(x,y)=\chi(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S)) \]
+For $ (p,q)\in \Lambda_{\epsilon} $ and $ q $ large enough,  since $ \lceil N_{p,q}\rceil|_S  $ is ample, and $ (S,B_S) $ is klt, and $ \lceil N_{p,q}\rceil|_S-N_{p,q}|_S $ is snc, by KV-vanishing, $ H^i(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S))=0, i>0 $, thus $\chi(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S))=h^0(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S))  $. Any section of $ H^0(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S)) $ has a lift on $ H^0(X,pH+qaK) $. But the section in $ H^0(X,pH+qaK) $ vanishes on $ B_0 $, therefore vanishes in $ H^0(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S)) $. This implies $ Q(p,q)=0 $ for such pairs $ (p,q) $.
+
+On the other hand, if $ \frac{qa}{p}<r $, then $ f^*(pH+qaK)|_S $ is nef, $ (f^*(pH+qaK)+A)|_S=K_F $ ample, by nonvanishing, $ H^0(S,\lceil N_{mp,mq}\rceil|_S+(K_S+B_S))\neq 0 $ for all sufficiently large $ m $, thus $ Q(mp,mq)\neq 0 $. This  shows $ Q $ is not identically $ 0 $.
+
+We have shown that $ Q $ vanishes for all sufficiently large pairs in $ \Lambda_{\epsilon} $, but not identically $ 0 $. By lemma, $ \Lambda_{\frac{\epsilon}{n+1}}= \emptyset $, thus $ r=\frac{u}{v} $ is rational. However, by taking a good pair $ (p_0,q_0) $, we can show $ \Lambda_{\epsilon}=\Lambda_1 $ for all sufficiently large pairs: Since $ r $ is rational, for all $ (p,q) \in \Lambda_1$, $ aq-rp=\frac{vaq-up}{v}<1 $ has only finitely many choice. Take $ (p_0,q_0) $ such that $ aq_0-rp_0\geqslant aq-rp $ for all $ q>q_0 $, then any sufficiently large pair in $ \Lambda_{\epsilon} $ is also in $ \Lambda_1 $. Then $ Q=0 $ for all any sufficiently large pair  in $ \Lambda_1 $, and $ \Lambda_{\frac{\epsilon}{n+1}} $, implies $ Q $ identically $ 0 $, which is a contradiction.
+
+
+\end{proof}
+\subsection{Details}
+% TODO: add Details
+\end{document}

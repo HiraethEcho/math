@@ -1,0 +1,148 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+\usetikzlibrary{arrows.meta}%画箭头用的包
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Lecture 1: Introduce MMP}
+\author{Jiang chen}
+\date{\today}
+
+\begin{document}
+  \maketitle
+  % \tableofcontents
+  % \newpage
+
+\begin{lem}
+  $X ,Y$  birational smooth varieties, then 
+  \[
+    h^0(X,\omega ^n )=h^0(Y,\omega ^n)
+  .\]
+ 
+\end{lem}
+\section{Higher dimension generaliation}
+\begin{itemize}
+  \item $(-1)$-curve $\to $ extrmal rays
+  \item contraction of $(-1)$-curves  $\to $ contraction theorem.
+\end{itemize}
+\section{Singularity of pairs}
+Everything over $\mathbb{C}$.
+
+Let $X$ be a normnal variety. $B=\sum b_i B_{i}$ where $B_{i}$ are primes divisors, and $b_{i}\in \mathbb{R}_{geqslant 0}$. And $K_{X}+B$ is $\mathbb{R}$-Cartier. 
+
+$\mathbb{R}$-Cartier means $K_{X}+B= \sum^{n}_{i=1} c_{i}D_{i}$ where $D_{i}$ cartier and $c_{i}\in \mathbb{R}_{geqslant 0}$. Here $=$ means as weil divisor or $\mathbb{R}$-linear equivalent
+
+$f:Y\to X$ is log resolution of $(X,B)$ if $f$ is projective birational, $Y$ is smooth,$\operatorname{Exc}f$ is a diviosr and  $\operatorname{Exc}f \subset Y \cup  f^{-1}*B$ are SNC.     
+
+\begin{defn}
+  \[
+    K_{Y}+C=f^*(K_{X}+B)
+  .\]
+ \begin{itemize}
+   \item $(X,B)$ klt  if $C<1$  (here exit such $f$ implies for any $f$  )
+   \item $(X,B)$ is dlt if $B\leqslant 1$ and $\exists f$ such that $C-f^{-1}_*<1$ 
+
+ \end{itemize} 
+\end{defn}
+remark: klt $\implies$ dlt.
+
+\section{cone of curves}
+Let $f:X\to S$ be a projective surjective morphsim, and $X$ is normal.
+\begin{defn}
+  $N^1(X /S)$ is numerical equivalent classes of $\mathbb{R}$-Cartier $\mathbb{R}$-divisor.
+
+  $N_1(X /S)= \operatorname{Span}_{\mathbb{R}}(curves) /\equiv$ 
+
+\end{defn}
+\begin{thm}[Klein]
+ $D$ is ample over $S$ iff $(D.v)>0$ for all $v \in \overline{\operatorname{NE}} (X /S)-0$.    
+\end{thm}
+\begin{thm}[cone thm]
+  $(X,B)$ is dlt, $f:X\to S$ projective, and $A$ ample over $S$, and $\epsilon>0$, then 
+  \[
+    \overline{\operatorname{NE}}(X /S) = \overline{\operatorname{NE}}(X /S_{K_{X}+B+\epsilon A\geqslant 0}) + \sum^{s}_{i=1} R_{i}
+  .\]
+ where $R_{i}$ finitely many extremal ray.
+
+ Furthermore, any $R_{i}$ gives a contraction
+ \[
+   h_{i}:X\to Y_{i} \to S
+ .\]
+such that 
+\begin{enumerate}
+  \item $h_{i*} \mathcal{O}_{X}=\mathcal{O}_{Y_{i}}$
+  \item $\rho(X /Y_{i})=1$.
+  \item $-(K_{X}+B)$ is ample over $Y_{i}$ 
+\end{enumerate}
+\end{thm}
+\section{MMP}
+ Start from: $f:(X,B)\to S$ dlt pair and $\mathbb{Q}$-factorial.
+ \begin{enumerate}
+   \item if $K_{X}+B$ is nef, then we end.
+   \item if $K_{X}+B$ is not nef, then there is a exremal ray $R$ , then $h:X\to Y$
+     \begin{enumerate}[a]
+       \item $h$ birational and contract a prime divisor, called divisorial contraction.
+       \item $h$ birational and isomorphsim in codim $1$.
+       \item $\dim X >\dim Y$
+     \end{enumerate}
+ \end{enumerate}
+ For 3 contraction maps:
+ \begin{enumerate}[a]
+   \item  replace $X$  by $Y$
+   \item  $K_{Y}+ h_*B $ is not $\mathbb{R}$-Cartier. Replace by flip.
+   \item end.
+ \end{enumerate}
+ We have 2 questions:
+ \begin{enumerate}
+   \item What is a flip?
+   \item When MMP ends?
+ \end{enumerate}
+
+\begin{defn}
+  $f:X\to Y$ is small contraction with respect to $(K_{X}+B)$-negative ray, then $h^+ :X^+\to Y$ is a flip if 
+  \begin{enumerate}
+    \item $h^+$ is small;
+    \item $K^{X^+}+B^+$ is ample over $Y$. 
+  \end{enumerate}
+\end{defn}
+\begin{lem}
+  If flip exits, then it is unique, and $(X^+,B^+)$ is stasifies start condition. Furthermore, if $B$ is $\mathbb{Q}$-divisor, then flip exits iff
+  \[
+   \mathcal{R}= \oplus h_*\mathcal{O}E_X(\lceil m(K_{X}+B)\rceil)
+  .\]
+ is finite generated $\mathcal{O}_Y$-algebra.
+ In fact,
+ \[
+   X^+=\operatorname{Proj} \mathcal{R}
+ .\]
+ 
+\end{lem}
+Need MMP to prove finitely generated; and inverse. Some of Main theorem of BCHM.
+\begin{enumerate}
+  \item flips
+  \item FG of canonical ring.
+\end{enumerate}
+\end{document}

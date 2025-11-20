@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Notes of Seminar of MMP for surfaces}
+\author{wyz}
+\date{}
+
+\begin{document}
+	\maketitle
+10.21 cone thm and rationality
+
+\section{cone}
+
+To prove uniqueness of contraction, we need rigidity lemma:
+\begin{lem}
+	uniqueness of contraction:([D] lemma 1.15) Let $ X,Y,Z $ varieties and $ f:X\to Y,g:X\to Z $ proper morphism, and $ f_*\mathcal{O}_X=\mathcal{O}_Y $, then
+	\begin{enumerate}
+		\item If point $ y_0\in Y $ such that $ g(f^{-1}(y_0))=z_0 $ is a point in $ Z $, then there is a open neighborhood $ V\subset Y $ of $ y_0 $  and $ h:V\to Z $ such that $ g|_{f^{-1}V}:f^{-1}V\to Z $ factors through $ Y $:
+		$$ \xymatrix{
+			X\ar[d]_{f}&f^{-1}V\ar[l]\ar[d]\ar[r]^{g}&Y\\
+			Y&V\ar[l]\ar[ur]_{h}
+	} $$
+		\item If $ g $ contracts every fibre of $ f $, then $ g $ factors through $ Y $.
+	\end{enumerate}
+\end{lem}
+\begin{proof}
+	Consider $ \phi=(f,g):X\to Y\times Z $. Let  $ W $ be the image (closed subscheme of $ Y\times Z $), and  $ p:W\to Y,q:W\to Z $ be then projection.
+	$$ \xymatrix{
+		X\ar[rrd]^g\ar[ddr]_f\ar[rd]_{\phi}\\
+		&W\ar[d]^p\ar[r]_q&Z\\
+		&Y
+		} $$
+	$ p^{-1}(y_0)=(y_0,z_0)  $ is a single point in $ W $. By upper continous of dimension of fibres, there is an open neighborhood $ V $ of $ y_0 $ in $ Y $ such that $ W_0=p^{-1}V\to V $ is quasi-finite ( relative dimension 0). Let $ X_0=f^{-1}V=\phi^{-1}W_0 $ . Since  $ p_0:W_0\to V $ is quasi-finite and proper, $ p_0 $ is a finite morphism. This implies $ X_0\to W_0 $ is surjective, and $ W_0\to V $ is also surjective. (AG-pb 6, $ f:Y\to X $ for $ X $ reduced, then sch-th dominant iff dominant). Thus $ \mathcal{O}_{W_0}\subset \phi_*\mathcal{O}_{X_0} $ and $ \mathcal{O}_V\subset p_*\mathcal{O}_{W_0}  $. Therefore
+	\begin{equation*}
+	\begin{aligned}
+	\mathcal{O}_{V}&\subset p_*\mathcal{O}_{W_0} \text{(dominant)}\\
+	&\subset p_*\phi_* \mathcal{O}_{X_0} \text{(dominat and left exactness)}\\
+	&=f_*\mathcal{O}_{X_0}=\mathcal{O}_V
+	\end{aligned}
+	\end{equation*}
+	$ p $ is finite and $ \mathcal{O}_{V}= p_*\mathcal{O}_{W_0} $ shows that $ \mathcal{O}_{W_0}\cong \mathcal{O}_V $, and induces $$ h:V\to W_0\to W\to Z $$
+	For the second claim, we can take $ V=Y $ and is done.
+\end{proof}
+
+
+
+
+\end{document}

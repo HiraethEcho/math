@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+\usetikzlibrary{arrows.meta}%画箭头用的包
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Lecture 4}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+
+  \maketitle
+  % \tableofcontents
+  % \newpage
+  \textbf{Special termination, Existence of Minimal model, Existence of Flips}
+\section{Special termination}
+Recall
+
+\begin{thm}[Special termination of MMP with scaling]
+  In above theorem setting, any $(K_{X}+B)$-MMP with scaling of  $B'-B$ is isomorphism along  $\left\lfloor B \right\rfloor $ after finitely many steps.
+\end{thm}
+  And  Exist of flip $_n$ + MMP with scaling Termination $_{n-1}$ $\implies$ Specila termination $_n$ 
+
+Let $f:(X,B)\to S$ with BCHM conditiaion, and  $K_{X}+B'$ is nef over  $S$ for some $B\leqslant B'$. Run $K_{X}+B$-MMP with scaling of $B'-B$, then assume there is a sequence of flips:
+\[
+  (X,B)\dashrightarrow (X_{1},B_{1}) \dashrightarrow \cdots (X_{m},B_{m})  \overset{\alpha_{m}}{\dashrightarrow } \cdots
+\]
+then $\operatorname{Exc}\alpha_{m} \cap \left\lfloor B_{m} \right\rfloor = \emptyset$.
+\textbf{remark:}Therefore Special termination implies PL flips terminate.
+\subsection{Idea}
+Let $Z \subset \left\lfloor B \right\rfloor$ prime divisor, then $(K_{X}+B)|_{Z}=K_{Z}+B_{Z}$ and is dlt. Then the MMP above induces 
+\[
+  (Z,B_{Z})\dashrightarrow (Z_{1},B_{Z,1}) \dashrightarrow \cdots (Z_{m},B_{Z,m}) \dashrightarrow \cdots
+\]
+If this is a MMP with scaling, then this ends. But this is not. Problems:
+\begin{enumerate}
+  \item $Z_{i}$ may not $\mathbb{Q}$-factorial
+    \item  $Z_{i}\dashrightarrow Z_{i+1}$ may extract diviosrs
+\end{enumerate}
+Solutions:
+\begin{enumerate}
+  \item Show that$Z_{i}\dashrightarrow Z_{i+1}$ is contraction for $i\gg 0$
+\item  take model$Z'_{i}$ of  $Z_{i}$ is MMP sequence.
+\end{enumerate}
+\begin{enumerate}[Step1]
+  \item we may assume that $Z=\left\lfloor B \right\rfloor$. Then we have $K_{Z_{m}}+B_{Z,m}$ is klt. Let $I =\operatorname{Coeff} B_{i}$, then 
+
+\textbf{Fact}: 
+\[
+  \operatorname{Coeff}B_{Z,m} \in \Sigma= \{ x \in [0,1]: x=1 - \frac{1}{r}+\sum \frac{m_{i}b_{i}}{r} , b_{i} \in I\} 
+\]
+Then $\Sigma$ infinite but $\Sigma \cap [0,1-\epsilon]$ is finite for any $0<\epsilon<1$.
+
+If $Z_{i}\dashrightarrow Z_{i+1}$ extract a divisor $P$ , then 
+
+\item  Lift to MMP. First take a $\mathbb{Q}$-factorialization of  $Z_{0}'\to Z_{0}$. (This is impled by MMP). Then run $(Z'_{0},B_{Z'_{0}}$-MMP over $Z_{0}$ with scaling of any ample diviosr, and end with minimal model $(Z'_{1},B_{Z'_1})$, and a natural map $(Z'_{1},B_{Z'_1})\to(Z_{1},B_{Z_{1}}$.
+
+  Continue this process and  
+  \[
+    (Z',B_{Z'})\dashrightarrow (Z'_{1},B_{Z',1}) \dashrightarrow \cdots (Z'_{m},B_{Z',m}) \dashrightarrow \cdots
+  \]
+ this is MMP with scaling and terminates. 
+\end{enumerate}
+\section{Existence of minimal model}
+   Exist of PL n + SpT n + NV $(X,B)$ n  $\implies$ Exist of minimal model for $(X,B)$ n
+
+   Note that (Exist PL n +SpT n $\implies$ Exit of flip) is implied by above.
+
+By Nonvanshing, we have $K_{X}+B \equiv_{S} D\geqslant 0$. If $\operatorname{Supp}D \subset \operatorname{Supp}\left\lfloor B \right\rfloor$, then the MMP is PL flips, and is done. However this doesnot hold.
+
+\begin{enumerate}[Step0]
+  \item we may assume $(X,B+D=\sum b_{i}B_{i}+\sum d_{i}D_{i})$ log smooth. 
+\end{enumerate}
+\end{document}

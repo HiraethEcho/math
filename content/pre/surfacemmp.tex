@@ -1,0 +1,282 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{exa}[defn]{Example}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+
+\setcounter{section}{0}
+
+\title{MMP for Surface}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+\section{Varieties and sheaves}
+\subsection{Varieties}
+In this talk, we focus on algebraic varieties as closed subvarities of affine spaces $\mathbb{A}^{n}=\mathbb{C}^{n}$ and projective spaces $\mathbb{P}^{n}$.
+\begin{itemize}
+	\item A algebraic set of functions $\{f_{i} \in \mathbb{C}[x_1,\ldots ,x_{n}]\} $ in $\mathbb{A}^{n}$  is
+	      \[
+		      \{x\in \mathbb{A}^{n}: f_{i}(x)=0\}
+	      \]
+	\item A projective space $X=\mathbb{P}^{n}$ with coordinate $[x_0:x_1:\ldots :x_{n}]$ is covered by $n+1$ affine spaces $U_{i}\cong \mathbb{A}^{n}$. More precisely,
+	      \[
+		      U_{i}=\{x=[x_{0}:\ldots :x_{n}]\in X: x_{i}\neq 0 \}
+	      \]
+	      with coordinate $(x_{0}/x_{i},\ldots ,\hat{x_{i}/x_{i}},\ldots ,x_{n}/x_{i})$.
+	\item If $F_{i}\in \mathbb{C}[x_0,\ldots ,X_{n}]$ are homogenous polynomials, the a algebraic set of functions $\{F_{i} \in \mathbb{C}[x_0,\ldots ,x_{n}]\} $ in $\mathbb{P}^{n}$  is
+	      \[
+		      \{x\in \mathbb{P}^{n}: f_{i}(x)=0\}
+	      \]
+	\item A closed subscheme $X \subset \mathbb{P}^{n}$ is coverd by $\{X_{i}=X \cap U_{i}\} $, and $X_{i}$ is defined by
+	      \[
+		      \{F_{k}(x_{0},\ldots ,x_{n})/(x_{i}^{\deg F_{k}})\in \mathbb{C}[ \frac{x_{i}}{x_{k}}]\}
+	      \]
+\end{itemize}
+
+\subsection{Sheaves}
+A sheaf $\mathcal{F}$ on $X$ defines ``functions'' on each open subset $U \subset X$.
+\begin{exa}
+	\itme Let $M$ be a differential manifold, and $U \subset M$ be a open subset. Then differential functions
+	\[
+		C^{\infty}(U)=\{\phi: U \to \mathbb{C}\}
+	\]
+	is a sheaf on $M$.
+	\item Let $M$ be a complex manifold, and $U \subset M$ be a open subset. Then holomorphic functions
+	\[
+		H(U)=\{\phi: U \to \mathbb{C}\}
+	\]
+	is a sheaf on $M$.
+\end{exa}
+
+Let $X \subset \mathbb{A}^{n}$ be an algebraic set defined by $\{f_{i}\in \mathbb{C}[x_{i}]\}$ (or ideal $I=  <f_{i}> $), the we have the the sheaf $\mathcal{O}_{X}$ of regular functions on $X$:
+\[
+	\mathcal{O}_{X}(X)=\mathbb{C}[x_{i}]/I
+\]
+
+\begin{exa}
+	\begin{itemize}
+		\item Sheaf of rational functions $\mathcal{K}$. Let  $M$ be a complex manifold, then there is a sheaf of meromorphic functions.
+		\item Meromorphic functions on $\mathbb{P}^{1}$;
+		\item Meromorphic functions on $\mathbb{P}^{n}$;
+	\end{itemize}
+\end{exa}
+
+\subsection{vector bundle or locally free sheaf}
+A vector bundle of ranck $m$ is a morphism $\pi: \mathbb{E}\to B$ such that there is a cover $B=\cup B_{i}$ satisfying $\pi^{-1}(B_{i})\cong B_{i}\times \mathbb{C}^{m}$.
+\begin{rmk}
+	Not every open subset $U \subset X$ satisfies $\pi^{-1}(U)\cong U\times \mathbb{C}^{m}$
+\end{rmk}
+\begin{defn}
+	A section of $E$ on $U$ is a morphism $s:U \to \pi^{-1}(U)$ such that $\pi \circ s=id: B_{i} \to B_{i}$.
+
+	The sheaf $\mathcal{E}$ defined by sections, i.e.
+	\[
+		\mathcal{E}(B_{i})=\{\text{sections on }B_{i}\}
+	\]
+\end{defn}
+
+In this case, $\mathcal{E}(B_{i})\cong \mathcal{O}_{X}^{m}(B_{i})$, and $s\in \mathcal{E}(B_{i})$ is given by $s=(s_{i}), s_{i}\in \mathcal{O}_{X}(B_{i})$
+
+\begin{exa}
+	Cotangent bundle or Cotangent sheaf $\Omega_{X}$ on smooth variety $X$ (manifold $M$).
+	For any open subset $U \subset X$ with coordinates $\{x_{i}\}$, we have
+	\begin{align*}
+		\Omega_{X}(U) & = \{\mathrm{d}f: f \in \mathcal{O}_{X}(U)\}         \\
+		              & \cong \oplus_{i} \mathcal{O}_{X}(U)\mathrm{d} x_{i}
+	\end{align*}
+
+
+\end{exa}
+
+\subsection{Line bundle or invertible sheaf}
+A vector bundle $\mathbb{L}$ (a locally free sheaf $\mathcal{L}$) of rank $1$ is called a line bundle (an invertible sheaf).
+\begin{exa}
+	Invertible sheaf $\omega$ defined by $n$-forms:
+
+	\begin{align*}
+		\omega_{X}(U) & = \{\wedge_{i=1}^{n}\mathrm{d}f_{i}: f_{i} \in \mathcal{O}_{X}(U)\}                     \\
+		              & \cong \{f\mathrm{d}x_{1}\wedge\cdots \wedge \mathrm{d}x_{n}: f \in \mathcal{O}_{X}(U)\}
+	\end{align*}
+\end{exa}
+
+\begin{exa}
+	$\omega$ for $X=\mathbb{P}^{n}$.
+\end{exa}
+
+Cartier divisor:
+\begin{defn}
+	A cartier divisor consists of
+	\begin{itemize}
+		\item A open cover $U_{i}$;
+		\item $f_{i}\in \mathcal{K}^{\times}(U_{i})$;
+	\end{itemize}
+	such that $ \frac{f_{i}}{f_{j}}\in \mathcal{O}_{X}(U_{i} \cap  U_{j})^{\times}$. An invertible sheaf associated to this cartier divisor is given by
+	\[
+		\mathcal{L}(U_{i})=\mathcal{O}_{X}(U_{i})\cdot \frac{1}{f_{i}}
+	\]
+\end{defn}
+Conversly, any invertible sheaf $\mathcal{L}$ is corresponding to a Cartier divisor.
+
+\begin{rmk}
+	An invertible sheaf is a \emph{twisted structure sheaf}.
+\end{rmk}
+\begin{defn}
+	Let $f:Y\to X$ be a morphism between smooth varieties. Suppose $\mathcal{L}$ is an invertible sheaf on $X$ given by
+	\[
+		\mathcal{L}(U_{i})=\mathcal{O}_{X}(U_{i})\cdot s_{i}
+	\]
+	Then we have an invertible sheaf $f^*\mathcal{L}$ on $Y$ given by
+	\[
+		f^{*}\mathcal{L}(f^{-1}U_{i})=\mathcal{O}_{Y}(f^{-1}U_{i})\cdot f^*s_{i}
+	\]
+\end{defn}
+
+\subsection{Invertible sheaves and Weil divisors}
+Let  $X$ be a smooth projective variety and $D \subset X$ be a closed subscheme of codimension $1$ (a prime Weil divisor). Let $U_{i}$ be a open affine cover of $X$, then $D$ is defined by a single regular function $f_{i}\in \mathcal{O}_{X}(U_{i})$.
+
+Then there is an invertible sheaf $\mathcal{O}_{X}(D)$ associated to $D$, defined as follows:
+\[
+	\mathcal{O}_{X}(D)(U_{i})=\mathcal{O}_{X}(U_{i})\cdot \frac{1}{f_{i}}
+\]
+Note that on $U_{i} \cap U_{j}$, we have
+\[
+	\mathcal{O}_{X}(U_{i} \cap U_{j})\cdot\frac{1}{f_{i}}=\mathcal{O}_{X}(U_{i} \cap U_{j})\cdot \frac{f_{j}}{f_{i}}\frac{1}{f_{j}}=\mathcal{O}_{X}(U_{i} \cap U_{j})\cdot\frac{1}{f_{j}}
+\]
+since $ \frac{f_{j}}{f_{i}}\in \mathcal{O}_{X}(U_{i} \cap U_{j})^{\times}$.
+
+If $D_{1}$ is locally defined by $f_{i}$ and $D_{2}$ is locally defined by $g_{i}$, then $\mathcal{O}_{X}(D_1 - D_2)$ is locally generated by $f_i^{-1}g_i$.
+
+Conversly, let $\mathcal{L}$ be an invertible sheaf with $\{(U_{i},f_{i})\} $, that is,
+\[
+	\mathcal{L}(U_{i})=\mathcal{O}_{X}(U_{i})\cdot f_{i}
+\]
+Then there is a weil divisor  (not necessary effective) locally defined by
+\[
+	D=\text{poles of }f_{i}-\text{zeros of }f_{i}
+\]
+and $\mathcal{O}_{X}(D)=\mathcal{L}$
+
+
+\begin{exa}[differential sheaf on projective space]
+	\[
+		\omega_{\mathbb{P}^{n}}\cong \mathcal{O}_{X}(-(n+1)H)
+	\]
+\end{exa}
+\begin{defn}
+	Let $f:Y\to X$ be a morphism between smooth projective varieties. The pull back $f^*D$ of Weil divisor $D$ on $X$ is the Weil divisor on $Y$ satisfying
+	\[
+		\mathcal{O}_{Y}(f^*D)=f^*\mathcal{O}_{X}(D).
+	\]
+	If $D$ is locally defined by $s_{i}\in K(X)$, then $f^*D$ is locally defined by $f^*s_{i}$.
+\end{defn}
+\subsection{Intersection number}
+An invertible sheaf $\mathcal{L}$ on a smooth projective curve $C$ always corresponds to a Weil divisor $D=\sum_{i}n_{i}P_{i}$ of sums of points. Then we can define
+\[
+	\deg \mathcal{L}=\deg D=\sum_{i}n_{i}.
+\]
+Let $D$ be a Weil divisor on smooth projective variety $X$ and $i:C\to X$ is a smooth curve. Then
+\[
+	D.C:=\deg i^*\mathcal{O}_{X}(D).
+\]
+
+
+\begin{prop}
+	Let $f:Y\to X$ be a morphism of smooth varieties, and $ C\subset Y$ a curve, $D\subset X$ a divisor, then
+	\[
+		f^*D.C=D.f_*C
+	\]
+
+\end{prop}
+\section{Birational map}
+
+\subsection{Blow up}
+Let $Z \subset \mathbb{A}^{n}=X$ be a smooth closed subvarity defined by $f_{1},\ldots f_{m}$ (we may assume that $\dim Z = n-m$), then there is a rational map
+\begin{align*}
+	f: X & \dashrightarrow \mathbb{P}^{m-1} \\
+	x    & \mapsto [f_{i}(x)]
+	.\end{align*}
+Then the closure of the graph of $f$ is called the blow up of $X$ along $Z$, and is denoted by $Bl_{Z}X$ or $ \widetilde{X}$ is $Z$ is clear.
+\[
+	\xymatrix{
+		X\ar@{..>}[rrd]^{f}\ar[rdd]\ar@{..>}[rd]^{\Gamma_f} & & \\
+		&X\times \mathbb{P}^{m-1}\ar[d]\ar[r] & \mathbb{P}^{m-1} \\
+		&X &
+	}
+\]
+The morphism $Bl_{Z}X\to X$ is also called the blow up of $X$ along $Z$. Suppose coordinate of $\mathbb{A}^{n}$ is $(x_{1},\ldots ,x_{n})$ and coordinates of $\mathbb{P}^{m-1}$ is $[y_{1}:\ldots :y_{m}]$, then $ \widetilde{X}$ is defined by
+\[
+	f_{i}(x)\cdot y_{j} - f_{j}(x)\cdot y_{i}=0.
+\]
+
+\begin{exa}
+	Blow up  $0\in \mathbb{A}^{2}$ and describe $C=\{y^{2}=x^{2}(x-1)\} $ and $\pi^{-1}C$.
+\end{exa}
+If $Y \subset X$, then closure of $\pi^{-1}(Y\setminus Z)$ in $ \widetilde{X}$ is the blow up of $Y$ along $Y \cap Z$, and is usually denoted by $ \widetilde{Y}$
+
+\begin{exa}
+	Blow up a line $L$ in $\mathbb{A}^{3}$.
+\end{exa}
+We can compute blow ups locally.
+\begin{exa}
+	Let $f: X=\mathbb{P}^{2} \dashrightarrow Y=\mathbb{P}^{2}$ be $[x:y:z]\mapsto [xz:yz+y^2:z^2]$
+\end{exa}
+
+\subsection{Intersections for blow up}
+\begin{prop}[blow up]
+	Let $\pi: \widetilde{X} \to X$ be the blow up of a projective smooth surface $X$ along a point $P$, then
+	\begin{enumerate}
+		\item $\widetilde{X}$ is smooth;
+		\item $E=\pi^{-1}(p)\cong \mathbb{P}^{1}$;
+		\item $E^{2}=-1$.
+	\end{enumerate}
+	Called monoidal transformation.
+\end{prop}
+
+Compute the pull back of $\omega$ under blow up map $\pi: \widetilde{X} \to X$:
+\begin{prop}[pull back differential sheaf]
+	\[
+		K_{\widetilde{X}}=\pi^{*}K_{X}+(r-1)E
+	\]
+\end{prop}
+
+\begin{prop}[pull back divisors]
+	Let $D$  be an effective divisor on $X$, let $Z$  be a smooth subvarity of multiplicity $r$  in $D$, and let $f: \widetilde{X}\to X$ be the monoidal transformation with center $Z$. Then
+	\[
+		f^*D = D + rE.
+	\]
+\end{prop}
+
+\begin{prop}
+	In particular, let $C \subset X$ be a smooth curve on smooth projective surface $X$, and $P\in C$ be a point. Let $f: \widetilde{X}\to X$ be the blow up of $X$ along $P$, and $ C'$ be the strict transform of $C$. Then
+	\[
+		C'^{2}=C^2-1
+	\]
+
+\end{prop}
+
+\end{document}

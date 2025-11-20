@@ -1,0 +1,233 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Notes of Seminar of MMP}
+\author{wyz}
+\date{}
+
+\begin{document}
+	\maketitle
+9.30
+
+ref: KM98
+
+base point free theorem
+
+%date 10.7 begin
+
+\section{Idea}
+We first assuming Non-vanishing theroem:
+\begin{thm}
+	([KM98], Theorem 3.4) Let $ X $ be a proper variety, $ D $ a nef cartier divisor and $ G $ a $ \mathbb{Q} $-cartier divisor. Suppose $ aD+G-K_X $ is nef and big $ \mathbb{Q} $-cartier for some $ a>0 $ and $ (X,-G) $ is klt, then $ H^0(X,mD+\lceil G \rceil)\neq 0 $ for all $ m\gg 0 $.
+\end{thm}
+Notice that $ (X,-G) $ klt implies coefficients of $ G $ is $ >-1 $, then $ \lceil G\rceil $ is effective.
+
+Another version of non-vanishing:
+\begin{thm}
+	Let $ (X,B) $ be a klt pair, $ D $ nef cartier divisor, $ G\geqslant0 $ cartier divisor, such that $ aD+F-(K_X+B) $ is nef and big for some rational number $ a>0 $, then $ H^0(X,mD+F)\neq 0 $ for all $ m\gg 0 $.
+\end{thm}
+($ B=-G, F=\lceil G\rceil $)?
+
+Now we state the theorem:
+\begin{thm}
+	([KM98],Theorem 3.3) Let $ (X,B) $ be a proper ( or projective? ) klt pair and $ B\geqslant 0 $, let $ D $ be a nef cartier divisor such that $ aD-(K_X+B) $ is nef and big for some $ a>0 $, then $ bD $ is base point free for all $ b\gg 0 $.
+\end{thm}
+First we show that $ |aD| \neq \emptyset $ for all $ a\gg 0 $ by non-vanishing. Notice that if $ u|v $ for integral $ 0<u<v $, then $ Bs(vD)\subset Bs(uD) $, therefore by noetherian condition, for any  integer $ s>0 $, the sequence $ Bs(s^nD) $ stabililzes, denoted by $ B_s $.
+
+Claim that $ B_s=\emptyset $ for any $ s $, in particular for $ s,t $ such that $ \mathrm{gcd}(s,t)=1 $. Suppose $ B_s=Bs(s^mD) $ and $ B_t=Bs(t^nD) $, then for any $ b\gg 0$, we have $ b=xs^m+yt^n $, and $ \mathcal{O}_X(bD)=\mathcal{O}_X(xs^mD)\otimes\mathcal{O}_X(yt^nD) $ is base point free. 
+
+We show the claim by contradiction: If $ Z=B_s=Bs(mD)\neq \emptyset $, then there is a section of $ kmD $, NOT everywhere vanishing on $ Z $, for all $ k\gg 0 $, thus $ Z $ is not the limit of the sequence. 
+
+
+Replace $ X $ by blowing up it along $ Z $, we may assume $ X $ is smooth, $ B=0 $, and $ M $ ample cartier divisor. Let $ F $ be an irreducible exceptional divisor, then we have SES:
+$$ 0\to \mathcal{O}_X(K_X+M)\to \mathcal{O}_X(K_X+M+F)\to \mathcal{O}_F(K_F+M|_F)\to 0 $$
+By vanishing for $ K_X+M $, we have surjection
+$$ H^0(X,K_X+M+F)\to H^0(F,K_F+M|_F)\to 0 $$  
+Assume $ bD-K_X=M+F $, i.e. $ bD=K_X+M+F $, and $ 0\neq t\in H^0(F,K_F+M|_F)\neq 0 $ by non-vanishing. Then section $ s\in H^0(X,K_X+M+F) $ with image $ t $ is the asking section.
+
+\section{Details}
+$ aD-(K_X+B) $ is nef and big, then $ aD-(K_X+B)\equiv A_k+\frac{1}{k}E $ for $ k\gg 0 $ where $ A_k $ is ample and $ E $ is effective. Take $ B'=B+\frac{1}{k}E $ such that $ (X,B') $ is still klt, then  $ aD-(K_X+B')\equiv A_k $ is ample. Replacing $ B $ by $ B' $,  we can assume $ A=aD-(K_X+B) $ is ample. 
+
+\textbf{Step1}: Showing that $ |mD|\neq \emptyset $ for all $ m\gg 0 $:
+
+Take a log resolution $ f:Y\to X $ of $ (X,B) $ such that
+\begin{enumerate}
+	\item $ K_Y=f^*(K_X+B)+\sum a_iF_i $ with all $ a_i>-1 $;
+	\item $ f^*(aD-(K_X+B))-\sum p_iF_i $ ample for some $ a>0 $ and $ 0\leqslant p_i\ll 1 $.
+\end{enumerate}
+
+Furthermore, we can take a strong log resolution in sense of [JK], and 
+\begin{enumerate}[(a)]
+	\item Since $ (X,B) $ is klt and $ B $ is effective, coefficients of $ B $ are in $ (0,1) $, and $ \sum a_iF_i=-f^{-1}_*B+\sum_{exceptional}a_iF_i $. Therefore $ a_i>0 $ implies $ F_i $ is exceptional.
+	\item By the theorem of strong resolution, we have an effective exceptional divisor $ F $, such that $ -F $ is $ f $- ample, thus $ f^*(aD-(K_X+B))+\epsilon(-F) $ is ample for all $ 0<\epsilon\ll 1 $. In other words, $ \sum p_iF_i=\epsilon F $.
+\end{enumerate}
+
+On $ Y $ we have
+\begin{equation*}
+	\begin{aligned}
+	&f^*(aD-(K_X+B))-\sum p_iF_i\\
+	=&af^*D+\sum(a_i-p_i)F_i-(f^*(K_X+B)+\sum a_iF_i)\\
+	=&a^*D+G-K_Y
+	\end{aligned}
+\end{equation*}
+By non-vanishing, $ H^0(Y,mf^*D+\lceil G\rceil )\neq 0 $ for all $ m\gg 0 $. By (b), we can take suitable $ p_i $ such that $ (a_i-p_i)>-1 $, and by (a) we have $ \lceil G\rceil  $ effective and $ f $-exceptional. Thus  $ H^0(X,mD)= H^0(Y,mf^*D+\lceil G\rceil ) $. This  finishes step 1.
+
+\textbf{Step 2}: Showing that $ B_s=\emptyset $ for all $ s $. Otherwise, we may assume $ B_s=Bs(s^kD)=Bs(mD) $, we can assume $ m\gg 0 $ such that $ H^0(X,mD)\neq 0 $. 
+
+Take a strong log resolution $ f:Y\to X $, (with closed subset $ B\cup B_s $?), in the sense of [JK], then 
+$$ f^*mD=L+\sum r_iF_i , r_i\geqslant 0$$
+
+
+\begin{ques}
+	Why $ L $ base point free? We may use [H], II, example 7.17.3 first:
+	$$ \xymatrix{
+	\tilde{X}\ar[rrd]\ar[d]_{\pi}\\
+	X&U\ar@{_(->}[l]\ar[r]_{|L|}&\mathbb{P}^n_A	
+	} $$
+where $ L $ is base point free on $ U $, and $ \pi $ is blowing up of $ X $ along $ X-U $. In particular, $ \cup \{ f(F_i), r_i>0\}=Bs(mD) $.
+\end{ques}
+
+\begin{rmk}
+	To use the trick shown in the idea above, we need $ bf^*D=K_Y+M+F $ where $ M $ is ample and $ F $ is an exceptional irreducible divisor. However, 
+	\begin{equation*}
+	\begin{aligned}
+	&bf^*D=(b-a)f^*D+f^*(aD-(K_X+B))+f^*(K_X+B)\\
+	=&(b-a)f^*D\text{(nef)}+[f^*(aD-(K_X+B))-\sum a_iF_i]\text{(ample)}+[K_Y+\sum (p_i-a_i)F_i]\\
+	=&[(b-a)f^*D+f^*(aD-(K_X+B))-\sum a_iF_i]+K_Y+\sum (p_i-a_i)F_i
+	\end{aligned}
+	\end{equation*}
+	Notice that $ [(b-a)f^*D+f^*(aD-(K_X+B))-\sum a_iF_i]=M $ is ample, then we should modify $ \sum (p_i-a_i)F_i $ part by $ f^*mD=L+\sum r_iF_i $ and taking up round.
+\end{rmk}
+
+Take any rational $ c>0 $, and $ b>cm+a $, we have 
+\begin{equation*}
+\begin{aligned}
+bf^*D=&(b-cm-a)f^*D+f^*(aD-(K_X+B))+f^*(K_X+B)+cf^*mD\\
+=&(b-cm-a)f^*D\text{(nef)}+[f^*(aD-(K_X+B))-\sum a_iF_i]\text{(ample)}\\
+&+cL\text{(bpf)}\\
+&+[K_Y+\sum (cr_i+p_i-a_i)F_i]\\
+=&[(b-cm-a)f^*D+f^*(aD-(K_X+B))-\sum a_iF_i]\text{(ample)}\\
+&+K_Y+\sum (cr_i+p_i-a_i)F_i\\
+=&M+K_Y+\sum(cr_i+p_i-a_i)F_i
+\end{aligned}
+\end{equation*} 
+
+Or $ M=bf^*D-K_Y+\sum (a_i-cr_i-p_i)F_i $. Take $ c $ such that 
+$$ \min\{ a_i-cr_i-p_i \}=-1 $$
+ and there is only one $ F_i $ with coefficient $ a_i-cr_i-p_i=-1 $, denoted by $ S $.
+ \begin{rmk}
+ 	Notice that $ a_i>-1, r_i,p_i\geqslant0 $, and and $ p_i $ is given by $ \epsilon F $ for any $ 1\gg \epsilon>0 $. In fact, take 
+ 	$$ c=\min\{  a_i-cr_i-p_i\geqslant -1\} $$
+ 	We can take $ \epsilon $ small enough such that if $ r_i=0 $, then $ a_i-cr_i-p_i>-1 $ always holds; 
+ 	
+ 	If $ a_i-cr_i-p_i=a_j-cr_j-p_j=-1 $,\underline{\textbf{What if } $ a_i=a_j,r_i=r_j,p_i=p_j $\textbf{?}}
+ 	
+ 	cf:[JK],proof of BPF, Theorem 2.1.1, \textit{tie breaking}
+ 	
+	Let $ \sum (a_i-cr_i-p_i)F_i=A-S $, we can write $ M=bf^*D-K_Y+A-S $, and $ \lceil M\rceil =bf^*D-K_Y+\lceil A\rceil-S $where $ \lceil A\rceil $ is effective. Furthermore, if $ a_i-cr_i-p_i>0 $, then $ a_i>0 $, and $ F_i $ is exceptional, hence $ \lceil A\rceil $ is $ f $-exceptional. 
+ \end{rmk}
+\textbf{Step 3}: Find a section $ \alpha $ such that $ X_\alpha\cap B_s\neq \emptyset  $:
+
+Since $ S $ is an irreducible divisor on $ Y $, we have a SES:
+$$ 0\to \mathcal{O}_Y(-S)\to \mathcal{O}_Y\to \mathcal{O}_S\to 0 $$
+Tensoring with $ \lceil M\rceil +K_Y+S $, then by kodaira vanishing, $ H^1(Y,\lceil M\rceil +K_Y)=0 $, hence there is surjection:
+$$ H^0(Y,bf^*D+\lceil A\rceil)\to H^0(S,\lceil M\rceil|_S +K_S)\to 0 $$
+
+Notice that $ M|_S=af^*D|_S+A|_S-K_S $ is ample, and $ S $ smooth, $ (S,-A|_S) $ klt, by nonvanishing, 
+$$ H^0(S,af^*D|_S+\lceil A\rceil|_S)=H^0(S,\lceil M\rceil|_S +K_S)\neq 0 $$
+Let $ \alpha $ be a lifting of a nonzero section of $ H^0(S,\lceil M\rceil|_S +K_S) $ in $ H^0(Y,bf^*D+\lceil A\rceil) $. Notice that $ \lceil A\rceil $ is effective exceptional, thus $ \alpha \in H^0(Y,bf^*D+\lceil A\rceil)=H^0(X,bD) $. Then $ \alpha $ is not every vanishing along $ f(S) $. However, $ S $ is one of $ F_i $ with $ r_i>0 $, therefore $ f(S)\subset B_s $. This implies $ Bs(bD)\subsetneq B_s $ for all $ b\gg 0 $. This gives the contradiction stated in the idea.
+
+%date 10.7 end
+
+
+%10.12 start
+\section{Relative version}
+cf:[JK], Theorem 2.1.1
+
+\begin{thm}
+	(proof of [JK], Theorem 2.1.1) : Let $ (X,B) $ be a klt pair, $ f:X\to S $ projective morphism \textbf{(Is $ S $ projective variety? )}, and $ D,E $ cartier divisors on $ X $. Assume
+	\begin{enumerate}
+		\item $ D $ is relatively nef;
+		\item $ aD+E-(K_X+B) $ is relatively nef and relatively big for some positive integer $ a $;
+		\item $ E $ effective, and there is a positive integer $ m_1 $ such that for all $ m>m_1 $, the natural map 
+		$$ f_*(mD)\to f_*(mD+E) $$
+		is an isomorphism;
+	\end{enumerate}
+	Then there is a positive integer $ M $ such that any $ m>M $, we have $ H^0(X,mD)\neq \emptyset $.
+\end{thm}
+
+\begin{thm}
+	([JK], Theorem 2.1.1): Let $ (X,B) $ be a klt pair, $ f:X\to S $ projective morphism \textbf{(Is $ S $ projective variety? )}, and $ D,E $ cartier divisors on $ X $. Assume
+	\begin{enumerate}
+		\item $ D $ is relatively nef;
+		\item $ aD+E-(K_X+B) $ is relatively nef and relatively big for some positive integer $ a $;
+		\item $ E $ effective, and there is a positive integer $ m_1 $ such that for all $ m>m_1 $, the natural map 
+		$$ f_*(mD)\to f_*(mD+E) $$
+		is an isomorphism;
+	\end{enumerate}
+	Then there is a positive integer $ M $ such that any $ m>M $, $ mD $ is relatively free, i.e.
+	$$ f^*f_*\mathcal{O}_X(mD)\to \mathcal{O}_X(mD) $$
+	is surjective.
+\end{thm}
+\begin{proof}
+	This is actually local on the target, so we may assume $ S=\mathrm{Spec}\,A $ is affine, and need to show 
+	$$ \mathcal{O}_X \otimes H^0(X,mD)\to \mathcal{O}_X(mD)$$
+	is surjective. Notice that klt is an open condition, we may assume every thing is $ \mathbb{Q} $-cartier and $ aD+E-(K_X+B) $ is relatively ample. 
+\end{proof}
+\section{application}
+
+
+\begin{thm}
+	Let $ (X,B) $ be a proper klt pair, and $ B\geqslant 0 $. Assume $ K_X+B $ is nef and big, then the canonical ring
+	$$ \bigoplus_{m\in \mathbb{N}}H^0(X,mK_X+m\lfloor B\rfloor) $$
+	is finitely generated.
+\end{thm}
+\begin{proof}
+	Denote $ R:=\bigoplus_{m\in \mathbb{N}}H^0(X,mK_X+m\lfloor B\rfloor) $. By base point free theorem, assume $ r>0 $ such that $ r(K_X+B) $ is a base point free cartier divisor, therefore induces a morphism $ f:X\to Z $ and an ample divisor $ L $ on $ Z $ such that $ f^*L=r(K_X+B) $. By stein factorization theorem, we may assume $ f_*\mathcal{O}_X=\mathcal{O}_Z $. Since $ Z $ admits an ample divisor, $ L^m $ is very ample and $ Z $ is projective with $ \mathcal{O}_Z(1)=L^m $. In fact we can replace $ L $ by $ L^m $ and assume $ L=\mathcal{O}_Z(1) $ is very ample. Thus
+	$ R^{(r)}= $
+	$$ R^{(r)}=\bigoplus_{m\in \mathbb{N}}H^0(X,f_*\mathcal{O}_X(mr(K_X+B)))=\bigoplus_{m\in \mathbb{N}}H^0(Z,\mathcal{O}_Z(m)) $$
+	is a finitely generated graded ring. Conisder graded $ R^{(r)} $-model
+	$$ R_j=\bigoplus H^0(X, mr(K_X+B)+j\lfloor B\rfloor))=\bigoplus H^0(Z, f_*\mathcal{O}_X(j\lfloor B\rfloor)(m))$$ 
+	Since we have surjection
+	$$ H^0(Z,\mathcal{O}_Z(1))\times H^0(Z, f_*\mathcal{O}_X(j\lfloor B\rfloor)(m))\twoheadrightarrow H^(Z, f_*\mathcal{O}_X(j\lfloor B\rfloor)(m+1)) $$
+	for $ m\gg0 $ and $ H^0(X, mr(K_X+B)+j\lfloor B\rfloor) $ is finitely generated $ k $-module, $ R_j $ is finitely generated $ R^(r) $ - module. Hence 
+	$$ R=\bigoplus_{j=0}^{m-1}R_j $$
+	is finitely generated $ R^{(r)} $- module, thus is finitely generated ring.
+\end{proof}
+%10.12 end
+
+%10.14 start
+
+\begin{rmk}
+	If $ X $ is weak Fano variety, i.e. $ -K_X $ is big and nef. Take $ B=0 $ and $ D=-K $, then $ -bK_X $ is base point free. 
+\end{rmk}
+\begin{rmk}
+	If $ (X,B) $ is proper klt pair. Assume $ B $ is effective and $ K_X+B $ is nef and big, then 
+	$$ R(X):=\bigoplus_{m\in \mathbb{N}}H^0(X,\mathcal{O}_X(mK_X+m\lfloor B\rfloor)) $$
+	is finitely generated. Then filp exsits: $ X^+=\mathrm{Proj}\,R(X) $
+\end{rmk}
+
+%10.14 end
+
+
+
+\end{document}

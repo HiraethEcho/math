@@ -1,0 +1,111 @@
+%!TeX program = xelatex
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{assertion}[definition]{Assertion}
+\newtheorem{example}[definition]{Example}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{BCHM}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+\section{Introduction}
+\subsection{motivation and sketch proof}
+Our goal is to find the LMM of a variety or a pair $(X,B)$. 
+\begin{itemize}
+  \item $EM_{d}$: Let $(X,B)$ be a klt pair of dimension $d$ and $B$ is big, then $(X,B)$ has a minimal model.
+\end{itemize}
+
+The strategy is to use the minimal model program. However, there are two obstacles:
+\begin{enumerate}
+  \item The existence of flips;
+  \item The termination of the MMP.
+\end{enumerate}
+We use the following to overcome the obstacles:
+\begin{itemize}
+  \item $PL_{d}$: Let $(X,B)$ be a lc pair, and suppose $\left\lfloor B \right\rfloor = S$ is a integral subvariety. A PL flip of $(X,B)$ is a $(K_{X}+B)$-flip which is also a $S$-flip. Note that the exceptional locus of the flip is contained in $S$.  
+  \item $ST_{d}$: Let $(X,B)$ be a dlt $\mathbb{Q}$-factorial pair such that $B=\left\lfloor B \right\rfloor +A+E$, where $A$ is an ample divisor and $E$ is effective. Suppose we can run a $(K_{X}+B)$-MMP (with scaling), then the flips do not intersect $\left\lfloor B \right\rfloor$ after finitely many steps. This is called the special termination. 
+  \item $PL_{d} + ST_{d}\implies EM_{d} $: The main idea to show the existence of LMM is to run serval special MMPs, where all flips in the MMP are PL flip, and by $ST$ such MMPs terminate.
+\end{itemize}
+We need to show the existence of PL flips and special terminations (with scaling). 
+\begin{itemize}
+  \item $FG_{d-1}\implies PL_{d}$: PL flip exists if $\mathcal{R}=\mathcal{R}(X,K_{X}+B)$ is finitely generated. $\mathcal{R}_{S}=\mathcal{R}(S,B_{S})$ finitely generated implies $\mathcal{R}=\mathcal{R}(X,K_{X}+B)$ finitely generated.
+  \item $T_{d-1}\implies ST_{d}$: we restrict $(K_{X}+B)$-MMP to the subvariety $S$, which is a component of $\left\lfloor B \right\rfloor$. Then $(K_{S}+B_{S})$-MMP (with scaling) terminates, provided by induction assumption ($T_{d-1}$). 
+\end{itemize}
+
+Note that the dimension jumps here, so we proof all the theorems by induction on the dimension. To carry on the induction, we need to show $T_{d},FG_{d}$, and we need the finiteness of minimal models ($FM_{d}$) and the existence of flips ($EF_{d}$). 
+\begin{itemize}
+  \item $T_{d}$: Let $(X,B)$ be a klt pair and $C$ a $\mathbb{R}$-Cartier divisor such that $K_{X}+B+C$ is nef. Let
+    \[
+      \lambda_{i}=\min \{\lambda: K_{X_{i}}+B_{i}+\lambda C_{i} \text{ is nef}\} .
+    \]
+   Then $X_{i}\to X_{i+1}$ is a step of $(K_{X}+B)$-MMP corresponding to the extremal ray $R_{i}$ such that
+   \[
+     (K_{X_{i}}+B_{i}+\lambda_{i}C_{i}).R_{i}=0.
+   \]
+  \item $FM_{d}$: There are finitely many $f_{i}:X \to X_{i}$ such that for any $D \in \mathcal{E}_{A}(V)$, there is a $f_{i}$ such $f_{i}$ is a LMM of $(X,B)$ ;
+  \item $EM_{d}\implies FM_{d}$: Induction on $\dim \mathcal{E}_{A}(V)$. Since $\mathcal{E}_{A}(A)$ is compact, only need to prove the assertion in a neighborhood of any $D_{0} \in \mathcal{E}_{A}(V)$. Let $Y$ be a LMM of $D_{0}$, then any LMM of $Y$ is a LMM of $X$. Any $D$ in a small neighborhood, there is a $D' \in \partial \mathcal{E}_{A}(V)$ such that LMM of $D'$ is LMM of $D$. Since $\dim \partial \mathcal{E}_{A}(V) < \dim \mathcal{E}_{A}(V)$, by induction, we are done.
+  \item $EM_{d}\implies EF_{d}$: The flip $X \dashrightarrow X^{+}$ is a LCM of $(X,B)$ over $V$, where $X\to V$ is the flipping map. By $EM_{d}$ and base point free theorem, $X^{+}$ exists, and thus we can run a $(K_{X}+B)$-MMP.
+  \item $FM_{d}\implies T_{d}$: Each variety $X_{i}$ in the MMP is a LMM of $(X,B+\lambda_{i}C)$, by $FM_{d}$, there are finitely many isomorphic classes of varieties, so there exists $i,j$ such that $\phi_{i,j}:X_{i} \dashrightarrow  X_{j}$ is an isomorphism, which is impossible as flip increases some discrepancies.
+\end{itemize}
+
+\subsection{statement of main theorems and induction}
+We prove $EM$ by induction, and divide the induction into following steps:
+\begin{enumerate}
+  \item 
+  \begin{itemize}
+    \item $EM_{d} \implies FM_{d},EF_{d}$;
+    \item $FM_{d} + EF_{d} \implies T_{d}$;
+    \item $EM_{d} \implies FG_{d}$.
+  \end{itemize}
+  \item 
+    \begin{itemize}
+      \item $FG_{d} \implies PL_{d+1}$;
+      \item $T_{d}\implies ST_{d+1}$;
+    \end{itemize}
+  \item 
+    \begin{itemize}
+      \item $ST_{d+1}+PL_{d+1} \implies EM'_{d+1} $;
+      \item $ST_{d+1}+PL_{d+1} + EM'_{d} \implies NV_{d+1}$;
+      \item $NV_{d+1}+EM'_{d+1} \implies EM_{d+1} $;
+    \end{itemize}
+\end{enumerate}
+Now we give the precise statements of the main theorems.
+\subsection{Corrallaries}
+
+\section{Main Theorems}
+\subsection{Finiteness of models}
+\subsection{Lemmas and Corrallaries}
+bchm 7.1
+\section{Applications}
+
+\end{document}

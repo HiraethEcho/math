@@ -1,0 +1,243 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\usepackage{geometry}
+%\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Cremona Group of rank $ 2 $}
+\author{wyz}
+\begin{document}
+  \maketitle
+  
+Show that $ \mathrm{Cr}_2=\mathrm{Bir}(\mathbb{P}^2) $ is generatedd by $ \mathrm{PGL}(2) $ and standard quadratic birational map. 
+\[ \sigma:[x:y:z]\mapsto [\frac{1}{x}:\frac{1}{y}:\frac{1}{z}]. \]
+We focus on dimension 2 varieties over a algebraically closed field of charactoristic $ 0 $, i.e. $ \mathbb{C} $.
+\section{Birational maps}
+\subsection{Birational morphism}
+
+
+\begin{thm}[Lamy thm1.45]
+  Let $ f:X\to Y $ be a birational morphism between surfaces, then $ f $ is a composition of finitely many blow ups of points.
+\end{thm}
+
+
+\begin{lem}[Lamy Prop 1.33]
+  Let $ \pi:X'\to X $ be blow up of a point $ p $ on a surface $ X $, with exceptional divisor $ E $, then
+  \begin{enumerate}
+    \item Any divisor $ D\subset X $, we have $ \pi^*D.E=0 $;
+    \item $ E^2=-1 $;
+    \item Let $ C $ be a curve on $ X $ with $ m_p(D)=m $ and $ C' $ be the strict transform of $ C $ on $ C' $, then $ C'.E=m $;
+    \item $ C_1'.C_2'=C_1.C_2-m_1.m_2 $;
+    \item $ K_{X'}=\pi^*K_X+E $
+  \end{enumerate}
+Furthermore, let $ C $ be a curve on $ X $ with $ m_p(D)=m $ and $ C' $ be the strict transform of $ C $ on $ C' $, then 
+\[ p_a(C')=p_a(C)-\frac{m(m-1)}{2}. \]
+\end{lem}
+
+\begin{lem}[Lamy lem1.52]
+  Let $ C\subset X $ be a curve in the surface and $ Y\to X $ be a sequence of blowups at points $ p_i $ such that strict transform $ C_Y $ of $ C $ on $ Y $ is smooth. Let $ m_i $ be the multipicity of (strictly transform of) $ C $ at $ p_i $, then 
+  \begin{enumerate}
+    \item $ p_a(C)=g(C_Y)+\sum_i\frac{m_i(m_i-1)}{2} $;
+    \item If $ p_k $ is infinitely near $ p_j $, then $ m_k\leqslant m_j $.
+  \end{enumerate}
+\end{lem}
+\begin{defn}[multiplicity]
+  Let $ X $ be a surface and $ \Gamma $ is a linear system on $ X $, then we define the multiplicity of $ \Gamma $ at $ p $ as:
+  \[ m_p(\Gamma)=\min_{D\in \Gamma}m_p(D) \]
+\end{defn}
+\begin{lem}[lem 1.64]
+  Let $ |D| $ be a $ d $-dimensional linear system on a surface $ X $, $ p \in X $ outside the base locus of $ |D| $, and $ m $ and integer such that $ \frac{m(m + 1)}{2} < d $. Then the set $ \Gamma $ of elements in $ |D| $ passing through $ p $ with multiplicity at least $ m $ is a sub-linear system of codimension $ \frac{m(m+1)}{2} $. Equivalently, denoting $ \pi: X'\to X $ the blow-up of $ p $ with exceptional divisor $ E $, then $ \Gamma'= \pi^*\Gamma-mE $ is a linear system on $ X' $ of dimension $ d-\frac{m(m+1)}{2} $.
+\end{lem}
+\begin{defn}
+  Let $ \Gamma $ be a linear system on $ X $ and $ \pi:X'\to X $ be a blow up of point $ p\in X $. Suppose $ m_p(\Gamma)=m $, and $ q\in E\subset X' $ is an infinte near point of $ X $, then define
+  \[ m_q(\Gamma)=m_q(\Gamma') \] 
+  where $ \Gamma'=\pi^*\Gamma-mE  $.
+\end{defn}
+\subsection{Birational maps and resolve it}
+
+Let $ f:X\dashrightarrow Y $ be a birational map between surfaces. Then $ \mathrm{Ind}(f) $ is a finite set of points, called \textbf{indeterminacy points}.
+\begin{lem}
+There exist a unique maximal pair of subsets $ U\subset X $ and $ V\subset Y $ such that $ f $ restricts as an isomorphism
+\[ U\xrightarrow{\sim} V \]
+and $ \mathrm{Exc}f=X-U $ called \textbf{exceptional set} of $ f $.
+\end{lem}
+\begin{cor}[Lamy cor1.43]
+  Let $ f:X\dashrightarrow Y $ be a birational map of surfaces, and $ p\in \mathrm{Ind}(f) $. Then there is a curve $ C\subset X $ such that $ f^{-1}(C)=p $. Moreover if $ q\in Y $ is a point where $ f^{-1} $ is well-defined, and $ f^{-1}(q)=p $, one can find such curve $ C $ passing though $ q $.
+\end{cor}
+
+\begin{thm}[Lamy thm1.46]\label{resolve}
+    Let $ f:X\dashrightarrow Y $ be a birational map between surfaces, then there is a surface $ Z $ and birational morphisms $ p:Z\to X $ and $ q:Z\to Y $.
+\end{thm}
+
+
+\begin{defn}\label{minresolve}
+  As in thm \ref{resolve}, the surface $ Z $ is called \textbf{minimal resolution} of $ f $ if for any other surface $ Z' $ with $ p':Z'\to X $ and $ q':Z'\to Y $ there is a unique birational morphism $ \pi:Z'\to Z $.
+\end{defn}
+
+Let $ f:X\dashrightarrow Y $ be a birational map between normal surfaces, then there is a minimal resolution $ p:Z\to X $ and $ q:Z\to Y $ such both projection are composition of blowing up of points:
+\[ Z=X_r\xrightarrow{f_r}X_{r-1}\xrightarrow{f_{r-1}}\cdots\xrightarrow{f_1}X_1\xrightarrow{f_0}X_0=X \]
+where $ f_i:X_i\to X_{i-1} $ is the blow up of $ X_{i-1} $ along point $ p_{i-1}\in X_{i-1} $ with exceptional divisor $ E_i\subset X_i $. In fact, the data $ (p_i) $ determines the map $ f $ and called \textbf{base point of $ f $}.
+\[ \xymatrix{
+  &&Z\ar[ld]_h\ar[rdd]^q&&\\
+  &X_i\ar[ld]\ar[rrd]^{f_i}&&\\
+  X\ar@{.>}[rrr]^f&&&Y} \]
+
+
+
+\begin{defn}[homaloidal transform]
+  Let $ f:X\dashrightarrow Y $ be a birational map between surfaces, and  $ Z $ is a common resolution with  morphisms $ p:Z\to X $ and $ q:Z\to Y $. Let $ D $ be a divisor on $ Y $, then the homaloidal transform of $ D $ is 
+  \[ p_*q^*D \]
+  and writed as $ f^{*}D $. 
+\end{defn}
+
+
+
+Birational map $ f_i:X_i\dashrightarrow Y $ induces 
+\[ E_{i,Y}=(f_i^{-1})^*E_i=q_*h^*E_i \]
+on $ Y $ and called \textbf{total transform} of point $ p_{i-1} $ 
+
+
+\begin{rmk}
+  If $ D $ is free, then $ f^*D $ coincides with strict transform $ f^{-1}_*D $ of $ D $. And the homaloidal transform does not depend on the choice of resolution. In fact we can assume $ Z $ is the minimal resolution.
+\end{rmk}
+
+
+
+\begin{prop}[Lamy 1.83]
+  Let $ f:X\dashrightarrow Y $ and $ g:Y\dashrightarrow Z $ be birational maps of surfaces 
+  \[ X\overset{f^{-1}}{\dashleftarrow}Y\overset{g}{\dashrightarrow}Z \]
+  and $\{p_i\},i=1,\ldots,r $ are the common base point of $ f^{-1} $ and $ g $, and $ E_{i,X},E_{i,Z} $ are the total transform of corresponding exceptional divisors. Let $ D $ be a divisor on $ X $, then we have
+  \[ g^{-1*}(f^{-1*}D)=(g\circ f)^{-1*}D+\sum_{i=1}^{r}(E_{i,X}.D)E_{i,Z} \]
+  Moreover, if $ D $ is nef then $  g^{-1*}(f^{-1*}D)-(g\circ f)^{-1*}D=\sum_{i=1}^{r}(E_{i,X}.D)E_{i,Z} $ is effective.
+\end{prop}
+
+
+\begin{proof}
+  Consider the diagram:
+  \[ \xymatrix{
+    &&W\ar[rd]\ar[ld]\\
+  &U\ar[ldd]\ar[rd]&&V\ar[rdd]\ar[ld]\\
+  &&S\ar[d]\\
+  X\ar@{.>}[rr]&&Y\ar@{.>}[rr]&&Z} \]
+where $ S\to Y $ is the blow up of common base points $\{p_i\},i=1,\ldots,r $.
+\end{proof}
+
+\subsection{Homaloidal nets}
+Let $ f:X=\mathbb{P}^2\dashrightarrow Y=\mathbb{P}^2 $ be a birational map and $ X\xleftarrow{p}Z\xrightarrow{q} $ be a common resolution. Let $ L_X $ and $ L_Y $ be the line on the plane.
+\begin{defn}[homaloidal system]
+  The linear system of the preimages of lines is called \textbf{Homaloidal system} associated with $ f $, and usually denoted by $ \Gamma $. Element of $ \Gamma $ has the form $ f^*L_Y $ for some line on $ Y $. Explicitly, if 
+  \[ f=[P_0,P_1,P_2] \]
+  where $ P_i $ are homogenous polynomials of same degree $ d $ with no common factor, then the curve in $ \Gamma $ corresponds to the equation
+  \[ \sum a_iP_i=0 \]
+  for $ [a_i]\in \mathbb{P}^2=|L| $.
+\end{defn}
+\begin{defn}
+  Degree of $ f $ is defined as intersection number
+  \[ \deg f=L_X.f^*L_Y \]
+\end{defn}
+In fact, $ \Gamma\subset |dL_X| $.
+
+\begin{lem}
+  $ \deg f=\deg f^{-1} $
+\end{lem}
+\begin{proof}
+  \begin{equation*}
+    \begin{aligned}
+      \deg f=&L_X.f^*L_Y\\
+      =&p^*L_X.q^*L_Y\\
+      =&(f^{-1})^*L_X.L_Y\\
+      =&\deg f^{-1}
+    \end{aligned}
+  \end{equation*}
+\end{proof}
+
+Let $ p_1,\ldots,p_r $ be the base point of $ f $ and $ m_i $ be the multiplicity of $ p_i $. Then $ (d;m_1,\ldots,m_r) $ called \textbf{characteristic of $ f $}.
+\begin{prop}[2.21 Noether’s relations]
+  Let $ (d;m_i) $ be characteristic of $ f $, then
+  \begin{enumerate}
+    \item $ \sum_i m_i=3d-3 $;
+    \item $ \sum_im_i^2=d^2-1 $;
+    \item $ \sum_im_i(m_i-1)=(d-1)(d-2) $;
+  \end{enumerate}
+\end{prop}
+
+\section{Cremona Group of rank $ 2 $}
+\subsection{Sarkisov program}
+
+
+\subsection{Sets of generators of Cr2}
+\begin{lem}[Lamy 2.37]\label{2.37}
+  Let $ f\in \mathrm{Bir}(\mathbb{P}^2) $ with characteristic $ (d; m_1,\ldots, m_r) $. To be convient, we allow $ m_i=0$. Assume $ p_1,p_2,p_3 $ are the base points of a quadratic involution $ \phi $, then  characteristic of $ f\circ \phi $ is 
+  \[ (2d - m_1 - m_2 - m_3; d - m_2 - m_3, d - m_1 - m_3, d - m_1 - m_2, m_4, . . . , m_r). \]
+\end{lem}
+\begin{proof}
+  Assume $ L_{ij} $ be the line passing through points $ p_i,p_j $ on $ X_1 $, and is also the total transform of $ p_k $ under $ \phi $, where $ \{i,j,k\}=\{1,2,3\} $.
+  \[ \xymatrix{
+    &&Z\ar[rrdd]\ar[ld]\\\
+    &W\ar[ld]\ar[rd]&&\\
+    X_1\ar@{.>}[rr]^\phi&&X\ar@{.>}[rr]^{f\circ \phi}&&Y
+  } \]
+\end{proof}
+
+\begin{thm}[Lamy 3.16(Castelnuove)]
+  $ \mathrm{Cr}_2 $ is generated by $ \mathrm{Aut}(\mathbb{P}^2) $ and Jonqui\'{e}res maps.
+\end{thm}
+\begin{proof}
+  By sarkisov links.
+\end{proof}
+\begin{thm}[lamy 2.44]\label{Jonquieresgroup2}
+  Jonqui\'{e}res group is generated by $ \mathrm{Aut}(\mathbb{P}^2) $ and quadratic maps (not necessary standard).
+\end{thm}
+\begin{lem}[Lamy 2.40]\label{2.40}
+  Let $ f\in \mathrm{Cr}_2 $ be a Jonqui\'{e}res map of degree $ d $, then has characteristic $ d;d-1,1^{2d-2} $, and all points are proper points. Conversely, a birational map with such charateristic is a  Jonqui\'{e}res map composing two automorphisms of $ \mathbb{P}^2 $.
+\end{lem}
+
+\begin{proof}[proof of thm\ref{Jonquieresgroup2}]
+  By lemma \ref{2.40} and lemma \ref{2.37}.
+\end{proof}
+
+\begin{proof}[Another proof of thm\ref{Jonquieresgroup2}]
+  (Lamy 2.44)
+\end{proof}
+
+
+\begin{lem}
+  Quadratic maps are generated by standard Quadratic maps.
+\end{lem}
+\begin{cor}[Lamy 3.17(Noether)]
+    $ \mathrm{Cr}_2 $ is generated by $ \mathrm{Aut}(\mathbb{P}^2) $ and standard Quadratic maps.
+\end{cor}
+
+Another proof, using another triple $ (k,h,s) $.
+
+\subsection{Polynomial birational maps}
+Consider subgroup $ \mathrm{Aut}(\mathbb{A}^2)\subset \mathrm{Bir}(\mathbb{P}^2) $.
+
+
+Further result: Automorphism of open surfaces with irreducible boundary.
+
+
+
+
+\end{document}

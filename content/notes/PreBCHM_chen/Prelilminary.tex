@@ -1,0 +1,137 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\newcommand{\Spec}{\mathrm{Spec}\,}
+\newcommand{\Proj}{\mathrm{Proj}\,}
+\newcommand{\Hom}{\mathrm{Hom}\,}
+\newcommand{\NE}{\mathrm{NE}}
+\newcommand{\isoto}{\xrightarrow{\sim}}
+
+\title{Notes of Seminar of MMP for surfaces}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+	\maketitle
+
+ref: Conex Analysis, R.Tyrrell.Rockafellar
+\section{general properities of cone}
+
+\begin{defn}
+	A subset $ D $ of $ V=\mathbb{R}^n $ is called \emph{convex} if $ \forall x,y \in D $ we have $ \lambda x+(1-\lambda)y\in D $ for $ 0\leqslant \lambda\leqslant 1 $. 
+	In particular, $ H=\{x\in V : f(x)>(\geqslant)a\} $ for some linear function $ f:V\to \mathbb{R} $ is called open (closed) half space. 
+\end{defn}	
+
+\begin{lem}
+	(Conex Analysis, R.Tyrrell.Rockafellar, Th 11.2)Let $ C $ be a relatively open convex subset in $ \mathbb{R}^n $, and let $ M $ be an affine set not meeting $ C $. Then there is a hyperplane $ H $ containing $ M $, such that one of open halfplace associated to $ H $  contains $ C $.
+\end{lem}
+
+\begin{prop}
+	Let $ N=\overline{NE}(X) $. Assume $ K_X $ is not nef, and there is a divisor $ D $ such that $ N\supsetneq\{D>0 \}\cap N\supset \{ K_X\geqslant 0 \}\cap (N-0) $. If $ D^\perp\cap K_X^\perp \cap N=\{0\} $, then there is a rational number $ r>0 $ such that $ D-rK_X $ is nef.
+	
+\end{prop}
+
+\begin{proof}
+	Let $ C=N-\partial N $ and $ M= D^\perp\cap K_X^\perp $, then by the lemma above, there is a hyperplane $ H $ corresponding to a divisor $ D' $ such that $ D(C)>0 $ and $ M\subset H $. Consider $ N^1(X) $ as dual space of $ N_1(X)_\mathbb{R}\cong \mathbb{R}^{\rho(X)} $, then $ D' $ is of form $ aD+bK_X $. Consider curves in  $ C\cap\{ D<0\} $, $ C\cap \{D>0\}\cap \{K_X<0\} $ and $ C\cap \{K_X>0\} $, we can see $ a>0,b<0 $, or we can write $ D'=D-rK_X $ with $ r>0 $.
+	
+	Since $ \overline{C}=N $ ,$ D':N\to \mathbb{R} $ is a continuous function, and $ D'(C)>0 $, we have $ D'(N)\geqslant 0 $. Let $ N'=N\cap \{A=1\} $ for some ample divisor $ A $, then $ N' $ is a bounded closed compact convex subset. Then $ K_X(N')\leqslant a $ ( WMA $ a>0 $ ), and $ D'(N'\cap \{K_X\geqslant0 \})\geqslant b\geqslant 0 $. In fact, $ b>0 $. Otherwise, there is a $ x\in N'\cap \{ K_X\geqslant 0 \} $ such that $ K_X(x)\geqslant 0 $ and $ (D-rK_X)(x)=0 $, which implies $ D(x)=K_X(x)=0 $, therefore $ x=0 $. But $ A(x)=1 $, which is a contradction. 
+	
+	Let $ \delta=\frac{b}{a} $, then any $ 0<\epsilon <\delta $, $ D'-\epsilon K_X=D-(r+\epsilon)K_X $ is ample:
+	$$ (D'-\epsilon K_X)(N'\cap \{K_X\geqslant 0\})\geqslant b-\epsilon a>0 $$
+	Since $ \mathbb{Q} $ is dense in $ \mathbb{R} $, one can choose $ \epsilon $ such that $ (r+\epsilon) $ is rational. 
+\end{proof}
+
+ref: Lectures on Birational geometry, Birkar, Theorem 7.1: Cone and Contraction theorem
+
+\begin{lem}
+	$ K=K_X+B $ not nef, $ M $ is closure of $  N_{K\geqslant 0}+\sum R $, where $ R $ are extremal rays. Assume $ M\subsetneq N $, and $ 0\neq c\in N-M $, and $ G $ divisor such that $ G(N)>0,G(c)<0 $. Then there is a rational number $ a>0 $ such that $ G-aK $ is ample.
+\end{lem}
+
+\begin{proof}
+	Let $ H $ be an ample divisor, consider $ N'=N\cap \{H=1\} $ and $ M'=M\cap \{H=1\} $, both closed bounded compact subset, and we can assume $ H.x=1 $. 
+	\begin{itemize}
+		\item Consider $ L_t=G-tK, t>0 $, claim that for $ t\gg 0 $, $ L_t $ ample on $ N_{K\leqslant 0} $, i.e. $ L_t(N'_2 \cup N'_3)>0 $. Indeed, 
+		$$ N'=N'_{K\geqslant 0}\cup N'_{K\leqslant 0,G\geqslant 0}\cup N'_{G\leqslant 0}=N'_1\cup N'_2 \cup N'_3 $$
+		Notice that $ M'\subsetneq N'_1\cup N'_2=N'_{G\geqslant 0} $ since $ G(M')>0 $. For all $ t>0 $, we have $ L_t(N'_2)\geqslant0 $. As for $ N'_3 $, since $ G:N_1(X)\to \mathbb{R} $ is continous, and $ N'_3 $ is compact, $ |G(N'_3)|\leqslant b $ is bounded. Same for $ K(N'_3)=[-c,-d] $, and $ d\geqslant 0 $. In fact, $ d>0 $. Otherwise, we have $ x'\in N'_3 $ and $ K(x')=0, G(x')\leqslant 0 $, then $ x'\in N'_1 $, but $ G(N'_1)>0 $, contradiction. Therefore, take $ t> \frac{b}{d} $, then $ L_t(N'_3)\geqslant -b+td>0 $.
+		\item 	Consider threshold for nef on $ N_{K\leqslant 0} $:
+		$$ s=\min \{t: L_t(N_{K\leqslant 0})\geqslant0  \} $$
+		Denote $ D=L_s $, claim that $ D $ is positivite on $ N'_1 $. Indeed, by choice of $ s $, there is $ x'\in N'_{K\leqslant 0} $ such that $ D(x')=0 $ \textbf{Why?}. If $ K(x')=0 $, then $ x'\in M' $, thus $ G(x')>0 $, contradiction. Hence $ x'\in N'_{K<0} $. If $ D $ is not positivite on $ N'_1 $, then there is $ x''\in N_1 $ such that $ D(x'')\leqslant 0 $. If $ K(x'')=0 $, then $ G(x'')\leqslant 0 $, but $ G(x'')>0 $, hence $ K(x'')>0 $. Now $ D(x')=0,K(x')<0 $ and $ D(x'')\leqslant 0,K(x'')>0 $, then there is  a point $ x''' $ on the line $ [x',x''] $ such that  $ K(x''')=0,D(x''')\leqslant 0 $,  therefore $ G(x''')=0 $. However $ K(x''')=0 $ implies $ x'''\in M' $, and $ G(x''')>0 $, contradiction. Hence $ D $ is positivite on $ N'_1 $.
+		\item $ D=G-sK $ is nef. Claim that for all $ 0<\epsilon \ll 1 $, $ D'=D-\epsilon K $ is ample. Need to show $ D'(N')>0 $. Since $ D $ is strictly positive on $ N'_1 $, we can take $ \epsilon $ small enough such that $ D' $ is positive on $ N'_1 $. As above, $ D' $ non-negative on $ N'_2 $, if $ D'(x_2)=G(x_2)-(\epsilon +s)K(x_2)=0$ for some $ x_2\in N'_2 $, then $ G(x_2)\geqslant 0,K(x_2)\leqslant 0 $ implies $ G(x_2)=K(x_2)=0 $. However $ K(x_2)=0 $ implies $ x_2\in M' $ and $ G(x_2)>0 $;  Similarily, $ K(N'_3)<0 $, therefore $ D'(N'_3)>0 $. Thus $ D' $ is ample. One can take $ \epsilon $ such that $ s+\epsilon $ rational, and $ H=D-\epsilon K $ is $ \mathbb{Q} $-cartier ample divisor.
+		\item If consider nef threshold for $ H $,
+		$$ \lambda=\max\{r: H-rK \text{ nef}\} $$
+		by rational theorem, $ r=\epsilon $ and $ s $ is also rational.
+	\end{itemize}
+
+	
+
+\end{proof}
+
+
+[D] (Higher dimensional algebraic geometry, O.Debarre): 
+\begin{defn}
+	Let  $ V\subset \mathbb{R}^m $ be a cone, define its dual cone as 
+	$$ V^*:=\{l\in (\mathbb{R}^m)^\vee :l(V)\geqslant 0\} $$
+\end{defn}
+\begin{lem}
+	([D], lemma 6.7) Let $ V $ be a convex closed cone in $ \mathbb{R}^m $, then
+	\begin{enumerate}
+		\item $ V=V^{**} $; and $ V $ contains no lines if and only if $ V^* $ spans $ (\mathbb{R}^m)^\vee $; and interior of $ V^* $ is $ \{l\in (\mathbb{R}^m)^\vee :l(V-0)> 0\}  $
+		\item If $ V $ contains no lines, then it is the convex cone of its extremal rays.
+		\item Any proper proper extremal subcone $ M $ has a supporting function $ l\in V^*, l(M)=0 $;
+		\item If $ V $ contains no lines, then for any proper proper extremal subcone $ M $, there is a $ l\in V^*, l(M-0)>0 $ and vanishes on some extremal ray of $ V $.
+	\end{enumerate} 
+\end{lem}
+
+
+
+
+\section{proper and birational maps}
+
+\begin{defn}
+	Let $ X $ be a scheme and $ \mathcal{A} $ a quasi-coherent $ \mathcal{O}_X $-algebra, then subsheaf   $ \mathcal{A}' $  defined by :$ f\in \mathcal{A}'(U) $ if $ f\in \mathcal{A}(U) $ and $ f_x\in \mathcal{A}_x $ integral over $ \mathcal{O}_{X,x} $.  $ \mathcal{A}' $is called \textbf{integral closure} of  $ \mathcal{O}_X $ in $ \mathcal{A} $. Then $ \mathcal{A}' $ is a quasi-coherent $ \mathcal{O}_X $-algebra.  
+	
+	$ f:Y\to X $ qcqs, then $ f_*\mathcal{O}_Y $ is a quasi-coherent $ \mathcal{O}_X $-algebra on $ X $. Let $ \mathcal{A} $ be integral closure of $ \mathcal{O}_X $ in $ f_*\mathcal{O}_Y $, then $ X'=\underline{Spec}f_*\mathcal{A} $ called normalization of $ X $ in $ Y $. Furthermore, this behaves well restricted to open subset $ f^{-1}U\to U $.
+\end{defn}
+
+stein factorization:
+\begin{thm}
+	(stein factorization) stack project and so on: Let $ f:X\to S $ be a universal closed and quasi-separated morphism, then
+	\begin{enumerate}
+		\item $ f $ factors through $ X\xrightarrow{f'} S'\xrightarrow{g} S$ such that
+		\begin{enumerate}
+			\item $ f' $ is universal closed, qcqs, surjective;
+			\item $ g:S'\to S $ is integral;
+			\item $ f_*\mathcal{O}_X=\mathcal{O}_{S'} $ and $ S'=\underline{Spec}_Sf_*\mathcal{O}_X $;
+			\item $ S' $ is normalization of $ S $ is $ X $.
+		\end{enumerate}
+		And formation of factorization commutes with flat base change.
+		\item If furthermore $ f $ is proper, then $ X\to S' $ proper with geometrically connected fibres.
+		\item If furthermore $ S $ is locally noetherian,  then $ S'\to S $ is finite.
+	\end{enumerate}
+\end{thm}
+\begin{rmk}
+	Let $ X $ be a proper variety and $ L $ base point free, then induces a morphism $ \phi:X\to \mathbb{P}^n $ with image $ Y $. Since $ X $ is proper, $ \phi(X) $ is closed, inducing proper morphism $ f:X\to Y $. Using stein factorization, we have $ f':X\to Y' $ such that $ f'_*\mathcal{O}_X=\mathcal{O}_{Y'} $ (this implies connected fibres and surjective) and $ Y'\to Y $ finite.
+	
+	Assume $ X $ is normal. Then $ Y' $ is normal.	 
+\end{rmk}
+
+\end{document}

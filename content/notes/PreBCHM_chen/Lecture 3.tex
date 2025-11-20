@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Notes of Seminar of MMP}
+\author{wyz}
+\date{}
+
+\begin{document}
+	\maketitle
+9.5
+
+ref: KM98, Intro to Mori program;
+
+Sketch of MMP and examples	
+\section{Brief introduction to MMP}
+\begin{thm}
+	(KM Prop 2.5)Assume $ X $ is a normal projective $ \mathbb{Q} $-factorial varity, and $ K_X $ is not nef, then as in then case of surfaces, by rationality, cone theory, base point free theory and contraction theory, one can find an extremal ray and corresponding contraction morphism $ f:X\to Y $. But there is three cases in higher dimension :
+	\begin{itemize}
+		\item (Divisorial contraction) $ f $ is birational morphism and $ E=\mathrm{Exc} (f) $ is a divisor. In fact, $ E $ is an irreducible divisor, and $ Y $ is $ \mathbb{Q} $-factorial. Furthermore, $ \rho(X)=\rho(Y)-1 $. This case is "good" in the sence that one can continue the program with picard number strictly going down.
+		\item (Mori fibre space, or MFS) $ \dim Y<\dim X $. In this case Mori's program ends.
+		\item (Small contraction) $ \mathrm{codim}\,\mathrm{Exc}(f)\geqslant 2 $. This never happens for surfaces.  This is a "bad" case, since $ K_Y $ is not $ \mathbb{Q} $-factorial. Otherwise, if $ mK_Y $ is cartier for some $ m>0 $, take a curve $ C $ contained in $ \mathrm{Exc}(f) $, then
+		$$ f^*mK_Y .C=mK_Y.f(C)=0$$
+		But $ f $ is the contraction corresponding to an extremal ray $ R $, therefore class of the curve $ C $ is in the ray $ R $, and $ K_X.C<0 $, which is a contradiction.
+		
+		In this case, $ -K_X $ is $ f $-ample, since $ \overline{NE}(X/Y)=0 $.
+	\end{itemize}
+\end{thm}
+
+We have two difficulties in higher dimensional varieties:
+\begin{itemize}
+	\item For a contraction $ f:X\to Y $, even $ X $ is smooth, $ Y $ may not be $ smooth $ but with singularities;
+	\item Small contraction.
+\end{itemize}
+
+Let $ f:X\to Y $ be a small contraction, we define a filp as following:
+\begin{defn}
+	Let $ f:X\to Y $ be a proper birational morphism such that $ \mathrm{codim}\,\mathrm{Exc}(f)\geqslant 2 $. Assume  $ -K_X $ is $ \mathbb{Q} $-cartier and $ f $-ample, then a \emph{flip} is a variety $ X^+ $ and a proper birational morphism $ f^+:X^+\to Y $ such that
+	\begin{itemize}
+		\item $ K_{X^+} $ is $ \mathbb{Q} $-cartier;
+		\item $ K_{X^+} $ is $ f^+ $-ample,
+		\item $ \mathrm{codim}\,\mathrm{Exc}(f^+)\geqslant 2 $.
+	\end{itemize}
+	Sometimes the rational map $ \phi:X\dashrightarrow X^+ $ is also called a flip.
+\end{defn}
+\begin{rmk}
+	$ \phi:X\dashrightarrow X^+ $ is an isomorphism in codimension $ 2 $, hence is a birational map. $ X^+ $ is $ \mathbb{Q} $-cartier if $ X $ is, and $ \rho(X)=\rho(X^+) $.
+\end{rmk}
+Now we can continue the program  replacing $ X $ by $ X^+ $. But there are still two problems:
+\begin{itemize}
+	\item Exsitence of filps (Solved);
+	\item Termination of filps.
+\end{itemize}
+\section{Examples}
+This section gives examples of the difficulties in higher dimension mentioned above.
+
+
+\textbf{Example of non-smoothness}(Intro to Mori, Example 3-1-3): Let $ A $ be an abelian threefold, $ i $ the involution, then we have a quotient: $ q:A\to A/(i)=Y $ where $ Y $ has $ 2^6=64 $ isolated singluar points, each of which is analytically isomorphic to 
+$$ 0\in \mathrm{Spec}\,\mathbb{C}[x,y,z]^{(i)}, i:(x,y,z)\to (-x,-y,-z) $$
+Since $ \mathbb{C}[x,y,z]^{(i)}=\mathbb{C}[x^2,y^2,z^2,xy,yz,zx] $, this is also isomorphic to the vertix of the cone of the Veronese surface $ \mathbb{P}^2 \hookrightarrow \mathbb{P}^5$. Denote $ U=\mathrm{Spec}\,\mathbb{C}[x^2,y^2,z^2,xy,yz,zx] $ and $ \pi:\tilde{U}\to U $ is the blowing up of $ U $ at the origin (which is the only singularity), then $ E=\mathrm{Exc}\,\pi\cong \mathbb{P}^2 $ and $ \mathcal{O}_E(E)\cong \mathcal{O}_{\mathbb{P}^2}(-2) $. Let $ f:X\to Y $ be the blowup of all $ 64 $ singular points of $ Y $, then
+\begin{itemize}
+	\item $ X $ is smooth (only need to show $ \tilde{U} $ is smooth, but why?);
+	\item $ Y $ is $ \mathbb{Q} $-factorial, and 
+	$$ 2K_Y=q_*q^*K_Y=q_*K_A\sim 0$$
+	($ q^*K_Y=K_A,K_A\sim 0 $)
+	\item $ \mathcal{O}_{E_i}(E_i)\cong \mathcal{O}_{\mathbb{P}^2}(-2) $ and $ (K_X+E_i)|_{E_i}=K_{E_i}=\mathcal{O}_{\mathbb{P}^2}(-3) $
+\end{itemize}
+Assume $ K_X=f^*K_Y+\sum_{i=1}^{64}a_iE_i $, then 
+\begin{equation*}
+\begin{aligned}
+-3H=K_{\mathbb{P}^2}=K_{E_0}=(K_X+E_0)|_{E_0}&=(f^*K_Y+\sum a_iE_i+E_0)|_{E_0}=(a_0+1)E_0|_{E_0}\\
+&=(a_0+1)\mathcal{O}_{E_0}(E_0)=(a_0+1)(-2H)
+\end{aligned}
+\end{equation*}
+ where $ H $ is hyperplane divisor of $ \mathbb{P}^2 $. This shows $ a_i =\frac{1}{2}$, and $ K_X=\sum_{i=1}^{64}\frac{1}{2}E_i $. 
+ 
+If $ C $ is an irreducible $ K_X $-negative curve generating an extremal ray, then $ C\subset E_i $ for some $ i $. Conversely, if $ C $ is a curve contained in $ E_i $, then it generates an extremal ray. This implies that contraction of $ X $ is blowing down for a divisor $ E_i $, therefore maps to a singular variety.
+
+
+
+\textbf{Example of flip}(KM, Example 2.7): Let $ Y:=\{ xy-uv=0 \}\subset \mathbb{C}^4 $, then the origin is the only singularity. Blow it up and denote $ \tilde{X}:=Bl_0P $, then the exceptional divisor $ Q $ is the projective quadric $ \{ xy-uv \}\subset \mathbb{P}^3 $. On $ Q $ we have two families of rational lines. Blow them down resprctively and we have two smooth threefold $ X $ and $ X^+ $. In fact, $ X $ (resp. $ X^+ $) can be obtained by blowing up ideal $ (x,v) $ (resp. $ (x,u) $) on $ Y $. This gives a diagram:
+$$ \xymatrix{
+	&\tilde{X}\ar[ld]\ar[rd]&\\
+	X\ar[rd]\ar@{.>}[rr]&&X^+\ar[ld]\\
+	&Y&
+} $$ 
+This shows $ X^+\to Y $ is a flip of $ X\to Y $.
+
+Let $ G=\mu_n=\left <\sigma\right > $ be the cyclic group of order $ n $, acting on $ Y $ by 
+$$ \sigma: (x,y,u,v)\to (\zeta x,y,\zeta u,v) $$
+where $ \zeta $ is $ n $-th root of unit. In fact, this action can be extended to all varieties above. The corresponding quotients are denoted by a subscript $ n $. Then we have another digram:
+$$ \xymatrix{
+	&\tilde{X}_n\ar[ld]\ar[rd]&\\
+	X_n\ar[rd]\ar@{.>}[rr]&&X^+_n\ar[ld]\\
+	&Y_n&
+} $$ 
+In this case, $ X^+_n\to Y_n $ is also a flip of $ X_n\to Y_n $. Furthermore, $ X^+_n $ is smooth but $ X_n $ is NOT. That implies that flip is "better" than original one.
+\section{questions}
+In the first example, there are questions:
+\begin{itemize}
+	\item  For blowing up $ \tilde{U}\to U $, why $ E=\mathrm{Exc}\,\pi\cong \mathbb{P}^2 $ and $ \mathcal{O}_E(E)\cong \mathcal{O}_{\mathbb{P}^2}(-2) $, and $ \tilde{U} $ is smooth? What about more general case, for example, quotient singularities and (log) resolutions?
+	\item Why $ Y $ is $ \mathbb{Q} $-cartier and $ 2K_Y\sim 0 $?
+\end{itemize}
+
+\begin{prop}
+	(Algebraic Varieties: Minimal Models and Finite	Generation, Prop 1.10.6) For a algebraic variety $ X $ with only quotient singularity, the pair $ (X,0) $ is klt.
+\end{prop}
+\begin{proof}
+	Assume $ X $ is global quotient variety $ q:\tilde{X}\to X=\tilde{X}/G $. Then $ X $ is $ \mathbb{Q} $-cartier by following lemma. Take a (log) resolution $ f:Y\to X $ and denote 
+	$$ K_Y=f^*K_X+C $$
+	Let $ \tilde{Y} $ be normalization of $ Y $ in $ K(\tilde{X}) $, then induces folloing digram:
+	$$ \xymatrix{
+		\tilde{Y}\ar[r]^{g}\ar[d]_{p}&\tilde{X}\ar[d]^q\\
+		Y\ar[r]^f&X
+	} $$
+	Write $ K_{\tilde{Y}}=g^*K_{\tilde{X}}+\tilde{C} $ and take a prime divisor $ E $ on $ Y $ contained in $ \mathrm{Exc}\, f $. Take a prime divisor $ \tilde{E} $ on $ \tilde{Y} $ such that $ p(\tilde{E})=E $. Denote coefficient of $ E $ ($ \tilde{E} $) in $ C $ ($ \tilde{C} $) by $ a $ ($ \tilde{a} $), and denote ramification index of $ \tilde{E} $ w.r.t. $ q $ by $ e $, then
+	$$ ae=\tilde{a}+e-1 (?)$$
+	Since $ \tilde{X} $ is smooth,  $ \tilde{a}\leqslant0 $, thus $ a<1 $.
+\end{proof}
+
+\begin{lem}
+	(KM98, lemma5.16) Let $ f:X\to Y $ be a finte surjective morphism of normal varities. If $ X $ is $ \mathbb{Q} $-factorial, then so is $ Y $.
+\end{lem}
+\begin{proof}
+	Let $ F $ be any prime divisor on $ X $, claim that $ f(F) $ is $ \mathbb{Q} $-cartier on $ Y $. Assume $ aF $ is cartier on $ X $, then any $ x\in X $, there is an open neighborhood $ U $ of $ x $ such that $ aF$ is defined by $ \phi=0 $ on $ U $. Notice that $ f $ is surjective and finite (hence proper), then $ V=f(U)=Y-f(X-U) $ is open. ($ f|_U $ is surjective and finite, if $ U $ is affine, then $ V $ is affine.) Then norm $ \mathrm{Nm}\, \phi $ of $ \phi $ defines a closed subset as $ f(F) $. Therefore $ f(aF) $ is $ \mathbb{Q} $-cartier. 
+\end{proof}
+\end{document}

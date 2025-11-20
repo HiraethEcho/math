@@ -1,0 +1,99 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Notes of Seminar of MMP}
+\author{wyz}
+\date{}
+
+\begin{document}
+	\maketitle
+9.14, 9.16
+
+ref: KM98, prositivity in algebraic geometry, Algebraic varieties: Minimal models and finite generation.
+
+Vanishing	
+
+Our goal is to kill some higher cohomology groups for certain line bundles. For example, kodaira vanishing: 
+
+\begin{thm}
+	Let $ X $ be a projective smooth variety of dimension $ n $ over $ \mathbb{C} $, and let  $ A $ be an ample divisor. Then
+	$$ H^i(X,-A)=0,i<n $$
+	or by serre duality, equivalent to
+	$$ H^i(X,K_X+A)=0,i>0  $$
+\end{thm}
+
+Our main method to prove such theorem is to find another better variety $ f:Y\to X $ and line bundle $ A' $ on $ Y $, such that
+\begin{itemize}
+	\item $ H^i(Y,-A')=0,i<n  $ or $ H^i(Y,K_Y+A')=0,i>0  $;
+	\item $ H^i(Y,-A')=0 \Rightarrow H^i(X,-A)=0,i<n  $  or
+	
+	$ H^i(Y,K_Y+A')=0 \Rightarrow  H^i(X,K_X+A)=0,i>0 $.
+\end{itemize}
+ We find such $ f:Y\to X $ by cover map and log resolution.
+
+\section{Prepare}
+\begin{lem}
+	(Atiyah.11.24) Let $ A $ be a noetherian local ring, then $ A $ is regular if and only if $ \hat{A} $ is regular.
+\end{lem}
+
+\begin{lem}
+	Suppose categories and functors $ \mathscr{C}\xrightarrow{F}\mathscr{D}\xrightarrow{G}\mathscr{E} $ "good enough", then we have a spectral sequence
+	$$ E_2^{p,q}=R^pGR^qFX\Rightarrow R^{p+q}(G\circ F)X $$
+\end{lem}
+\section{log resolution and covering}
+\subsection{log resolution}
+\begin{prop}
+	(Laza,4.1.3) Let $ X $ be an irreducible complex variety (possibly singular), and $ D\subset X $ an effective cartier divisor. Then 
+	\begin{itemize}
+		\item There is a projective birational morphism 
+		$$ f:Y\to X $$
+		such that $ Y $ is smooth and $ \mathrm{Supp}\,f^*D\cup\mathrm{Exc}\,f $ is snc;
+		\item Furthermore, one can take $ f $ as compositions of blowing up along smooth centers supported on singular loci of $ X $ and $ D $. In particular, $ f $ is isomorphism over $ X-\mathrm{Sing}\, X\cup \mathrm{Supp}\,D $.	
+	\end{itemize}
+\end{prop}
+By [Hartshorne, prop.7.10],  if $ X $ admits an ample line bundle $ \mathcal{L} $, then  $\pi: \underline{Proj}\mathcal{S}\to X $ is projective, and $ \mathcal{O}(1)\otimes \pi^*\mathcal{L}^m $ is very ample over $ X $  for all $ m\gg 0 $. Therefore, we have 
+\begin{prop}
+	([KM 1.45]) Let $ f:X\to Y $ be a morphism of projective varieties with $ M $ an ample cartier divisor on $ Y $. If $ L $ is a $ f $-ample cartier divisor on $ X $, then $ L+mf^*M $ is ample for $ m\gg 0 $. 
+\end{prop}
+
+In [JK], let $ X $ be an algebraic variety, and $ B $ a closed subset. The set of points  in a neighborhood of which $ X $ is smooth and $ B $ is normal crossing divisor , is an open subset of $ X $, and denoted by $ \mathrm{Reg}(X,B) $. Its completement $ \mathrm{Sing}(X,B)=X-\mathrm{Reg}(X,B) $ is called \textbf{singular locus} of $ (X,B) $
+\begin{thm}
+	([JK], Theorem 1.6.1) For any algebraic variety $ X $ over a field of character $ 0 $ with a proper closed subset $ B $ , there is a \textbf{strong log resolution} $ f:Y\to X $:
+	\begin{enumerate}
+		\item $ f $ is a birational projective morphism;
+		\item There is a normal crossing divisor $ C $ on $ Y $, such that set-theoretic inverse $ f^{-1}(B) $ is union of serveral irreducible components of $ C $, and $ \mathrm{Exc}(f) $ is union of serveral irreducible components of $ C $;
+		\item $ f $ is isomorphic on $ \mathrm{Reg}(X,B) $;
+		\item $ \mathrm{Exc}(f) $ coincides with set-theoretic inverse $ f^{-1}(\mathrm{Sing}(X,B)) $;
+		\item There is  an effective  $ f $-execptional divisor $ F $ such that $ -F $ is $ f $-ample.
+	\end{enumerate}
+Furthermore, this resolution can be obtained by blowing up along smooth centers (contained in $ \mathrm{Sing}(X,B) $) finitely times.
+\end{thm}
+
+\subsection{covering}
+
+
+
+
+
+\section{Vanishing theorems}
+
+\end{document}

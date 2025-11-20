@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Notes of Seminar of MMP}
+\author{wyz}
+\date{}
+
+\begin{document}
+	\maketitle
+prepare for base point free theorem, and other basic lemmas.
+
+cf: KM98
+
+9.23
+\begin{lem}
+	Let $ f:Y\to X $ be a proper birational morphism of varieties, and $ X $ a normal variety. Let $ D $ be a cartier divisor on $ X $, and $ F $ an exceptional effecitve cartier divisor on $ Y $, and $ E=\mathrm{Exc}(f) $, then 
+	$$ H^0(X,D)\cong H^0(Y,f^*D+F) $$ 
+\end{lem}
+\begin{proof}
+	Since $ f $ is birational proper, then $  \underline{\mathrm{Spec}}f_*\mathcal{O}_Y\xrightarrow{\sim}X $, and $ f_*\mathcal{O}_Y\cong \mathcal{O}_X $. By projection formula, 
+	$$ H^0(Y,f^*\mathcal{O}_X(D))=H^0\left(X,f_*\left(f^*\mathcal{O}_X(D)\otimes \mathcal{O}_Y\right)\right)=H^0(X,\mathcal{O}_X(D))$$
+	Since $ F $ is effective,
+	$$ H^0(Y,f^*D)\subset H^0(Y,f^*D+F) $$
+	Since $ F $ is exceptional, i.e. $ F\subset E $,
+	$$ H^0(Y,f^*D+F)\subset H^0(Y-E,f^*D) $$
+	Notice that $ Y-E\cong X-f(E)  $,
+	$$ H^0(Y-E,f^*D)= H^0(X-f(E),D) $$
+	But $ X $ is normal, and $ \mathrm{codim} f(E)\geqslant 2 $,
+	$$  H^0(X-f(E),D) =H^0(X,D) $$
+	Now we have 
+	$$ H^0(X,D) \subset H^0(Y,f^*D+F)\subset H^0(X,D) $$
+\end{proof}
+
+By [Hartshorne, prop.7.10],  if $ X $ admits an ample line bundle $ \mathcal{L} $, then  $\pi: \underline{Proj}\mathcal{S}\to X $ is projective, and $ \mathcal{O}(1)\otimes \pi^*\mathcal{L}^m $ is very ample over $ X $  for all $ m\gg 0 $. Therefore, we have 
+\begin{prop}
+	([KM], 1.45]) Let $ f:X\to Y $ be a morphism of projective varieties with $ M $ an ample cartier divisor on $ Y $. If $ L $ is a $ f $-ample cartier divisor on $ X $, then $ L+mf^*M $ is ample for $ m\gg 0 $. 
+	
+	Or equivalently, $ f^*M+\epsilon L $ is ample for all $ 0<\epsilon \ll 1 $.
+\end{prop}
+
+\begin{lem}
+	([KM98], lemma 2.62) Let $ f:Y\to X $ be a birational map. Assume  $ Y $ is projective and $ X $ is $ \mathbb{Q} $-cartier. Then there is an effective $ f $-exceptional divisor $ F $ such that $ -F $ is $ f $-ample. 
+\end{lem}
+
+\begin{lem}
+	([D], lemma 7.29) Let $ X $ be a complex projective variety and $ M $ big and nef $ \mathbb{Q} $-cartier divisor, then  there is a desigularization $ f:Y\to X $ and a s.n.c $ f $-exceptional reduced divisor $ \sum F_i $ on $ Y $, such that for any $ \epsilon>0 $, there are rational numbers $ p_i\in (0,\epsilon) $ , and $ f^*M-\sum p_iF_i $ ample. 
+\end{lem}
+
+\begin{lem}
+	(weak R-R) Let $ X $ be an irreducible projective variety of dimensional $ n $, and $ D $ is a divisor. Denote
+	$$ h_{\mathcal{F},D}(m):=\chi (X,\mathcal{F}\otimes \mathcal{O}_X(mD)) $$
+	Then 
+	$$ h_{\mathcal{F},D}(m)=\mathrm{rk}\,\mathcal{F}\cdot \frac{D^n}{n!}\cdot m^n+ O (m^{n-1})$$
+\end{lem}
+
+\begin{prop}
+	([KM98], prop 2.61) Let $ X $ be a projective variety of dimension $ n $ over a field of character $ 0 $, and $ D $ a cartier divisor. Then TFAE:
+	\begin{enumerate}
+		\item $ D $ is nef and big;
+		\item $ D $ is nef and $ D^n>0 $;
+		\item There is an effective divisor $ E $ such that for any $ k\gg 0 $, there is an ample $ \mathbb{Q} $-cartier divisor $ A_k $ such that $ D\equiv A_k+\frac{1}{k}E $;
+		\item For any divisor $ B $, there is a log resolution $ f:Y\to X $ and an effective divisor $ E' $ on $ Y $, such that $ \mathrm{Exc}(f)\cup E'\cup f^*B $ snc, and for any $ k\gg 0 $, there is an ample $ \mathbb{Q} $-cartier divisor $ A_k $ and $ f^*D\equiv A'+\frac{1}{k}E' $.  
+	\end{enumerate}
+\end{prop}
+\begin{rmk}
+	$ D $ nef and big. Take $ H $ ample effective. By bigness, find a effective $ E'\sim mD-H $. Let $ E=\frac{E'}{m} $, then
+	$$ D=(\frac{t}{m}H+(1-t)D)+tE $$ 
+	Thus there is a effective $ E $ such that for all rational $ t\in (0,1]  $, $ D-tE $ is ample $ \mathbb{Q} $-cartier.
+\end{rmk}
+
+
+\end{document}
