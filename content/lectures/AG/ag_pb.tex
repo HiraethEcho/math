@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{assertion}[definition]{Assertion}
+\newtheorem{example}[definition]{Example}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Ag_pb}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+\subsection{29}
+Let $\mathcal{E}$ be a locally free sheaf on  $S$ and $f:X= \mathbb{V}(\mathcal{E})\to S$. There is a zero section $s: S \to X$ induced by $0:\mathcal{E} \to \mathcal{O}_{S}$  
+Then the ideal sheaf $\mathcal{I}_{S} \subset \mathcal{O}_{X}$  is 
+\[
+  s^{*}\mathcal{I}_{S} \cong \mathcal{E}.
+\]
+Also note that for $D \subset X$ cartier effective divisor,
+\[
+  \mathcal{O}_{X}(D)|_{D}=\mathcal{O}_{D}(D)=\mathcal{I}_{D}^{*}=\mathcal{N}_{D/X}
+\]
+
+\subsection{30}
+Let $X= \mathbb{P}(\mathcal{O} \oplus \mathcal{E}) \to S$,
+there are $Z_{X}$ infinity locus and  $ 0_{X} $ zero section of $X\to S$.   Let $P=\mathbb{P}(\mathcal{E})\to S$ and $Y=\mathbb{P}(\mathcal{O}_{P} \oplus \mathcal{O}_{P}(1))$, let $Z_{Y}$ and $0_{Y}$ be the section of $\pi:Y\to P$. Then $Y\to X$ is blow up of $0_{X}$ with exceptional divisor $0_{Y}$ and $\pi^{-1}(Z_{X})=Z_{Y}, Z_{X}\cong Z_{Y}\cong P$.
+
+And $X \setminus Z_{X} \cong \mathbb{V}(\mathcal{E})$. Also 
+\[
+  \mathbb{V}(\mathcal{O}_{P}(1)) \cong Bl_{0_{X}} \mathbb{V}(\mathcal{E})
+\]
+and
+\[
+  \mathbb{V}(\mathcal{O}_{P}(-1))\cong X \setminus 0_{X}
+\]
+\begin{theorem}[test]
+Let $X= \mathbb{P}(\mathcal{O} \oplus \mathcal{E}) \to S$,
+there are $Z_{X}$ infinity locus and  $ 0_{X} $ zero section of $X\to S$.   Let $P=\mathbb{P}(\mathcal{E})\to S$ and $Y=\mathbb{P}(\mathcal{O}_{P} \oplus \mathcal{O}_{P}(1))$, let $Z_{Y}$ and $0_{Y}$ be the section of $\pi:Y\to P$. Then $Y\to X$ is blow up of $0_{X}$ with exceptional divisor $0_{Y}$ and $\pi^{-1}(Z_{X})=Z_{Y}, Z_{X}\cong Z_{Y}\cong P$.
+
+And $X \setminus Z_{X} \cong \mathbb{V}(\mathcal{E})$. Also 
+\begin{itemize}
+  \item 
+\[
+  \mathbb{V}(\mathcal{O}_{P}(1)) \cong Bl_{0_{X}} \mathbb{V}(\mathcal{E})
+\]
+\item
+\[
+  \mathbb{V}(\mathcal{O}_{P}(-1))\cong X \setminus 0_{X}
+\]
+\end{itemize}
+and
+\begin{enumerate}
+  \item what about
+\[
+  \mathbb{V}(\mathcal{O}_{P}(1)) \cong Bl_{0_{X}} \mathbb{V}(\mathcal{E})
+\]
+\item ordered list
+\[
+  \mathbb{V}(\mathcal{O}_{P}(-1))\cong X \setminus 0_{X}
+\]
+\end{enumerate}
+\end{theorem}
+
+
+\maketitle
+%\tableofcontents
+%\newpage
+\end{document}

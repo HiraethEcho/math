@@ -1,0 +1,734 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{assertion}[definition]{Assertion}
+\newtheorem{example}[definition]{Example}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{complex geometry}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+\section{Introduction to complex manifold.}
+
+\textbf{lecture 1}
+\subsection{complex manifolds}
+\begin{lemma}
+  \begin{itemize}
+    \item maximal principle;
+    \item extend holomorphic function on $U \subset X$ with $ \operatorname{codim}X \setminus U \geqslant  2$ to $X$.
+  \end{itemize}
+\end{lemma}
+examples of cplx manifolds: 
+\begin{itemize}
+  \item $U \subset \mathbb{C}^{n}$;
+  \item $\mathbb{Z}^{2n} \subset \mathbb{R}^{2n}=\mathbb{C}^{n}$ and $X:= \mathbb{C}^{n}/\mathbb{Z}^{2n}$:
+    For any $z\in X$, take $V_{z}$ be image of
+    \[
+     U_{z}= \{z: |z_{i}-z_{i}'|< \frac{1}{2} \} \subset \mathbb{C}^{n}
+    \]
+   This is not a ``algebraic'' tori. 
+ \item $\mathbb{P}^{n}$
+   ex: Show that $\mathbb{P}^{n}$ is compact.
+\end{itemize}
+\subsection{complex submanifolds}
+\begin{definition}
+  $Y \subset X$ is called submanifold of codimension $k$, if there is a atlas $\{u_{i},\phi_{i}:U_{i}\to V_{i} \subset \mathbb{C}^{n}\} $ of $X$, such that $\phi_{i}|_{Y \cap U_{i}}\to V_{i} \cap \mathbb{C}^{n-k}$.
+\end{definition}
+\begin{remark}
+  \begin{itemize}
+    \item Jacobian martix: of $f:U\to \mathbb{C}^{m}$ at $p$ is
+      \[
+      J_{f}(p):= {\left( \frac{\partial f_{i}}{\partial z_{j}}(p) \right)}_{i,j}
+      \]
+    \item holomorphic implicit function theorem: $f:U\to \mathbb{C}^{m}$, $f(p)=q$, $J_{f}(p)$ is rank $m$, then $f^{-1}(q)$ is a complex submanifold of $U$ of codimension $m$.
+
+      example: 
+    \begin{itemize}
+      \item 
+        $f: \mathbb{C}^{2}\to \mathbb{C}, (x,y) \mapsto x^2+y^2$. Then $f^{-1}(q\neq 0)$ is a complex submanifold of codimension $1$.
+      \item affine hypersurface.
+      \item projective hypersurface. $V(f)$
+    \end{itemize}
+  \end{itemize}
+\end{remark}
+\subsection{Projective manifolds}
+$X \subset \mathbb{P}^{N}$, such that $X=V(F_{i})$.
+
+\begin{remark}
+  Let $F_{1},\ldots ,F_{N-n}$ homogenuous polynomails, and  $X=V(F_{i})$. Then  $J_{F^{i}}(x)$ has rank $N-n$, where $x\in U_{i}$ and  $F^{i}$ polynomial morphism from $U_{i}\cong \mathbb{C}^{N}$ induced by $F$,   if and only if $J_{F}(x)$ has rank $N-n$.
+\end{remark}
+\begin{theorem}[Chow's theorem]
+  A compact complex submanifold $X \subset \mathbb{P}^{n}$ is projective.
+\end{theorem}
+\subsection{Vector bundles}
+\begin{definition}
+  A vector bundle of rank $r$ is $p:\mathscr{E} \to X$ such that
+  \begin{enumerate}
+    \item $E_{x}=p^{-1}(x)\cong \mathbb{C}^{r}$;
+    \item any $x$, there is a open submanifold $x\in U$ such that $h:p^{-1}(U)\xrightarrow{\sim} U \times \mathbb{C}^{r}$, and $h_{x}:E_{x}\xrightarrow{\sim} \{x\} \times \mathbb{C}^{r} $ is an isomorphism as a complex vector space.
+  \end{enumerate}
+\end{definition}
+  The $\{U,h\} $ is called a local trivialization of $E$ at $x$. Suppose $\{U_{i},h_{i}\},\{U_{j},h_{j}\}  $ are two trivialization, and any $x\in U_{i} \cap U_{j}$, there is an isomorphism $h_{i}\circ h_{j}^{-1}: \mathbb{C}^{r}\to \mathbb{C}^{r}$. Moreover, there is
+  \[
+    g_{ij}:=h_{i}\circ h_{j}^{-1}: U_{i} \cap U_{j}\to GL(r,\mathbb{C})
+  \]
+  where $g_{ij}\in C^{\infty}$.
+
+  Vice versa, given $\{U_{i},g_{ij}\}$, such that
+\begin{itemize}
+  \item $g_{ij}\circ g_{jk} \circ g_{ki}=Id$ and $g_{ii}=Id$.
+\end{itemize}
+  then we can construct a vector bundle.
+\begin{definition}[holomorphic vector bundle]
+A complex vector bundle is called holomorphic if $g_{ij}$ are holomorphic.
+\end{definition}
+\textbf{Construction of vector bundle:}
+slogan: construction of vector space implies construction of vector bundles.
+\begin{itemize}
+  \item $E_{1} \oplus E_{2}, E_{1} \otimes E_2, E^{\vee},\wedge^{rk E}E= \det E, \operatorname{Sym}E$
+\end{itemize}
+\begin{definition}[tautological bundle]
+  $\mathcal{O}_{\mathbb{P}^{n}}(-1) \to \mathbb{P}^{n}$ is called tautological bundle.
+  \[
+    ([x],v) \in \mathcal{O}(-1) \subset \mathbb{P}^{n} \times \mathbb{C}^{n+1}
+  \]
+ Where $v=\lambda x,\lambda \in \mathbb{C}$. trivialization is
+ \[
+  h_{i}:\pi^{-1}(U_{i})\to U_{i}\times \mathbb{C},([x],v)\mapsto (x_{i},v_{i})
+ \]
+ where $v=(v_{0},\ldots ,v_{n})\in \mathbb{C}^{n+1}$.
+\end{definition}
+\textbf{lecture 2}
+omitted. All recalls in lecture 3:
+
+\begin{enumerate}
+  \item Let $X$ be a differential or complex manifold, and $\mathcal{A}_{X}$ ($\mathcal{O}_{X}$ ) be differential functions (holomorphic functions) . Let $E\to X$ be a vector bundle, and $\mathcal{E}$ be the sheaf of sections. then  $\mathcal{E}$ is a  $\mathcal{F}$ bundle.   
+  \item Almost complex structure. Let $X$ bea a differential manifold, and 
+    \[
+      J:T_{X, \mathbb{R}}\to T_{X, \mathbb{R}}
+    \]
+    with $J^{2}=id$. 
+
+    example: $X=\mathbb{R}^{2n}\cong \mathbb{C}^{n}$ with coordinates $(x_{i},y_{i})=(z_{i}=x_{i}+\sqrt{-1}y_{i})$. Then
+    \[
+      \partial/\partial x_{i} \to \partial/\partial y_{i}, \partial/\partial y_{i} \to -\partial/\partial x_{i}
+    \]
+\end{enumerate}
+\textbf{lecture 3}
+\subsection{complex tangent bundle}
+
+Let $X$ be a complex manifold, and consider real tangent bundle $T_{X, \mathbb{R}}$ of dimension $2n$. Let $T_{X, \mathbb{R}}:= T_{X,\mathbb{R}}\otimes \mathbb{C}$ be a complexified tangent bundle.
+
+There is a $J_{\mathbb{C}}:T_{X,\mathbb{C}}\to J_{X,\mathbb{C}}$ and $T_{X,\mathbb{C}}=T^{1,0}_{X}\oplus T^{0,1}_{X}$, as eigenspace with respect to $i$ and $-i$.
+
+Locally, $X=\mathbb{C}^{n}$ and $T_{X,\mathbb{R}}=X \times \mathbb{R}^{2n}$, and $T_{X,\mathbb{C}}=X \times  \mathbb{C}^{2n}$ and 
+\[
+  J_{\mathbb{C}}: T_{X,\mathbb{C}}\to T_{X,\mathbb{C}}
+\]
+such that $\partial /\partial x_{j} - i \partial/\partial y_{j} \mapsto \partial / \partial y_{j} -i (-\partial/\partial x_{j})$ where $\partial /\partial x_{j} - i \partial/\partial y_{j} \in T^{1,0}_{X}$ basis of $T^{1,0}$ 
+
+complex coordinates: $\partial/\partial z_{j}:= 1/2(\partial /\partial x_{j}-i\partial/\partial y_{j}) $ and $\partial /\partial z_{j} (dz_{j})=1$ where $dz_{j}=dx_{j}+idy_{j}$ 
+\subsection{complex contangent}
+\begin{itemize}
+  \item $\Omega_{X,\mathbb{C}}=(T_{X,\mathbb{C}})^{\vee}$
+  \item $\Omega_{X,\mathbb{C}}^{1,0}=(T_{X,\mathbb{C}}^{1,0})^{\vee}$
+\end{itemize}
+Then $dz_{j}=x_{j}+iy_{j}$ basis of $\Omega^{1,0}$ and $d\bar{z_{j}}=dx_{j}-idy_{j}$ basis of $\Omega^{0,1}$
+
+\[\Omega^{p,q}:=\wedge^{p}\Omega^{1,0}\otimes \wedge^{q}\Omega^{0,1}\]
+Then a $(p,q)$-form is a section of $\Omega^{p,q} \subset \Omega^{k=p+q}$
+
+Exercise: Check that $T^{1,0}_{X}$ and $\Omega^{1,0}_{X}$ are holomorphic vector bundles. 
+
+\begin{remark}
+  In general, $T^{1,0}$ and $\Omega^{1,0},\Omega^{p,0}$ are complex vector bundles. But consider $T_{X}:=T^{1,0},\Omega^{p}$ as holopmorphic vector bundles.
+\end{remark}
+\subsection{Differential calculus on complex manifolds}
+recall differential in real manifolds:
+\[
+  d:\mathcal{A}^{k}\to \mathcal{A}^{k+1}
+\]
+defined by
+\[
+  \alpha \wedge \beta \mapsto d\alpha \wedge \beta + (-1)^{l}\alpha \wedge d\beta
+\]
+where $\alpha \in \mathcal{A}^{l}$
+
+For complex manifolds, we have $\mathcal{A}_{\mathbb{C}}^{k}:=$ sheaf of differential sections of $\Omega^{k}_{X,\mathbb{C}}=\oplus_{p+q=k}\Omega_{X}^{p,q}$, then
+\[
+  \partial:\mathcal{A}_{\mathbb{C}}^{p,q}\to \mathcal{A}_{\mathbb{C}}^{p+1,q}
+\]
+defined by
+\[
+  \partial:\mathcal{A}_{\mathbb{C}}^{p,q} \subset \mathcal{A}_{\mathbb{C}}^{k} \xrightarrow{d} \mathcal{A}_{\mathbb{C}}^{k+1}\xrightarrow{projection}\mathcal{A}_{\mathbb{C}}^{p+1,q}
+\]
+and
+\[
+  \overline{\partial}:\mathcal{A}_{\mathbb{C}}^{p,q}\to \mathcal{A}_{\mathbb{C}}^{p,q+1}
+\]
+defined by
+\[
+  \overline{\partial}:\mathcal{A}_{\mathbb{C}}^{p,q} \subset \mathcal{A}_{\mathbb{C}}^{k} \xrightarrow{d} \mathcal{A}_{\mathbb{C}}^{k+1}\xrightarrow{projection}\mathcal{A}_{\mathbb{C}}^{p,q+1}
+\]
+\begin{proposition}
+  \begin{enumerate}
+    \item $d=\partial + \overline{\partial}, \partial^{2}= \overline{\partial}^{2}=0,\partial \overline{\partial}+ \overline{\partial}\partial=0$
+    \item $\partial, \overline{\partial}$ satisfy Leibniz rule.
+  \end{enumerate}
+\end{proposition}
+\subsection{E-valued differential operators}
+Let $X$ be a complex manifold, and $E\to X$ be a holomorphic vector bundle. Let $\mathcal{E}$ be the sheaf of sections of $E$. Then we can define
+\begin{definition}
+  Sheaf $\mathcal{A}^{p,q}(E)$ such that
+  \[
+    \mathcal{A}^{p,q}(U,E):= \{s: U \to \Omega^{p,q}_{X}\otimes E|_{U}: s \text{ differential section}\} 
+  \]
+  Define $ \overline{\partial}_{E}:\mathcal{A}^{p,q}(E) \to \mathcal{A}^{p,q+1}(E)$ locally:
+
+  Take a trivialization $E|_{U}\cong U \times \mathbb{C}^{r}$ and $\alpha= \sum_{J,K}s_{I,K}dz_{I}\wedge d \bar{z}_{J}$ where $s=(s_{1},\ldots ,s_{r})_{J,K}$, then
+  \[
+    \overline{\partial}_{E}(\alpha)= \sum_{J,K} \overline{\partial}s_{I,K}dz_{I}\wedge d\bar{z}_{J}\\
+    = \sum_{J,K} \sum_{l=1}^{r} (\partial/\partial \bar{z}_{l}s_{I,K})dz_{I}\wedge d\bar{z}_{J} \wedge d \bar{z}_{l}.
+  \]
+ Since $E$ is holomorphic, this is well-defined.
+\end{definition}
+\subsection{Cohomologies of sheaves}
+\begin{itemize}
+  \item Cech cohomology: Let $X$ be a topology space, and $\mathcal{F}$ be a sheaf of abelian group. Let $\{U_{i}\} $ be an open cover. Denote $U_{i_{0}i_{1}\ldots i_{p}}= \cap_{k=0}^{p} U_{i_{k}}$  
+  \item sheaf cohomology: a sheaf $\mathcal{I}$ is injective if $Hom(-,\mathcal{I})$ is an exact functor. Let $\mathcal{I}^{*}=\mathcal{I}_{0},\ldots ,\mathcal{I}_{i},\ldots $ be injective resolution, then
+    \[
+      H^{i}(X,\mathcal{F})=H^{i}(\mathcal{I}(X)^{*})
+    \]
+\end{itemize}
+
+\textbf{lecture 4}
+\subsection{Fine and a cyclic sheaves}
+\begin{definition}
+  \begin{itemize}
+    \item sheaf $\mathcal{F}$ is acyclic if $H^{i}(X,\mathcal{F})=0$ for all $i>0$.
+    \item sheaf $\mathcal{F}$ is fine if for any locally finite open cover $\{U_{i}\} $, there is a family of homomorphism $\{h_{i}:\mathcal{F} \to \mathcal{F} \} $ such that
+      \begin{enumerate}
+        \item $ \operatorname{Supp} h_{i} \subset U_{i}$
+        \item $\sum_{i}h_{i}=Id$.
+      \end{enumerate}
+      example: Let $\mathcal{F}$ be a sheaf of module, and $h_{i}$ is partion of unit, then $\mathcal{F} \xrightarrow{ \times h_{i}} \mathcal{F}$ is fine. 
+  \end{itemize}
+\end{definition}
+\begin{proposition}
+  Sheaf cohomology can be computed by acyclic resolution. And fine sheaf is acyclic.
+\end{proposition}
+\subsection{Comparison theorem}
+\begin{theorem}[Leray]
+  Let $X$ be a topologic space and $\mathcal{F}$ be a sheaf of abelian group. Let  $\{U_{i}\} $ be an open cover, then
+  \begin{enumerate}
+    \item There is a canonical map from Cech cohomology to sheaf cohomology
+      \[
+       l_{i}: \check{H}^{i}(X,\mathcal{F})\to H^{i}(X,\mathcal{F})
+      \]
+    \item if $\mathcal{F}|_{U_{i_{0}\ldots i_{r}}}$ is acyclic for all $r$, then  $l_{i}$ is an isomorphism.
+  \end{enumerate}
+\end{theorem}
+References:
+\begin{itemize}
+  \item Cech cohomology and fine sheaves: Kodaira: complex manifolds and deformation of complex structure. chapter 3.
+  \item Cohomologies: Voisin chapter 4. Demeilly chapter 4.
+\end{itemize}
+\subsection{de Rham Theorem}
+Let $X$ be a topologic space, and $G_{X}$ be the constant sheaf assosiated to an abelian group $G$.  
+Then
+\[
+  0 \to G_{X} \to \mathcal{A}_{G}^{0}\xrightarrow{d^{0}}\mathcal{A}_{G}^{1}\to \cdots
+\]
+Differential of $G$-valued $k$-form.  By Poincare lemma, it is exact.
+\begin{theorem}[de Rham isomorphism]
+  Let $X$ be a differential manifold, then there is a canonical isomorphism
+  \[
+    H^{i}(X,G_{X}) \cong H^{i}(\mathcal{A}_{G}^{*}(X))
+  \]
+\end{theorem}
+The formar is cohomology about topology, and the latter is cohomology about differential.
+\begin{proof}
+  Ony need to show $\mathcal{A}_{G}^*$ is fine, thus acyclic. 
+\end{proof}
+Exercise: Prove that $H^{i}(X,\mathbb{Z}_{X})\cong H_{sing}^{i}(X,\mathbb{Z})$, the latter is singular cohomology. 
+Hint: consider
+\[
+  U \mapsto C^{i}_{sing}(U,\mathbb{Z})
+\]
+and inducing sheaves $\mathcal{C}^{i}_{sing}$, which is an acyclic resolution.
+\subsection{Dolbeault cohomology}
+\begin{definition}
+  Let $X$ be a complex manifold of dimension $n$, for any $0\leqslant q \leqslant n$, there is a complex
+  \[
+    0\to \mathcal{A}^{p,0}(X)\xrightarrow{ \bar{\partial}} \mathcal{A}^{p,1}(X)\xrightarrow{ \bar{\partial}} \cdots
+  \]
+ And
+ \[
+  H^{p,q}(X) := H^{q}(\mathcal{A}^{p,*}(X))
+ \]
+Similarly, we can define $H^{p,q}(X,E)$ for holomorphic vector bundle, by $ \bar{\partial}_{E}$.
+
+$0\leqslant h^{p,q}=\dim H^{p,q}\leqslant + \infty$ called $(p,q)$-hodge number.
+\end{definition}
+\subsection{comparison theorem}
+\[
+  H^{p,0}(X)=H^{0}(X,\Omega^{p}_{X})
+\]
+Here $\Omega^{p}_{X}$ is the sheaf of holomorphic $p$-form. Holomorphic section of holomorphic vector bundle.
+\begin{theorem}[Dolbeault's isomorphism]
+  \[
+  H^{p,q}(X)=H^{q}(X,\Omega^{p}_{X})
+  \]
+Formar is Dolbeault cohomology, and the latter is sheaf cohomology of $\Omega^{p}$
+\end{theorem}
+remark: Hormander 4.2.6, for pseudoconvex or polydisc $U$, then $H^{p,q}(U)=0,p\geqslant 1, p\geqslant 0$
+\begin{theorem}[A]
+  \[
+    0\to\Omega^{p}_{X}\to \mathcal{A}^{p,0}(X)\xrightarrow{ \bar{\partial}} \mathcal{A}^{p,1}(X)\xrightarrow{ \bar{\partial}} \cdots
+  \]
+  is exact. As result,
+  \[
+    H^{q}(X,\Omega^{p}_{X})\cong H^{q}(\mathcal{A}^{p,*}(X), \bar{\partial})=H^{p,q}(X)
+  \]
+\end{theorem}
+\begin{theorem}[B]
+  Let $\mathcal{U}=\{U_{i}\} $ be an open cover with pseudoconvex $U_{i}$  of $X$ complex manifold, then
+  \[
+    \check{H}(\mathcal{U},\Omega^{p}_{X})\cong H^{q}(X,\Omega^{p}_{X})
+  \]
+\end{theorem}
+\begin{remark}
+  Same for $(p,q)$-Dolbeault cohomology of a holomorphic vector bundle $E$. That is
+  \[
+    H^{p,q}(X,E)\cong H^{q}(X,\Omega^{p}_{X} \otimes E)
+  \]
+\end{remark}
+\section{Connection and curvature}
+\subsection{connection}
+
+Let $E\to X$ be complex vector bundle, we want
+\[
+  d:\mathcal{A}_{\mathbb{C}}^{k}(E)\to \mathcal{A}_{\mathbb{C}}^{k+1}(E)
+\]
+but can NOT do it locally, since not well-defined under different trivialization of $E$. 
+\begin{definition}
+  $X$ differential manifold and $E\to X$ complex vector bundle. A connection on $E$ is a $\mathbb{C}$-linear homorphism
+  \[
+    \nabla: \mathcal{A}^{0}_{\mathbb{C}}(E)\to \mathcal{A}_{\mathbb{C}}^{1}
+  \]
+  such that
+  \[
+    \nabla (f \cdot s)=df \otimes s + f\cdot \nabla(s)
+  \]
+  where $f$ is a locally differential function and $s$ is a locally differential section of $E$.   
+\end{definition}
+
+\textbf{lecture 5}
+\begin{remark}
+  $\nabla$ is NOT a morphism of $\mathcal{A}_{X}$-modules, where $\mathcal{A}_{X}$ is the sheaf of $\mathbb{C}$-valeud differential functions on $X$. That is
+  \[
+    \nabla(f\cdot s) \not = f\cdot \nabla(s)
+  \]
+  But it is $\mathbb{C}$-linear, therefore it extends to
+  \[
+    \nabla: \mathcal{A}^{k}_{\mathbb{C}}(E)\to \mathcal{A}_{\mathbb{C}}^{k+1}(E)
+  \]
+  such that
+  \[
+    \nabla (\alpha \wedge \beta )= \nabla(\alpha)\wedge \beta + (-1)^{l}\alpha \wedge \nabla(\beta)
+  \]
+  where $\alpha \in \mathcal{A}^{l}_{\mathbb{C}}$.
+\end{remark}
+example:
+\begin{enumerate}
+  \item k=1. Locally let $U \times \mathbb{C}^{r}$ be a trivialization, and $e_{i}$ are sections as a basis. Then a section  $s$ has form $s=\sum s_{i}e_{i} \in \mathcal{A}_{\mathbb{C}}^{0}(E)$, where $s_{i}$ are  $\mathbb{C}$-valued functions. Then
+    \[
+      \nabla(s)= \sum ds_{i}\otimes e_{i} + s_{i} \otimes \nabla(e_{i})
+    \]
+  Supppose $\nabla(e_{i})=\sum_{j} a_{ij}e_{j}$, where $a_{ij}$ are $\mathbb{C}$-valued differential 1-form, and set $A=(a_{ij})$.  Then
+  \[
+    \nabla(s)= ds + A\cdot s 
+  \]
+\end{enumerate}
+
+\subsection{Hermition structure}
+Recall: A Hermitian structure on $E$ is a $\mathbb{C}$-valued $\mathbb{R}$-bilinear form
+\[
+  h: E\times E \to \mathbb{C}
+\]
+such that
+\begin{enumerate}
+  \item $h$ is $\mathbb{C}$-linear in the first variable;
+  \item $h(s_{1},s_{2})=\overline{h(s_{2},s_{1})}$. Therefore $h$ is called positive definite if $h(s,s)\geqslant 0$ for any $s$, and $h(s,s)=0 \Leftrightarrow s=0$.
+\end{enumerate}
+\begin{definition}
+  A Hermitian martix $h$ on $E$ is a positivi definite Hermitian form $h_{x}$ on  $E_{x}$ for any $x\in X$.  
+\end{definition}
+Every complex vector bundle has a Hermitian structure.
+
+\begin{definition}
+  A Hermitian vector bundle $(E,h)$.
+\end{definition}
+
+Extends $h$ to forms
+  \begin{align*}
+    \mathcal{A}_{\mathbb{C}}^{p}(E) \times  \mathcal{A}_{\mathbb{C}}^{q}(E)  &\longrightarrow  \mathcal{A}_{\mathbb{C}}^{p+q}(E)\\
+    (\alpha,\beta)&\longmapsto h(\alpha,\beta)=\sum \alpha_{i}\wedge \bar{\beta_{j}}h(e_i,e_j).
+  \end{align*}
+
+\begin{proposition}[Exercise]
+  \begin{enumerate}
+    \item Every hermitian vector bundle has a connection.
+    \item trivialiation  $E|_{U}\cong U \times  \mathbb{C}^{r} \xrightarrow{g=(g_{ij})} U \times \mathbb{C}^{r}, e_{i}=\sum g_{ij}e_{j}'$ Then $H=g^{t}H'\bar{g}$. 
+  \end{enumerate}
+\end{proposition}
+tired, omitted.
+\begin{definition}
+  A connection $\nabla$ on a holomorphic vetor bundle $E$ is called compatible with a Hermitian structure $h$ if
+  \[
+    \nabla^{0,1}= \bar{\partial}_{E}
+  \]
+ that is, $A^{0,1}=0$.
+\end{definition}
+
+ \textbf{lecture 6}
+recall:
+\begin{itemize}
+  \item hermition metric:
+  \item hermition connection:
+    \[
+      dh(s_{1},s_{2})=h(\nabla(s_{1}),s_{2})+h(s_{1},\nabla(s_{2}))
+    \]
+  \item a general fact. Let $X$ be a differential manifold, and $E,F$ two complex vector bundle. And $\phi: \mathcal{E}\to \mathcal{F}$ a morphism of sheaves of abelian groups. Then TFAE:
+    \begin{itemize}
+      \item $\phi \in Hom(E,F)$ 
+      \item if and only if $\phi $ is $\mathcal{A}_{X,\mathbb{C}}$-linear 
+      \item $ \phi(f\cdot s)=f\phi(s) $
+      \item $\phi$ is a morphism of $\mathcal{A}_{X,\mathbb{C}}$-modules. 
+    \end{itemize}
+\end{itemize}
+
+\subsection{Holomorphic connection}
+\begin{definition}
+  Let $E\to X$ be a holomorphic vector bundle. A holomorphic connection $D$ is a $\mathbb{C}$-linear map of sheaves
+  \[
+    D:\mathcal{E} \to \Omega_{X}^{1} \otimes\mathcal{E}
+  \]
+  where $\mathcal{E}$ sheaf of holomorphic section of  $E$, and $\Omega_{X}^{1}$ holomorphi cotangent bundle, and satisfies
+  \[
+    D(f \cdot s)= \partial f \cdot s + f \cdot D(s)
+  \]
+\end{definition}
+\begin{remark}
+  holomorphic connection is NOT a connection compatible with holomorphic structure.
+  
+  Locally, choose a trivialization, then we can write $D$ as $ \partial + A $ and $ A=(a_{ij}), a_{ij}=\sum_{k}\alpha_{k}dz_{k} $. There is a connection induced by $D $:
+  \[
+    \nabla = D + \bar{\partial}_{E}
+  \]
+  locally $ d+A $.
+\end{remark}
+exercise: $ \nabla = D + \bar{\partial}_{E} $ is a connection compatible with holomorphic structure.
+\subsection{Line bundle and divisor}
+\subsubsection{Picard groups}
+\begin{definition}
+  $ Pic(X)= \{ L\to X \text{ holomorphic line bundle}\}/\sim  $ where $ L \sim L' $ is isomorphic:
+  \[
+  \xymatrix{
+    L\ar[rr]\ar[rd]& &L'\ar[ld] \\
+  & X&
+  }
+  \]
+\end{definition}
+consider $ s\in H^{0}(X,L) $ as
+\[
+  \xymatrix{
+    U_{i} \times \mathbb{C}\ar[r]\ar[d]& \mathbb{C}  \\
+    U_{i}\ar[ur]_{s}& 
+  }
+\]
+or $ \phi_{ij}s_{j}=s_{i} $. $L$ given by $ (\mathcal{U}=\{U_{i}\} ), \phi_{ij} $, there is $ \alpha_{L}\in C^{1}(\mathcal{U},\mathcal{O}_{X}^{*}) $ where $ \mathcal{O}^{*} $ sheaf of invertible holomorphic functions. $ (\alpha_{L})_{ij}:= \phi_{ji} $ (not a typo, it is $ \phi_{ji} $).
+
+Tired. All we what to show is that $ Pic(X)=H^{1}(X,\mathcal{O}^{*}) $
+
+\subsubsection{Analytic subvarieties}
+\begin{definition}
+  \begin{enumerate}
+    \item An analytic subvariety of $X$ is a closed subset $ Y \subset X $ such that for any $ x \in X $ there is a open neighbourhood $ x\in U_{x} \subset X $ such that $ Y \cap U_{x} = \{f_{1}=\cdots=f_{k}=0\} \subset U_{x}  $ where $f_{i}$ are holomorphic functions on  $ U_{x} $.
+    \item A point $ y in Y $ is regular or smooth if there are $ f_{i} $ such that Jacobian $ J_{f}(y) $ has rank $k$. 
+    \item Irreducible analytic subvariety.
+  \end{enumerate}
+\end{definition}
+
+\textbf{lecture 7}
+\begin{definition}
+  Ideal sheaf of $Y$ is $ \mathcal{I}_{Y}=\{ f\in \mathcal{O}_{X}: f|_{Y}=0 \} $.
+\end{definition}
+\subsubsection{Divisors}
+\begin{definition}
+  An irreducible analytic hypersurface of $X$ is an irreducible analytic subvariety of codimension 1.
+\end{definition}
+fact-exercises
+\begin{itemize}
+  \item Let $g$ be a meroimorphic function on $U \subset X$, for any  $ x \in X $, there is $ g= \frac{g_{1}}{g_{2}},g_{i}\in \mathcal{O}(U) $.  
+  \item principle divisor associated to $g$ is $ (g)=\sum_{x} ord_{x}(g) [x] $.
+\end{itemize}
+
+\subsubsection{From divisors to line bundles}
+Let $D= \sum_{i}a_{i}Y_{i}$. To define holomorphic line bundle $L_{D}$, need  $ \mathcal{U}=\{U_{i}\}, \phi_{ij} $. Take $ \mathcal{U} $ such that $ Y|_{U_{i}}=(f_{i}) $ is a principle divisor associated to meroimorphic function $f_{i}$. And $ \phi_{ij}= \frac{f_{i}}{f_{j}} \in \mathcal{O}^{*}(U_{i} \cap U_{j}) $ 
+\begin{definition}
+  $ D \sim D' $ if $ D-D'=(f) $ principle divisor associated to $f$. 
+\end{definition}
+THere is a homorphism
+\[
+  Div(X)/\sim \xrightarrow{injective} Pic(X)
+\]
+which in general is NOT surjective.
+
+\subsection{Chern classes}
+\subsubsection{First chern class}
+\begin{proposition}[Fact]
+  \[
+    \{ \text{complex line bundles over }X \}/\sim \cong H^{1}(X,\mathcal{O}^{*})
+  \]
+\end{proposition}
+\begin{definition}
+  exponential sequence on $X$ is
+  \[
+    0 \to \mathbb{Z}_{X} \to \mathcal{A}_{X,\mathbb{C}}\to \mathcal{A}_{X,\mathbb{C}}^{*}\to 0
+  \]
+  where the seconde map is $ s \mapsto \exp(2\pi\sqrt{-1}\cdot s) $ 
+\end{definition}
+Then there is long exact sequence:
+\[
+  0=H^{1}(X,\mathcal{A}_{X,\mathbb{C}}) \to H^{1}(X,\mathcal{A}_{X,\mathbb{C}}^{*}) \xrightarrow{\sim} H^{2}(X,\mathbb{Z})\to H^{2}(X,\mathcal{A}_{X,\mathbb{C}})=0
+\]
+As $\mathcal{A}_{X,\mathbb{C}}$ is a fine sheaf, thus $ H^{q}(X,\mathcal{A}_{X,\mathbb{C}})=0,q\geqslant 1 $. Then there is isomorphism
+\[
+  c_{1}:H^{1}(X,\mathcal{A}_{X,\mathbb{C}}^{*}) \to H^{2}(X,\mathbb{Z}), [\alpha_{L}] \mapsto c_{1}(L)
+\]
+\subsubsection{Axiomatic approach}
+\begin{theorem}[def]
+  Let $X$ be a differential manifold, there is a unique map $c$ such that for any complex vector bundle $E\to X$, $c(E)\in H^{2}(X,\mathbb{Z})[t]$ and $ c_{i}(E)\in H^{2i}(X,\mathbb{Z}) $, that is
+  \[
+    c(E)=\sum c_{i}(E)t^{i}
+  \]
+  satisfying
+  \begin{enumerate}
+    \item if $ rk E = 1 $, then $ c(E)=c_{1}(E) $;
+    \item for $ f:X\to Y $, we have $ c(f^{*}E)=f^{*}c(E) $;
+    \item $ c(E \oplus F) = c(E) \cdot c(F) $
+  \end{enumerate}
+\end{theorem}
+
+\subsection{Chern-Weil theory}
+Let $ \nabla $ be a connection on $X$, locally $ \nabla = d + A $ where $A=(a_{ij})$, and  $a_{ij}$ are 1-forms.   
+\[
+  \Theta_{\nabla}:=dA+A\wedge A
+\]
+called curvature of $ \nabla $. Consider chen polynomial
+\[
+  \det(1+ \frac{\sqrt{-1}}{2\pi}\Theta_{\nabla}t)=1+\sum_{j}^{r}P_{j}(E,\nabla)t^{j}
+\]
+here $P_{j}(E,\nabla)$ are differential $ 2j $-forms.
+
+example: Let $L\to X$ be a complex line bundle, then $ \Theta_{\nabla}=dA + A\wedge A=dA $ and 
+\[
+  \det(1+ \frac{\sqrt{-1}}{2\pi}\Theta_{\nabla}t)=1+dA \cdot t
+\]
+\begin{lemma}
+  \begin{enumerate}
+    \item $ P_{j}(E,\nabla) $ is $d$-closed,  
+    \item $ [P_{j}(E,\nabla)] \in H^{2j}(X,\mathcal{A}_{X,\mathbb{C}}^{\cdot}) \xrightarrow{de rhom isomorphic} H^{2j}(X,\mathbb{C}) $ independent of $ \nabla $.
+  \end{enumerate}
+\end{lemma}
+\begin{definition}
+  $j$-th chen class $ c_{j}(E) $ of a complex vector bundle $E$ is defined as
+  \[
+    [P_{j}(E,\nabla)] \in H^{2j}(X,\mathbb{C})
+  \]
+\end{definition}
+\begin{definition}
+  $X$ complex manifold. $j$-th chern class is
+  \[
+    c_{j}(X)=c_{j}(T_{X})=c_{j}(T^{1,0}_{X})
+  \]
+\end{definition}
+
+\textbf{Recall}:
+
+\begin{enumerate}
+  \item $ (X,g) $ Kahler   if and only if $ d\omega_{g}=0 $     
+  \item $g$ Kahler, then locally $ \omega_{g}= \frac{\sqrt{-1}}{2}\sum_{i,j}dz_{i}\wedge z_{j}+ O(|z|^{2}) $  
+  \item $\mathbb{P}^{n}$ is Kahler, so are projective algebraic varieties. And
+    \[
+      \omega_{i}=\frac{\sqrt{-1}}{2\pi}\partial\bar{\partial}\log(1+|z_{i}|^{2})
+    \]
+\end{enumerate}
+
+\subsection{Compare two defitions of the first chern class}
+
+\textbf{2024-12-20 recall }
+
+\begin{itemize}
+  \item Definition of Hodge $*$ operator.
+  \item Laplace(-Beltrami) operator: $ \Delta = \bar{\partial}^{*}\bar{\partial}+\bar{\partial}\bar{\partial}^{*} $, where $ d^{*}=(-1)^{nk+n+1}*d* $
+  \item Hodge isomorphism.
+  \item Poincare duality: $ H^{k}(X,\mathbb{R})\cong H_{n-k}(X,\mathbb{R}) $.
+\end{itemize}
+
+\subsection{About Kahler manifolds}
+
+\textbf{12/27 recall:}
+
+\begin{itemize}
+  \item Kahler identity $ \Delta_{d}=2\Delta_{\partial}=2\Delta_{\bar{\partial}} $
+  \item Hodge decomposition
+    \begin{enumerate}
+      \item $ H^{k}(X,\mathbb{C})\cong \oplus_{p+q=k}H^{p,q}(X) $
+      \item $ H^{p,q}(X)= \overline{H^{q,p}(X)} $
+    \end{enumerate}
+  \item Bott-Chern cohomology
+    \[
+      \frac{\ker (d)}{ \operatorname{im} (\partial \bar{\partial})} = H^{p,q}_{BC}(X) \xrightarrow{\sim } H^{p,q}(X) \subset H^{p+q}(X,\mathbb{C})
+    \]
+    using $ \partial \bar{\partial} $-lemma
+\end{itemize}
+
+Example: 
+\begin{enumerate}
+  \item Is $ S_{6} $ a complex manifold?
+  \item simple computes
+\end{enumerate}
+
+\subsubsection{Hodge diamond}
+\begin{corollary}
+  \begin{enumerate}
+    \item Serre duality
+      \[
+        H^{p,q}(X) \cong (H^{n-p,n-q}(X))^{*} 
+      \]
+    \item Hodge $ * $-isomorphism:
+      \[
+        *:H^{p,q}(X) \to H^{n-q,n-p}(X)
+      \]
+  \end{enumerate}
+\end{corollary}
+
+\subsection{Lefschetz Theorems}
+\subsubsection{Motivation}
+$ (X,\omega) $ cpt kahler mfd, $ \omega $ Kahler form. Let $ \omega $ be a closed form, then $ [\omega]\in H^{1,1}(X) $
+
+\subsubsection{Primitive decomposition}
+\begin{definition}
+  primitive cohomology
+\end{definition}
+
+\subsubsection{Lefschetz operator and $ \mathcal{H_{2}}(\mathbb{C}) $-representation}
+
+\section{Summary}
+\subsection{Complex manifold}
+\begin{itemize}
+  \item Definition and examples $ \mathbb{P}^{n}, \mathbb{C}^{n}/\mathbb{Z}^{2n} $
+  \item differential: $ (p,q) $-form, operators: $ \partial, \overline{\partial} $
+  \item de Rham cohomology and Dolbeault cohomology.
+    \[
+    H^{k}(X,\mathbb{R} / \mathbb{C}) = \frac{ \operatorname{Ker}d}{ \operatorname{Im}d}  , H^{p,q}(X)= \frac{ \operatorname{ ker}\overline{\partial}}{ \operatorname{Im} \overline{\partial} }
+    \]
+  \item Sheaf and Cech cohomology
+\end{itemize}
+\subsection{vector bundles}
+\begin{itemize}
+  \item Definition of complex and holomorphic vector bundles.
+  \item examples. $ \mathcal{O}_{\mathbb{P}^{n}}(k), \mathcal{T}_{X}, \mathcal{T}_{X,\mathbb{C}/\mathbb{R}} $, where $ \mathcal{T}_{X} $ is holomorphic vector bundle
+    note that $ T^{1,0}_{X}=\mathcal{T}_{X} $. And
+    \[
+      \bigwedge^{p,q}T_{X},\bigwedge^{p,q}\Omega_{X} 
+    \]
+  \item Sheaf of sections.
+  \item Connections. Definitions, Hermitian metric. Chern connection and curvature. compute.
+  \item For holomorphic vector bundle, there is an operator $ \overline{\partial}_{E} $, and there is Dolbeault cohomology.
+  \item Divisor and Picard group.
+  \item Chern classes, definition of $ c_{1} $. Show that $ Pic(X)\cong H^{1}(X,\mathbb{C}) $ by exponential sequence.
+    \[
+      0\to \mathbb{Z}_{X}\to \mathcal{O}_{X,\mathbb{C}}\xrightarrow{ \exp (2\pi \cdot)} \mathcal{O}_{X,\mathbb{C}}^{*} \to 0
+    \]
+    and curvature
+    \[
+      [\frac{\sqrt{-1}}{2\pi}\Theta_{\nabla}] = H^{1,1}(X,\mathbb{R}) = H^{1,1}(X) \cap H^{2}(X,\mathbb{R})
+    \]
+\end{itemize}
+\subsection{Kahler manifold}
+\subsubsection{Hermitian metric/ Hermitian structure}
+Conside Riemannian metric $ g $ on $ X $ compatible with $J$. Hermition metric on $ T^{1.0}_{X} $
+
+$ \omega_{g} $ fundemental form, Hermition metric on $ (T_{X,\mathbb{R}},J) $
+
+These four things, one to another.
+\subsubsection{Hodge * operator}
+operator $ *, d^{*},\partial^{*}, \overline{\partial}^{*} , \Delta_{d}, \Delta_{\partial},\Delta_{ \overline{\partial}} $, Hodge decomposition, Serre duality, Hodge $ * $-isomorphism.
+Definition adn computation in local structure with respect to standard
+
+\subsubsection{Harmonic forms}
+\[
+  H^{k}(X,\mathbb{R})\cong \mathcal{H}^{X,g}, H^{p,q}(X)= \mathcal{H}^{p,q}_{ \overline{\partial}}(X) 
+\]
+
+\subsubsection{Kahler manifolds}
+$ d\omega_{g}=0 $
+examples:
+\begin{itemize}
+  \item Fubini-Study metric on $ \mathbb{P}^{n} $, Kahler form on $ \mathbb{P}^{n} $, Kahler form on projective algebraic variety.
+\end{itemize}
+Kahler identity:
+\begin{itemize}
+  \item $ \Delta_{d}=2\Delta_{\partial}=2\Delta_{ \overline{\partial}} $
+  \item $ \Delta_{d} $ commutes with $ \partial, \overline{\partial}, *, d $
+\end{itemize}
+\subsubsection{Hodge decomposition}
+$ H^{k}(X,\mathbb{C})= \oplus_{p+q=k}H^{p,q}(X) $ and $ H^{p,q}(X)= \overline{H^{q,p}(X)} $
+\subsubsection{Serre duality}
+$ H^{p,q}(X)\cong \overline{H^{n-p,n-q}(X)}^{*} $ by $ (\alpha,\beta)\mapsto \int_{X}\alpha \wedge \beta $
+\subsubsection{Hard Lefschetz}
+Primitive decomposition:
+\[
+   H^{k}(X,\mathbb{C})= \oplus_{i}L^{i}(H^{k-2i}(X,\mathbb{C})_{primitive})
+\]
+\[
+   H^{n-k}(X,\mathbb{C})_{primitive}= \operatorname{ker}(L^{k+1})
+\]
+Hard Lefschetz:
+\[
+  L^{k}:H^{n-k}(X,\mathbb{C})\xrightarrow{\sim}H^{n+k}(X,\mathbb{C}) 
+\]
+
+\end{document}
