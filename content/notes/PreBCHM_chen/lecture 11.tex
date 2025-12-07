@@ -1,0 +1,118 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Notes of Seminar of MMP}
+\author{wyz}
+\date{}
+
+\begin{document}
+	\maketitle
+10.28-29 rationality 
+
+\section{lemmas}
+\begin{lem}
+	Take $ a\in \mathbb{Z}_{>0} $ and $ r\in \mathbb{R}_{>0} $, define 
+	$$ \Lambda_\epsilon:=\{ (x,y)\in \mathbb{Z}^2 : 0<ay-rx<\epsilon \} $$
+	Then 
+	\begin{enumerate}
+		\item If $ r $ is irrational, then $ \#\Lambda_{\epsilon} =+\infty$;
+		\item If $ r $ is rational, then $ \Lambda_{\epsilon} $ is either empty or infinite;
+		\item If $ r=\frac{u}{v} $ rational and $ v> \frac{a}{\epsilon} $, then $ \#\Lambda_{\epsilon} =+\infty$.
+	\end{enumerate}
+\end{lem}
+\begin{rmk}
+	If $ r $ is either irrational or $ r=\frac{u}{v} $ rational with $ v\geqslant a(n+1) $, then $ \#\Lambda_{\frac{1}{n}}=+\infty $;
+	
+	Let $ L_{x,y}=xH+yK $, then $ L_{p,q} $ is not nef and $ L_{p,q-1} $ is nef.
+\end{rmk}
+\begin{lem}
+	Let $ P(x,y) $ be a polynomial of degree atmost $ n $. If there is $ q_0 $ such that $ P(p,q)=0 $ for all $ q>q_0 $ and $ (p,q)\in \Lambda_{\epsilon} $, and $ \#\Lambda_{\frac{\epsilon}{n+1}}=+\infty  $, then $ Q(x,y)\equiv 0 $.
+\end{lem}
+\begin{proof}
+	We can find infinitely many lines ( of form $ qx-py=0 $) where $ Q $ vanishes.
+\end{proof}
+
+\section{Hint}
+\begin{thm}
+	Let $ (X,B) $ be a proper klt pair and $ B $ effective, with $ K=K_X+B $ not nef and $ a(K_X+B) $ is cartier.  Let $ H $ be a nef and big cartier divisor. Define 
+	$$ r:=\sup \{t: H+t(K_X+B) \text{ is nef }\} $$
+	Then $ r=\frac{u}{v} $, and $ v\leqslant a(n+1) $.
+\end{thm}
+\begin{rmk}
+	Since $ K_X+B $ is not nef, $ r\neq +\infty $; If $ H $ is ample (nef and big), then $ H+tK $ is ample (nef and big) for all $ 0<t<r $;
+\end{rmk}
+\begin{proof}
+	We proof by contradicton: otherwise, $\# \Lambda_{\frac{1}{n}}=+\infty $. \textbf{Reduction}: First we reduce to the case where  $ H $ and $ H+aK $ is base point free.
+	
+	\textbf{Step1}: Find a stable base locus for $ L_{p,q}:=pH+qaK $ with $ (p,q)\in \Lambda_1 $. Since $ L_{p,q} $ is  not nef, hence has base locus. Claim that for any $ (p,q)\in \Lambda_1 $, there is  a pair $ (p_0,q_0)\in \Lambda_1 $ such that any $ (p,q)\in \Lambda_1$ with $ q>q_0 $, the base locus $ Bs(L_{p,q})\subset Bs(L_{p_0,q_0}) $. By Noetherian condation, there are minimal elements in $ \{Bs(L_{p,q}):(p,q)\in \Lambda_1\} $. But by claim, in fact there is only one minimal element $ B_0=Bs(L_{p_0,q_0}) $ for some $ (p,q)\in \Lambda_1 $, and $ Bs(L_{p,q})=B_0 $ for any $ q>q_0 $.
+	
+	\textbf{Step2}: Show that $ B_0\neq X $, i.e. $ H^0(X, L_{p,q})\neq 0 $  for sufficiently large $ q $ and $ (p,q)\in \Lambda_1 $. Define a polynomial of degree atmost $ n $:
+	$$ P(x,y):=\chi (X,xH+yK) $$
+	For any $ (p,q)\in \Lambda_1 $, since $ pH+(q-1)K $ is big and nef, by K-V vanishing theorem, $ H^i(pH+qK)=0, i>0 $, therefore $ P(p,q)=H^0(pH+qK) $. If $ P $ vanishes on all sufficiently large pairs in $ \Lambda_1 $, since $ \Lambda_{\frac{1}{n}} $ infinty, by the lemma we have $ P\equiv 0 $. But if take $ y=0 $, then $ P(x,0)=\chi (X,xH) $ not identivally zero since $ H $ is nef and big. This implies $ P(p,q)=H^0(pH+qK)\neq 0 $ for arbitary large pairs in $ \Lambda_1$. Therefore $ B_0\neq X $. On the other hand, $ L_0 $ is not nef, thus $ B_0\neq \emptyset $.
+	
+	\textbf{Step3}: Find a  log resolution with a 'good' effective divisor. Let $ L_0=L_{p_0,q_0} $. Take a log  resolution $ f^*Y\to X $ w.r.t. $ B_0\cup B $ in strong sense such that 
+	\begin{enumerate}
+		\item $ f^*L_0=M+\sum_ir_iF_i $, with $ M=f^*L_0-\sum_ir_iF_i $ base point free, $ r_i\geqslant 0 $, $ F_i $ exceptional, and $ \cup_{r_i\neq 0}f(F_i)=B_0 $;
+		\item $ f^*(p_0H+(q_0a-1)K)-\sum p_iF_i $ ample, where $ p_i>0 $ can be arbitary small such that $ a_i-p_i>-1 $;
+		\item $ K_Y\sim f^*(K_X+B)+\sum_ia_iF_i $, $ \sum_iF_i $ is snc, $ Y $ is smooth,  $ a_i<-1 $ (since $ (X,B) $ is klt);
+	\end{enumerate}
+Same as bpf, take $ c=\min_{r_i\neq 0} \{ \frac{1+a_i-p_i}{r_i} \}\in \mathbb{Q}_{>0} $, thus $ \min \{ -cr_i+a_i-p_i \}=-1 $. Therefore
+\begin{equation*}
+	\begin{aligned}
+	N_{p,q}:=&f^*(pH+qaK)-K_Y+\sum(-cr_i+a_i-p_i)F_i\\
+	=&f^*((p-(c+1)p_0)H+(q-(c+1)q_0)aK)\\
+	&+c(f^*L_0-\sum_ir_iF_i )\\
+	&+f^*(p_0H+(q_0a-1)K)-\sum p_iF_i  
+	\end{aligned}
+\end{equation*}
+Let $ \epsilon=\min\{1,(c+1)aq_0+rp_0\} $. For any $ (p,q)\in \Lambda_{\epsilon} $ and $ q>(c+1)q_0=:q_1 $, we have $ \frac{(q-(c+1)q_0)a}{p-(c+1)p_0}<r $, therefore $ N_{p,q}=(nef)+(bpf)+(ample) $ is ample. By wiggling $ p_i $  we may assume only one $ i=i_0 $ with $ -cr_i+a_i-p_i=-1 $, and denote $ \sum(-cr_i+a_i-p_i)F_i=A-S $ where $ S=F_{i_0} $. Then 
+$$ N_{p,q}=f^*((pH+qaK)-K_Y+A-S $$ 
+and $ \lceil A\rceil\geqslant 0 $ is $ f $-exceptional. $ A $ and $S  $ has no common componet, $ A\cup S $ is snc. Thus on $ S $, $ \lceil A\rceil|_S $ is snc effective divisor. Let $ B_S=\lceil A\rceil|_S-A_S $, then $ (S,B_S) $ is klt, and
+$$ f^*(pH+qaK)|_S+\lceil A\rceil|_S=N_{p,q}|_S+(K_S+B_S) $$ 
+Consider the  SES:
+$$ 0\to \mathcal{O}_Y(-S)\to \mathcal{O}_Y\to \mathcal{O}_S\to 0    $$
+Tensoring with $ K_Y+\lceil N_{p,q}\rceil +S=f^*(pH+qaK)+\lceil A\rceil $:
+$$ 0\to \mathcal{O}_Y(K_Y+\lceil N_{p,q}\rceil)\to \mathcal{O}_Y(f^*(pH+qaK)+\lceil A\rceil)\to \mathcal{O}_S(\lceil N_{p,q}\rceil|_S+(K_S+B_S))\to 0    $$
+
+By KV vanishing, $ H^i(Y,\lceil N_{p,q}\rceil +K_Y)=0, i>0 $, thus we have surjection
+$$ H^0(X,pH+qaK)=H^0(Y,f^*(pH+qaK)+\lceil A\rceil)\twoheadrightarrow H^0(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S)) $$
+
+
+
+\textbf{Step4}: Define a polynomial and conclude a contradiction. Define
+$$ Q(x,y)=\chi(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S)) $$
+For $ (p,q)\in \Lambda_{\epsilon} $ and $ q $ large enough,  since $ \lceil N_{p,q}\rceil|_S  $ is ample, and $ (S,B_S) $ is klt, and $ \lceil N_{p,q}\rceil|_S-N_{p,q}|_S $ is snc, by KV-vanishing, $ H^i(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S))=0, i>0 $, thus $\chi(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S))=h^0(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S))  $. Any section of $ H^0(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S)) $ has a lift on $ H^0(X,pH+qaK) $. But the section in $ H^0(X,pH+qaK) $ vanishes on $ B_0 $, therefore vanishes in $ H^0(S,\lceil N_{p,q}\rceil|_S+(K_S+B_S)) $. This implies $ Q(p,q)=0 $ for such pairs $ (p,q) $.
+
+On the other hand, if $ \frac{qa}{p}<r $, then $ f^*(pH+qaK)|_S $ is nef, $ (f^*(pH+qaK)+A)|_S=K_F $ ample, by nonvanishing, $ H^0(S,\lceil N_{mp,mq}\rceil|_S+(K_S+B_S))\neq 0 $ for all sufficiently large $ m $, thus $ Q(mp,mq)\neq 0 $. This  shows $ Q $ is not identically $ 0 $.
+
+We have shown that $ Q $ vanishes for all sufficiently large pairs in $ \Lambda_{\epsilon} $, but not identically $ 0 $. By lemma, $ \Lambda_{\frac{\epsilon}{n+1}}= \emptyset $, thus $ r=\frac{u}{v} $ is rational. However, by taking a good pair $ (p_0,q_0) $, we can show $ \Lambda_{\epsilon}=\Lambda_1 $ for all sufficiently large pairs: Since $ r $ is rational, for all $ (p,q) \in \Lambda_1$, $ aq-rp=\frac{vaq-up}{v}<1 $ has only finitely many choice. Take $ (p_0,q_0) $ such that $ aq_0-rp_0\geqslant aq-rp $ for all $ q>q_0 $, then any sufficiently large pair in $ \Lambda_{\epsilon} $ is also in $ \Lambda_1 $. Then $ Q=0 $ for all any sufficiently large pair  in $ \Lambda_1 $, and $ \Lambda_{\frac{\epsilon}{n+1}} $, implies $ Q $ identically $ 0 $, which is a contradiction.
+
+
+\end{proof}
+
+
+
+\section{Details}
+
+
+
+\end{document}

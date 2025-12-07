@@ -1,0 +1,135 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Cremona Group 1}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+  \maketitle
+\section{Conventions}
+All surface $S$ means smooth projective $2$-dimensional integral variety over $\mathbb{C}$. Let $f:X\dashrightarrow Y$ be a birational map, then there are maximal pairs $U\subset X $ and $V \subset Y$ such that $f:u\to V$ is an isomorphism. And we call
+\[
+  \operatorname{Exc}f=X\setminus U
+.\]
+the exceptional set.
+
+\section{Blow up on Surface}
+Let $\pi :Y\to X$ be the blowing up of a point $p$ on surface $X$, and let $x,y$ be the local coordinates near $p$, then
+\begin{enumerate}
+  \item If $C$ is a curve on $X$ defined by $f_m(x,y)+ r(x,y)$ near $p$, where $f_m$ is a homogeneous polynomial of degree $m$, then
+    \[
+      m_pC=\operatorname{mult}_pC=m
+    .\];
+  \item Let $C'$ be the strict transform of $C$ on $Y$, then
+    \[
+      \pi^*C=C'+mE
+    .\]
+  \item we have intersections
+    \[
+      \begin{aligned}
+        E^2&=-1\\
+        C_{1}'.C_{2}'&=C_{1}.C_{2}-m_{1}m_{2}\\
+        K_{X'}&=\pi^*K_{X}+E\\
+        K_{X'}^2&=K_{X}^2-1
+      \end{aligned}
+    .\]
+\end{enumerate}
+Let $Y\to X_n\to X_{n-1}\to \cdots \to X_{0}=X$ be a sequence of blowing up points, then
+\begin{enumerate}
+  \item If $p$ is a point on $X_{k},k\neq 0$, then define
+    \[
+      \operatorname{mult}_pC=\operatorname{mult}_pC'
+    .\]
+    where $C'$ is strict transform of $C$ on $X_i$.
+  \item If $C_Y$ is strict transform of $C$ on $X$ which is smooth, then
+    \[
+      p_a(C)=g(C_Y)+ \sum^{n}_{i=0} \frac{m_{i}(m_{i-1})}{2}  
+    .\]
+  and $\operatorname{mult}_{p_{i}}\geqslant \operatorname{mult}_{p_{j}}$ for $p_{j}$ over $p_{i}$.
+\end{enumerate}
+Let $\Gamma$ be a linear system on $X$, then define
+\[
+  \operatorname{mult}_p\Gamma=\min_{D \in \Gamma}\operatorname{mult}_pD 
+.\]
+Then we have 
+\begin{enumerate}
+  \item 
+    \[
+      \pi^*\Gamma=\Gamma'+mE
+    .\]
+\end{enumerate}
+\section{Resolve}
+\begin{lem}
+  Let $f:X\dashrightarrow \mathbb{P}^{n}$ be a rational map, then there is a surface $W$ and morphisms $p:W\to X$ $q:W\to \mathbb{P}^{n}$ resolving the raional map, and $p$ is sequence of blowing ups.
+\end{lem}
+\begin{cor}
+  Let $f:X\dashrightarrow Y$ be a birational map, and $p\in \operatorname{Ind}(f^{-1})$, then there is a curve $C \in Y$ such that $(f^{-1})(C)=p$; If there is a point $q\notin \operatorname{Ind}(f^{-1})$, and $(f^{-1})(q)=p$, then there is a curve $C \subset Y$ such that $q\in C$.
+\end{cor}
+\begin{lem}
+  Let $f:X\to Y$ be a birational morphism and $p\in \operatorname{Ind}(f^{-1})$, then
+  \[
+    X\to \operatorname{Bl}_pY
+  .\]
+\end{lem}
+\begin{defn}[Minimal resolution]
+  $W$ is called the \textbf{minimal resolution} of birational map $f:X\dashrightarrow Y$ if any other resolution $W'$ factors through $W$.
+  Furthermore, the points blown up by $p:W\to X$ are called \textbf{base points} of $f^{-1}$. 
+\end{defn}
+\section{Hizebruch Surface}
+Define Hizebruch Surface as follows:
+\begin{defn}
+ \[
+   \mathbb{F}_{n}\subset \mathbb{P}^{2} \times \mathbb{P}^{1}\quad [x:y:z]\times [u:v]
+ .\]
+ $\mathbb{F}_{n}$ is defined by $yv^n-zu^n$.
+\end{defn}
+\section{Groups}
+\subsection{Birational groups}
+First of all, the Cremona group:
+\begin{defn}
+  $\operatorname{Cr}_n=\operatorname{Bir}(\mathbb{P}^{n})$.
+\end{defn}
+Jonqui\`{e}re map:
+\begin{defn}
+  Let $\eta:\mathbb{P}^{2}\dashrightarrow C$ be a rational map, then $\operatorname{Bir}(\mathbb{P}^{2},\eta)$ is the group of birational maps $f:\mathbb{P}^{2}\dashrightarrow \mathbb{P}^{2}$ such that 
+  \[
+    \xymatrix{
+      \mathbb{P}^{2}\ar@{-->}[r]\ar[d]_\eta&\mathbb{P}^{2}\ar[d]^\eta  \\
+    C\ar[r]^{\bar{f}}&C \\ }
+  .\]
+  where $\bar{f}$ is an isomorphism. Furthermore, if $\eta$ is
+  \[
+    \begin{aligned}
+      \mathbb{P}^{2}&\dashrightarrow \mathbb{P}^{1}\\ 
+      [x:y:z]&\mapsto [y:z]
+    .\end{aligned}
+  .\]
+  then the corresponding group $\operatorname{Bir}(\mathbb{P}^{2},\eta)$ is called \bf{Jonqui\`{e}re group}.
+\end{defn}
+
+\end{document}

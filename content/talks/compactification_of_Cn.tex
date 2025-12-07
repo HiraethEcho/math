@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}  
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{assertion}[definition]{Assertion}
+\newtheorem{example}[definition]{Example}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+\setcounter{section}{0}
+
+\title{compactification of $\mathbb{C}^{n}$ and Reeb dynamics}
+\author{}
+%\date{\today}
+
+\begin{document}
+\maketitle
+%\tableofcontents
+%\newpage
+\section{Hizerbruch}
+Classify compactification of $\mathbb{C}^{n}$
+$(X,B)$ such that $ X \setminus B \cong \mathbb{C}^{n} $   such that $ b_{2}(X)=1  $
+\begin{enumerate}
+  \item $ n=1,2, (\mathbb{P}^{n},\mathbb{P}^{n-1}) $
+  \item for $ n \geqslant 3 $, $ (\mathbb{P}^{n},\mathbb{P}^{n-1}),(Q_{n} \subset \mathbb{P}^{n+1},Q_{n} \cap  H) $
+  \item $ n=3 $ if $D$ smooth (called smooth compactification), $X$ not fano, then $ (\mathbb{P}^{3},\mathbb{P}^{2}) $  
+  \item true for Kahler assumption.
+    \begin{itemize}
+      \item proved for $ n\le 6 $ by Fujita
+      \item short proof for $ n \not \equiv 3 \mod 4 $ by Li-Peternell
+      \item implied by $ D \cong \mathbb{P}^{n-1} $ and $ \leftrightarrow c_{1}(D)=n $ 
+    \end{itemize}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,136 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{longtable,booktabs,array}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Notes of Seminar of MMP for surfaces}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+\maketitle
+8.25
+
+ref: Classification of Complex Algebraic Surfaces, Ciro Ciliberto
+
+Let $ X $ be a irreducible projective smooth surface over $ \mathbb{C} $, and assume its canonical divisor $ K_X $ is not nef.
+
+
+\section{Rationality theorem}
+
+First we state a lemma about irrational numbers:
+\begin{lem}
+  If $ r>0 $ is a irrational number, then there are infinitely many pairs $ (u,v)\in \mathbb{Z} $ such that
+  $$ 0<\frac{v}{u}-r< \frac{1}{3u}$$
+\end{lem}
+
+\begin{thm}
+  (Rationality theorem). Let $ A $ be an ample (cartier) divisor on X, define
+  $$ r_A:=\sup \{ r\in \mathbb{R}_{>0}:L_r=A+rK_X \text{ is nef  } \} $$
+  $ r_A $ is called  the canonical threshold of $ A $. Then $ r_A\in \mathbb{Q} $, and $ L_{r_A} $ is nef but NOT ample.
+\end{thm}
+
+\begin{proof}
+  For any $ 0<r<r_A $, the $ \mathbb{R} $-divisor $ L_r=A+rK_X $ is ample. Indeed, $ L_r=(r_A-r)A+L_{r_A} $, where $ (r_A-r)A $ is ample, and $ L_{r_A} $ is nef, hence $ L_r $ is ample. Since $ K_X $ is not nef, there is a curve $ C $, such that $ (C.K_X)<0 $. Therefore  $ (C.L_r)<0 $ for $ r\gg 0 $, hence $ L_r $ is not nef. This shows $ r_A<+\infty $.
+
+  Consider a function $ P(x,y)=\chi (xA+yK_X), x,y\in \mathbb{Z} $. This is a polynomial in $ x,y $ of degree $ 2 $. Let $ P_{(u,v)}(k)=P(uk,vk) $, which is a polynomial in $ k $ of degree at most $ 2 $. $ P_{(u,v)}(k)\equiv0 $ if and only if the line $ uy-vx=0 $ contained in the zero locus $ P(x,y)=0 $. But $ P(x,y) $ is a polynomial of degree $ 2 $, so there are only finitely many pairs $ (u,v) $ such that $ P_{(u,v)}\equiv 0 $.
+
+  We prove the theorem by oantradiction: If $ r_A $ is irrational, by the lemma above, we can take such a pair $ (u_0,v_0) $ and $ P_{(u_0,v_0)}(k) $ is not identically $ 0 $. Take $ k_0\in \{1,2,3\} $ such that $ P_{(u_0,v_0)}(k_0)\neq 0  $. Set
+  $$ M=k_0(u_0A+v_0K_X)=K_X+k_0u_0(A+\frac{k_0v_0-1}{k_0u_0}K_X) $$
+  By the choice of $ (u_0,v_0) $ and $ k_0 $, $ 0<\frac{k_0v_0-1}{k_0u_0}<r_A $, therefore $ A+\frac{k_0v_0-1}{k_0u_0}K_X $ is an ample $ \mathbb{Q} $-cartier divisor, and $ k_0u_0(A+\frac{k_0v_0-1}{k_0u_0}K_X)  $ is an ample Cartier divisor. By Kodaira vanishing theorem,
+  $$\chi(M)=h^0(M)=P_{(u_0,v_0)}(k_0)\neq 0 $$
+  By following lemma, this implies $ r_A\in \mathbb{Q} $, which is a contradicion.
+
+  Assume $ L=L_{r_A} $ is ample, since it is a $ \mathbb{Q} $-Cartier divisor, there is  an integer $ m\gg0 $ such that $ mL-A $ is ample. Then
+  $$ (m-1)A+mr_AK_X=(m-1)(A+\frac{m}{m-1}r_AK_X) $$
+  is ample. But $ \frac{m}{m-1}r_A>r_A $, this is contradict to the definition of $ r_A $, and implies that $ L $ is not ample.
+\end{proof}
+
+\begin{lem}
+  If there is a rational number $ r_0>r_A $ such that $ L_{r_0}=A+r_0K_X $ is effective ( $ h^0(kL_{r_0})\neq 0 $ for some large integer $ k $), then $ r_A $ is rational.
+\end{lem}
+\begin{proof}
+  If $ kL_{r_0} $ is an effective Cartier divisor, then we may assume $ kL_{r_0}\sim \sum_{i=1}^{n}d_iD_i  $, where $ D_i $ are irreducible curves on $ X $, and $ d_i>0 $. Then for $ 0<r\leqslant r_A< r_0 $,
+  $$ L_r=A+rK_X=\frac{r_0-r}{r_0}A+\frac{r}{kr_0} \sum_{i=1}^{n}d_iD_i$$
+  Thus $ L_r $ is nef if and only if
+  $$ (C.L_r)=\frac{r_0-r}{r_0}(C.A)+\frac{r}{kr_0} \sum_{i=1}^{n}d_i(C.D_i) \geqslant 0$$
+  for all curves $ C $. Notice that $ A $ is ample, and $ D_i $ are irreducible curves, this fails only when  $ C=D_j $ for some $ j $. Set $ f_j(r):=(D_j.L_r)=ar+b $, by definition of $ r_A $ and $ r_0 $, $ a,b\in\mathbb{Q} $ and $  f_j(r)\geqslant0 $ for $ r\leqslant r_A $. If  $ f_j(r)<0 $ for some $ r>r_A $, then $ a<0 $. Let $ r_j $ be the solution of $ f_j(r)=0 $, then
+  $$ r_A=\min\{r_j>0\} $$
+  Notice that $ r_0 $ is rational and there are only finitely many $ D_i $, $ r_A $ is rational.
+\end{proof}
+
+\section{Base point free thm}
+Let $ X $ be a smooth projective surface. A \emph{pencil}  or a \emph{fibration}  on $ X $ is a surjiective morphism $ f:X\to C $ to a smooth irreducible curve $ C $ with connected fibres. Let $ F=\sum_{i=1}^{m}n_iF_i , n_i>0$ be a fibre of $ f $, and $ F_i $ are irreducible components of $ F $. Then $ F^2=0 $, and
+$$ n_j^2F_j^2=(n_jF_j.F-\sum_{i\neq j}n_iF_i)=-\sum_{i\neq j}n_in_j(F_i.F_j)<0 $$
+$ \sum_{i\neq j}(F_i.F_j) >0$ since $ F $ is connected.
+\begin{lem}
+  (Zarisiki lemma). Let $ f:X\to C $ be a pencil  and $ F $ is a fibre. Suppose $ D $ is a non-zero curve  in $ Div(X)\otimes \mathbb{Q} $ such that $ \mathrm{Supp}\,D \subset \mathrm{Supp}\,F  $. Then $ D^2\leqslant 0 $, and equality holds if and only if $ D=kF $ for some $ k\in \mathbb{Q} $.
+\end{lem}
+\begin{proof}
+  Suppose $ F=\sum_{i=1} ^{m}n_iF_i, n_i\in \mathbb{Z}_{>0}$ and $ D=\sum_{i=1} ^{m}d_in_iF_i, d_i\in \mathbb{Q}_{\geqslant0} $. Let $ G_i=n_iF_i $, then
+  \begin{equation*}
+    \begin{aligned}
+      D^2&=\sum_{i=1}^{m}d_i^2G_i^2+2\sum_{i<j}d_id_jG_iG_j=\sum_{i=1}^{m}d_i^2(G_i.F-\sum_{j\neq i}G_j)+ 2\sum_{i<j}d_id_jG_iG_j\\
+      &=-\sum_{i<j}(d_i^2+d_j^2-2d_id_j)G_iG_j=-\sum_{i<j}(s_i-s_j)^2G_iG_j\leqslant0
+    \end{aligned}
+  \end{equation*}
+  The equlity holds if and only if $ s_i=s_j $ for all $ G_i.G_j>0 $. But $ F $ is connected, hence $ s_i=s_j $ for all $ i,j $.
+\end{proof}
+
+\begin{thm}
+  (Base point free theorem). Let $ L=A+r_AK_X=A+rK_X $ as in the rationality theorem. Then $ lL $ is base point free for $ l\in\mathbb{N}, l\gg 0, lr_A\in \mathbb{N} $.
+\end{thm}
+\begin{proof}
+  We prove it in three cases: a: $  L^2>0$ ; b: $ L^2=0$ but $ L\not\equiv 0 $ and c: $ L\equiv0 $. Since $ r=\frac{p}{q} $ is rational, we can replace $ A $ by $ qA $, then $ r=p $ is an integer, $ L $ is a cartier divisor.
+
+  \textbf{case a}: Since $ L^2>0 $ and $ L $ is nef but not ample, by criterion of ampleness, there is an irreducible curve $ E $ such that $ 0=(L.E)=A.E+rE.K_X>rK_X.E $. By Hodge index theorem, $ E^2L^2\leqslant (E.L)^2=0 $, and the equality holds only for $ L\equiv E $, but then $ 0=E^2=L^2>0 $,   hence $ E^2L^2< (E.L)^2=0 $ and $ E^2<0 $. Then $ \deg K_E =(K_X+E).E<0 $, therefore $ E\cong \mathbb{P}^1 $ and $ E^2=L.E=-1 $. Blowing down this curve via a birational morphism $ f:X\to Y $, then
+  \begin{itemize}
+    \item $ Y $ is a smooth projective surface, and $ f(E) $ is a point, $ \rho (Y)=\rho(X)-1 $;
+    \item $ f^*K_Y=K_X-E, f_*K_X=K_Y $;
+    \item $ L':=f_*L $ is a cartier divisor, since $ L.E=0 $. Suppose $ f^*L'=L +aE $, then $ 0=L'.f(E)=(L+aE).E=aE^2 $, therefore $ a=0,f^*L'=L $. Furthermore, $ L'  $ is nef: for any curve $ C' $ on $ Y $, let $ C $ be strict transform of $ C' $ on $ X $, then $ L'.C'=L.C\geqslant0 $.
+    \item $ A':=f_*A=L'-rK_Y $ is a cartier divisor. $ A' $ is ample: indeed,
+      $$ f^*A'=f^*(L'-rK_Y)=L-r(K_X-E)=A+rE $$
+      Any curve $ C' $ on $ Y $, take strict transform $ C $ on $ X $, then $ A'.C'=(A+rE).C>0 $; $ L.E=A.E+rK_X.E=A.E-r=0 $, $ A'^2=A'.f_*A=f^*A'.A=(A+E).A=A^2+r>0 $.
+  \end{itemize}
+  If $ L' $ is ample, then $ lL' $ is base point free, and so is $ lL=f^*lL' $; If $ L' $ is nef but not ample, then replace $ X,A,L $ by $ Y,A',L' $ and repeat the agrument. Since picard number goes down, this ends in finitely many steps.
+
+  \textbf{case b}: $ L=A+rK_X\equiv 0 $, then $ -K_X\equiv 1/rA $ is ample, and so is $ lL-K_X $ for all integers $ l $. By Riemann-Roch:
+  $$ \chi (lL)=\chi+\frac{1}{2}lL.(lL-K_X)=\chi $$
+  By Kodaira vanishing, $ lL-K_X $ ample $ \Rightarrow h^i(lL)=0,i>0$; $ K_X $ ample $ \Rightarrow h^i(K_X-K_X)=0,i>0$. Hence $ \chi(lL)=h^0(lL)=\chi=h^0(\mathcal{O}_X)=1 $. This shows $ lL $ is effective, corresponding to an effective $ C $. But $ L\equiv 0 $, for any very ample divisor $ H $ we have $ C.H>0 $ unless $ C=0 $, therefore $ lL=\mathcal{O}_X $ is base point free.
+
+  \textbf{case c}: $ L^2=0$ but $ L\not\equiv 0 $. Take an irreducibe curve $ C $ such that $ L.C>0 $. First we show that $ K_X.L<0 $. Indeed, take $ h\gg0 $ such that $ hA-C $ is effective, then
+  $$ L.hA=L.(hA-C)+L.C\geqslant L.C>0 $$
+  so that $ L.A>0 $, but then
+  $$ 0=L^2=L.A+rL.K_X>rL.K_X $$
+  therefore $ L.K_X<0 $.
+
+  Notice that $ lL-K_X=\frac{1}{r}A+\frac{lr-1}{r}L $, which is ample for $ l\gg 0 $, then by Kodaira vanishing and Riemann-Roch
+  $$ h^0(lL)=\chi(lL)=\chi+\frac{1}{2}L.(L-K_X)=-\frac{L.K_X}{2}l+\chi>0 $$
+  $ lL $ is effective, hence we can write $ |lL|=|M|+F $ where effective divisor  $ F $ is the fixed part and $ |M| $ is movable part ( this means a bijection: $ (D\in |lL|)\mapsto D-F\in |M| $). Claim that $ M $ is nef: assume $ M=\sum_{i=1}^{k}m_iM_i, m_i>0 $, if there is an irreducible curve $ C $ such that $ C.M<0 $, $ C $ must be one of $ M_i $. But $ M $ is the movable part, one can find $ M'\in |M| $ and $ C $ is not a componet of $ M' $, then $ C.M'\geqslant 0 $, therefore $ M $ is nef. Then
+  $$ 0\leqslant M^2<M.(M+F)=M.L\leqslant(M+F).L=L^2=0  $$
+  implies $ M^2=M.F=F^2=0 $. Notice that $ M^2=0 $ and $ M $ nef, then $ M $ is base point free. Otherwise, there is a point $ x\in X $ such that $ x\in M'  $ for any $ M'\in |M| $. Take $ M'\in |M| $ such that $ \dim M\cap M'=0 $, then $ 0=M^2=M.M'\geqslant\#M\cap M'\geqslant1 $.
+
+  $ |M| $ induces a moprhism $ X$ to the projective space $ |M| $. Let $f:X\to Y $ be the closed image,  then there is an ample divisor $ \mathcal{O}_{|M|}(1)|_Y=N $ on $ Y $ such that $ f^*N=M $. Furthermore, $ h^0(X,alL)=h^0(X,aM)=h^0(Y,aN)=-\frac{lL.K_X}{2}a+\chi $ is a polynomial of degree $ 1 $ in $ a $, hence $ \dim Y=1 $.  By Stein factorization theorem, there are  maps $ f':X\to Y' $ and $ g:Y'\to Y $, where $ f'_*\mathcal{O}_X=\mathcal{O}_{Y'} $ and $ Y'\to Y $ is finite. Furthermore, $ Y' $ is normal, hence is smooth.  Replace $ Y $ by $ Y' $, then $ N=f_*M $ is an ample divisor of form $ \sum_{i=1}^{r}n_iy_i, n_i>0 $, i.e. sum of fibres of the pencile. Suppose $ F=\sum f_iF_i, f_i>0 $, if $ F_i $ contained in some fibre of the pencil, then $ M.F=0 $ ($ M $ is sum of fibres); if $ F_i $ is not contained in a fibre, then $ f(F_i)=Y $ and $ F_i.M>0 $. But $ M.F=0 $, this shows $ F=\sum_{j}G_j $ cotained in the union of fibres, such that $ f(G_j)=f(\sum g_{j,k}G_k)=y_j $ for distinct $ y_j\in Y $. Notice that $ G_i.G_j=0, i\neq j $ and $ F^2=0 $, we have $ G_j^2=0 $. By zarisiki lemma, $ G_j=g_jf^{-1}(y_j), g_j>0 $. Therefore,
+  $$ lL=M+F=f^*N+\sum g_jf^*y_j=f^*(N+\sum g_jy_j) $$
+  is pull back of an ample divisor on $ Y $, hence is base point free.
+\end{proof}
+\end{document}
+

@@ -1,0 +1,178 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+\usetikzlibrary{arrows.meta}%画箭头用的包
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{lecture 2: Main results of BCHM}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+
+  \maketitle
+  % \tableofcontents
+  % \newpage
+
+\section{MMP with scaling}
+also called \textbf{directed MMP}:
+Let $f:(X,B)\to S$ dlt $\mathbb{Q}$-factorial pair. Let $H$ effective $\mathbb{R}$-Cartier divisor (e.g.  $H$ is sufficiently ample ) such that
+\begin{enumerate}
+  \item $(X,B+H)$ dlt
+  \item $K_{X}+B+H$ nef.
+\end{enumerate}
+
+This imoplies $(X,B+H)$ is minimal model over $S$. 
+
+Let 
+\[
+v_{1}=\min \{t\geqslant 0: K_{X}+B+tH \text{nef over }S\} 
+\]
+if $v_{1}=0$, this ends; if $v_{1}>0$, then 
+\textbf{Claim}: there is extremal ray $R$ s.t. 
+\begin{itemize}
+  \item 
+    $(K_{X}+B+tH).R=0$
+  \item $(K_{X}+B)=0$
+\end{itemize}
+then  we have contraction $(X_{1},B_{1})=(X,B)\to Y$ and $\phi: X_{1}\dashrightarrow X_{2}$ (if dvisorial contraction then $Y=X_{1}$, if small contraction then the flip) with
+\begin{enumerate}
+  \item $(X_{2},B_{2}+v_{1}H_{2})$ dlt
+  \item $K_{X_{2}}+B_{2}+v_{1}H_{2}$ nef.
+\end{enumerate}
+Let 
+\[
+  v_{2}=\min \{t\geqslant 0: K_{X_{2}}+B_{2}+tH_{2} \text{nef over }S\} \leqslant v_{1}
+\]
+Then there is a sequence
+\[
+  (X_{1},B_{1})\dashrightarrow   (X_{2},B_{2})\dashrightarrow   (X_{3},B_{3})\dashrightarrow  \cdots\dashrightarrow  (X_{k},B_{k})\dashrightarrow 
+\]
+\begin{proof}[proof of claim]
+  if $(X,B)$ is klt and $B$ ample effective. By cone theorem, there are finite $R$ such that $(K_{X}+B).R<0$. Then there is $R$ such that$(K_{X}+B+tH).R=0$
+\end{proof}
+Assume all $X_{i} \dashrightarrow X_{i+1}$ flip, then
+\[
+  N^1(X_{1}/S) \cong N^1(X_{i+1}/S)
+\]
+Then we can draw the nef cone of $\operatorname{Nef}(X_{i}/S)$ and $\operatorname{Nef}(X_{i+1}/S)$ in the same space $  N^1(X_{1}/S) \cong N^1(X_{i+1}/S)$ 
+\section{ model}
+\begin{defn}[minimal model]
+  
+$(X,B)\to S$ $\mathbb{Q}$-factorial dlt pair. Then $(Y,C)\to S$ is minimal model of $(X,B)\to S$ if there is birational map  $\phi:X \dashrightarrow  Y$ such that 
+\begin{enumerate}
+  \item $(Y,C)$ $\mathbb{Q}$-factorial dlt
+  \item $\phi$ surjective in codimention one and $C=\phi_*B$
+  \item $(K_{Y}+C)$ is nef over $S$ 
+  \item common resolution such that 
+    \[
+      p^*(K_{X}+B)-q^*(K_{Y}+C)=E
+    \]
+    where $E$ effective and $\operatorname{Supp}E$ contains all divisors on $X$ contracted by $\phi$. Or, $\operatorname{Supp}p_*E= \cup (\text{divisors on} X \text{contracted by } \phi.)$   
+\end{enumerate}
+\end{defn}
+Fact: if MMP terminates, then such $K_{X_{k}}+B_{k}$ is minimal model.
+\begin{defn}[Canonical model]
+  With same notation, $h$ is canoical model if  $K_{Y}+C$ is semiample. Equivalently, there is $h:Y\to Z$ and $H$ on $Z$ ample over $S$ and $K_{Y}+C=h^*H$
+\end{defn}
+remark: canonical model $Z$ is unique. Infact, 
+\[
+  Z=\operatorname{Proj}_{S}(R(Z,H))\cong \operatorname{Proj}_{S}(R(Y,K_{Y}+C))\cong\operatorname{Proj}_{S}(R(X,K_{X}+B))
+\]
+In particular, flip $(X^+,B^+)$ is an canonical model and minimal model.
+
+We need existence of a special flip to show MMP, then MMP implies existence of al flip. 
+
+If $K_{X}+B$ is psedueffective over  $S$, and such MMP terminates, then it ends with a minimal model.
+\section{BCHM}
+Setting \emph{\textbf{BCHM condition}: } 
+\begin{enumerate}
+  \item $X$ is $n$- dim $\mathbb{Q}$-factorial and $B$ is $\mathbb{R}$-Cartier and $f:X\to S$ projective morphism, and $S$ is quasi-projective
+  \item $(X,B)$ dlt
+  \item $B=  \left\lfloor B \right\rfloor +A+E$ where $A$ ample effective and $E$ effective. 
+
+\end{enumerate}
+we have klt BCHM condation
+\begin{enumerate}
+  \item $X$ is $n$- dim $\mathbb{Q}$-factorial and $B$ is $\mathbb{R}$-Cartier and $f:X\to S$ projective morphism, and $S$ is quasi-projective
+  \item $(X,B)$ klt
+  \item $B $ is big
+\end{enumerate}
+remark: if $X\to S$ is birational, then the condition holds.
+
+\textbf{BCHM theorems}
+\begin{enumerate}
+  \item 
+\begin{thm}[Existence of Flips]
+ For a small contraction of  $K_{X}+B$, such flip exits.
+\end{thm}
+\item
+\begin{thm}[Existence of PL flip]
+  For a small contraction of  $K_{X}+B$, if  $- \left\lfloor B \right\rfloor $ ample over $S$, then flip exits
+\end{thm}
+\item 
+\begin{thm}[Existence of Minimal models]
+  if $K_{X}
+  B$ is psedueffective over $S$, then there exits miminal model of $(X,B)/S$ .
+\end{thm}
+\item 
+\begin{thm}[Finiteness of Minimal models]
+  Suppose $\mathcal{P} \subset \operatorname{WDiv}_{\mathbb{R}}(X)$ is polytope spaned by effecitive divisors such that the BCHM conditiaion holds for any $B \in \mathcal{P}$, then there are finitely many rational maps $X \dashrightarrow Y_{k}$ such that  any minimal model of $(X,B)$ for any $B \in \mathcal{P}$ is isomorpic to  $Y_{k}$ for some $k$.
+\end{thm}
+\item
+\begin{thm}[Termination of MMP with scaling]
+  Assume  $f:(X,B')\to S$ and $f:(X,B)\to S$ with BCHM conditiaion and $B'\geqslant B$ and  $K_{X}+B'$ is nef over $S$, then any  $(K_{X}+B)$-MMP with scaling of $B'-B$ terminates.
+\end{thm}
+\item 
+\begin{thm}[Special termination of MMP with scaling]
+  In above theorem setting, any $(K_{X}+B)$-MMP with scaling of  $B'-B$ is isomorphism along  $\left\lfloor B \right\rfloor $ after finitely many steps.
+\end{thm}
+\item
+\begin{thm}[Nonvanshing]
+  If $K_{X}+B$ is psedueffective over $S$ and BCHM, there exits $D$ effective $\mathbb{R}$-divisor such that 
+  \[
+    D\equiv_{S}K_{X}+B
+  \]
+\end{thm}
+\end{enumerate}
+Clearly
+\begin{itemize}
+  \item 1 implies 2
+  \item 3 implies 1,7
+  \item 5 implies 3,6
+\end{itemize}
+\section{Sketch}
+\begin{enumerate}[a)]
+  \item Exist of flip $_n$ + Termination $_{n-1}$ $\implies$ Specila termination $_n$ 
+  \item Exit of PL n + SpT n + NV $(X,B)$ n  $\implies$ Exit of minimal model for $(X,B)$ n
+  \item Exist PL n +SpT n $\implies$ Exit of flip
+  \item exit and finite minimal model n $\implies$ Exit of PL flip n 
+  \item Exit of minimal model n $\implies$ Finite of minimal model n 
+  \item Finite minimal model n $\implies$ Termination n 
+  \item Exit of PL n + SpT n + Exitence of minimal model for $K_{X}+B$ big over $S$ n $\implies$ NV n 
+\end{enumerate}
+\textbf{Remark}:$d)$ is the begining
+\end{document}

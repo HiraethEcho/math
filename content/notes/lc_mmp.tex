@@ -1,0 +1,145 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}  
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{assertion}[definition]{Assertion}
+\newtheorem{example}[definition]{Example}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{MMP}
+%\author{}
+%\date{\today}
+
+\begin{document}
+\maketitle
+%\tableofcontents
+%\newpage
+\section{Usual pairs}
+lc mmp: 
+
+some recipes:
+\begin{enumerate}
+  \item flip type GMM
+  \item existence of flips
+  \item closure of GMM
+  \item mmp with scaling of \textbf{an} ample terminates for ample polarized lc pairs
+  \item mmp with scaling of \textbf{an} ample terminates for lc pairs admitting a MM
+\end{enumerate}
+with conditions:
+\begin{enumerate}
+  \item $ (X,A+B) $ lc;
+  \item $ (X,B) $ dlt;
+  \item NQC;
+  \item $\mathbb{Q}$-factorial
+\end{enumerate}
+
+\section{gpair}
+
+\subsection{Talk note}
+
+\begin{table}[!h]
+  \centering
+  \begin{tabular}{|c|c|c|c|}
+  \hline
+  & Varieties/Pairs & NQC gpairs & Non-NOC gpairs  \\
+  \hline
+  Non-Vanishing & Expect & False & False \\
+  \hline
+  Numerical Non-Vanishing& Expect & Expect & False \\
+  \hline
+  Finite generation & True & False & False \\
+  \hline
+  \end{tabular}
+\end{table}
+\begin{example}
+  \begin{enumerate}
+    \item $X$ is an elliptic curve, $ B=0 $, and $M$ is non-torsion numerical trivial divisor. Then $ K_{X}+M $ is non-torsion numerical trivial.
+    \item Let $E$ be a general elliptic curve, and $X=E \times E$. Consider the curves
+      \[
+        F_{1}=E \times \{p\}, F_{2}=\{q\} \times E, \Delta \text{ diagonal}
+      \]
+      Then $M= F_{1}+ \sqrt{2}F_{2} +(\sqrt{2}-2)\Delta $ is nef and $ K_{X}+M $ is never numerically effective. 
+  \end{enumerate}
+\end{example}
+Some natural ideas to proof the Cone theorem:
+\begin{enumerate}
+  \item Classical approach: Kollar-Mori deal with klt, and one needs base-point-free theorem.
+  \item Hacon-Liu's proof for NQC case: need sub-adjunction formula which is still not known for non-NOC case.
+\end{enumerate}
+Idea: use foliation theory. 
+
+\textbf{Sketeched proof: Run MMP}
+\begin{itemize}
+  \item Cone theorem follows from ideas of ACSS.
+  \item Contraction theorem and existence of flips for F-dlt gfqs:
+    \begin{itemize}
+      \item $ (X',\mathcal{F}',B',\mathbf{M}')\to (Z,\Sigma) $ a foliated log resolution of $ (X,\mathcal{F},B,\mathbf{M}) $ and $ \pi: X' to X $
+        \[
+          E+ \pi^{*}(K_{\mathcal{F}}+B+\mathbf{M}_{X})=K_{\mathcal{F}'}+B'+\mathbf{M}_{X'}\sim_{Z} K_{X'}+\Delta'+\mathbf{M}_{X'} 
+        \]
+        where
+        \begin{itemize}
+          \item $ E \geqslant 0$ exceptional over $X$.
+          \item $ (X',\Delta',\mathbf{M}) $ is lc gpair.
+        \end{itemize}
+      \item run $ K_{\mathcal{F}'}+B'+\mathbf{M}_{X'} $ MMP over $X$ which is also $ K_{X'}+\Delta'+\mathbf{M}_{X'} $ MMP over $Z$.  
+      \item Since $X$ is $\mathbb{Q}$-factorial, this MMP end with $X$. Therefore
+        \begin{itemize}
+          \item $ \mathcal{F} $ induced by $ f:X\to Z $
+          \item $X$ is $\mathbb{Q}$-factorial klt and $ K_{\mathcal{F}}+B+\mathbf{M}_{X}\sim_{Z} K_{X}+\Delta+\mathbf{M}_{X} $ 
+        \end{itemize}
+      \item Then contraction and existence of flips given by theory of gpair.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Suffices to base-point-free}: $ (X,\mathcal{F},B,\mathbf{M}) $ is $\mathbb{Q}$-factorial F-dlt, $A$ ample and $ K_{\mathcal{F}}+B+A+\mathbf{M}_{X} $ is nef. Then $ K_{\mathcal{F}}+B+A+\mathbf{M}_{X}  $ is semi-ample. 
+
+\begin{theorem}[CHLX]
+Canonical bundle formula holds for lc-trivial gfqs.
+\end{theorem}
+\begin{proof}[BPFness]
+  BPF for gfqs:
+ \begin{itemize}
+  \item $ K_{X}+\Delta+A+\mathbf{M}_{X}\sim_{Z} K_{\mathcal{F}}+B+A+\mathbf{M}_{X} $ is nef over Z and globally nef (replace $ \Delta$ with $ \Delta + f^{*}A_{Z} $, cone theorem for gfqs, length of extremal rays).
+  \item $ K_{X}+\Delta+A+\mathbf{M}_{X} $ is semi-ample and there is $ \phi:X\to T $ (length of extremal ray)
+  \item Fix ample $H_{T}$ on $T$ and $ H=\phi^{*}H_{T} $. by canonical boundle formula:
+    \begin{itemize}
+      \item $ K_{X}+\Delta+ \overline{(A-H)}_{X}+\mathbf{M}_{X}\sim \phi^{*}(K_{T}+\Delta_{T}+\mathbf{M}^{T}_{T}) $
+      \item $ K_{\mathcal{F}}+B+ \overline{(A-H)}_{X}+\mathbf{M}_{X}\sim \phi^{*}(K_{\mathcal{F}_{T}}+B_{T}+\mathbf{M}^{T}_{T}) $
+    \end{itemize}
+  \item $ K_{T}+\Delta_{T}+\mathbf{M}^{T}_{T}+H_{T} $ is ample and thus $ K_{T}+\Delta_{T}+\mathbf{M}^{T}_{T}+(1-\delta)H_{T} $  is  ample.
+  \item $ K_{T}+\Delta_{T}+\mathbf{M}^{T}_{T}+(1-\delta)H_{T}\sim_{Z}K_{T}+\Delta_{T}+\mathbf{M}^{T}_{T}+(1-\delta)H_{T} $ nef over $Z$, thus nef (Cone thm) 
+  \item $ K_{T}+\Delta_{T}+\mathbf{M}^{T}_{T}$ ample, implies $ K_{\mathcal{F}}+B+A+\mathbf{M}_{X} $ semi-ample. 
+ \end{itemize} 
+\end{proof}
+
+\textbf{Structure}
+\begin{itemize}
+  \item Cone theorem for gfqs $ \implies $ MMP for ACSS gfqs.
+  \item MMP for ACSS gfqs $ \implies $ cbf for gfqs $ \implies $ bpf and contraction for gpairs.
+  \item MMP for ACSS gfqs $ \implies $ (F-dlt $ \implies $ ACSS)
+  \item (F-dlt $ \implies $ ACSS) + MMP for ACSS gfqs + bpf and contracion of gpairs $ \implies $ MMP for a.i. F-dlt foliation
+  \item Cone for gfqs + bpf and contraction for gpair + existence of flips $ \implies $ MMP for gpairs.
+\end{itemize}
+\end{document}

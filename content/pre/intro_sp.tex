@@ -1,0 +1,293 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+\usetikzlibrary{arrows.meta}%画箭头用的包
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{exa}[defn]{Example}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Sarkisov program and examples}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+
+\section{MMP}
+
+\subsection{Introduction}
+\begin{enumerate}
+	\item Find a good representative in a fixed birational equivalence class.
+	\item Study the properties of the good representative.
+	\item Study the (birational) relation among possibly many choices of the good representatives.
+	\item Construct the moduli space (fixing some discrete invariants like genus or Chern classes but varying the birational equivalence classes).
+\end{enumerate}
+
+\subsection{MMP on surface}
+\begin{thm}[Castelnuovo]
+	If $Y$  is a curve on a surface $X$, with $Y \cong \mathbb{P}^{1}$ and $Y^2 = -1$, then there exists a morphism $f: X \to X_{1}$ to a (nonsingular projective) surface $X_{1}$, and a point $P\in X_{1}$, such that $f$ is the blow up of $X_{1}$ along  $P$.
+\end{thm}
+
+The criterion does not provide much global information for an end result of the program.  One of Mori's brilliant ideas is to replace this criterion with the one dictated by the canonical divisor (canonical bundle) $K_{S}$ of the surface S. Does the canonical divisor $K_{S}$  have nonnegative intersection with any curve $C$ on $S$? In other words, is $K_{S}$ nef?
+
+Recall that a $(-1)$-curve $E$ on the smooth surface  $S$  is
+\begin{itemize}
+	\item $E\cong \mathbb{P}^{1}$;
+	\item $E^{2}=-1$
+\end{itemize}
+Since $(K_{S}+E).E=\deg K_{C}=-2$, then we have $K_{S}.E=-1$. In short, the curve contracted by Castelnuovo is $K_{S}$-negative curve.
+
+Note that we may contract rational curves $E\cong \mathbb{P}^{1}$ with $K_{S}.E=-2$ and $E^{2}=0$ by $f:X\to Y$, and $Y$ is not smooth (singular at $f(E)=pt\in Y$).
+
+\textbf{log canonical divisor}:
+If we replace $K_{S}$ by $K_{S}+B$, where $B=\sum_{i}b_{i}B_{i}$ and $0\leqslant b_{i} \leqslant 1$, then we have $(K_{S}+B)$-MMP instead of $K_{S}$-MMP.
+\subsection{High dimensional MMP}
+Two curves $C_{1},C_{2}$ on $X$ is numerically equivalent if $C_{1}.D=C_{2}.D$ for all divisors $D$, and is denoted by $C_{1}\equiv C_{2}$. Denote
+\[
+	N_{1}(X)=\{\text{curves in X}\}/\equiv
+\]
+and
+\[
+	\overline{\operatorname{NE}}(X)=(\{[D]\in N_{1}(X):D \text{ effective curve}\})^{-}
+\]
+Let $R=\mathbb{R}_{\geqslant 0}[C]$ be a ray of numerical class of curves. If $R$ is $(K_{X}+B)$-negative extremal ray in $\overline{\operatorname{NE}(X)}$, then there is a contraction
+\[
+	f=cont_{R}:X \to Y
+\]
+such that for any curve $D \subset X$, $[D]\in R$ if and only if $f(D)=pt\in Y$. Let
+\[
+	\operatorname{Exc}f:=\{x\in X: f \text{ is not an isomorphism at } x\}
+\]
+Then there are 3 types of contraction:
+\begin{enumerate}
+	\item \emph{Divisorial contraction:} $\operatorname{Exc}f=E$ is a prime divisor;
+	\item \emph{ Small contraction:} $\operatorname{codim} \operatorname{Exc}f \geqslant 2$;
+	\item \emph{Mori fibre space:} $\operatorname{Exc}f=X$, then $\dim Y < \dim X$.
+\end{enumerate}
+
+\subsection{Relative MMP}
+Let $\pi:X\to S$ be a projective morphism with connected fibres ($\pi_*\mathcal{O}_{X}=\mathcal{O}_{Y}$), a curve $C \subset X$ is called a $\pi$-curve if $\pi(C)=pt\in S$. Then
+\[
+	N_{1}(X/S)=\{f-\text{curves in X}\}/\equiv
+\]
+and
+\[
+	\overline{\operatorname{NE}}(X/S)=(\{[D]\in N_{1}(X/S):D \text{ effective curve}\})^{-}
+\]
+Let $R=\mathbb{R}_{\geqslant 0}[C]$ be a ray of numerical class of $f$-curves. If $R$ is $(K_{X}+B)$-negative extremal ray in $\overline{\operatorname{NE}(X/S)}$, then there is a contraction over $S$
+\[
+	\xymatrix{
+	X\ar[rr]^{f=cont_{R}}\ar[rd]& &Y\ar[ld] \\
+	& S &
+	}
+\]
+
+\section{Relation between Mori fibre space}
+
+\subsection{Mori fibre space}
+If $X$ is covered by curves in a $(K_{X}+B)$-negative extremal ray, then the contraction morphism $f:X \to Y$ is a Mori fibre space.
+\begin{exa}
+	Let $X=\mathbb{P}^{n}$, then $K_{X}\sim -(n+1)H$. Therefore any line $L$ is $K_{X}$-negative and there is a contraction
+	\[
+		\mathbb{P}^{n}\to pt.
+	\]
+\end{exa}
+
+\begin{exa}
+	Let $X=\mathbb{F}_{1}$ be the blow-up of $\mathbb{P}^{2}$ along a point $P$. Let $E$ be the exceptional divisor, and $F$ be the strict transform of a line $L \subset \mathbb{P}^{2}$ passing through $P$. Then
+	\[
+		K_{X}=p^{*}(-3L)+E= -2E-3F
+	\]
+	and $F^2=0,E^2=-1,E.F=1$.
+\end{exa}
+
+\begin{exa}
+	Define $\mathbb{F}_{n}$ as follows:
+	\[
+		\mathbb{F}_{n}=\{[x:y:z]\times[u:v]\in \mathbb{P}^{2}\times \mathbb{P}^{1}: yv^{n}=zu^{n}\}
+	\]
+	Then there is a morphism $f:\mathbb{F}_{n}\to \mathbb{P}^{1}$ and
+	\[
+		E_{n}=[1:0:0]\times \mathbb{P}^{1} \cong \mathbb{P}^{1}
+	\]
+	is the section of $f$,
+	\[
+		F_{n}= [x:y:0]\times [1:0] \cong \mathbb{P}^{1}
+	\]
+	is a fibre. Then
+	\[
+		K_{\mathbb{F}^{n}}\sim -2E-(2+n)F
+	\]
+	and $F_{n}^2=0,E_{n}^2=-n,F_{n}.E_{n}=1$. Furthermore, $[F_{n}]$ and $[E_{n}]$ forms a basis of $N_{1}(\mathbb{F}_{n})$, and
+	\[
+		\overline{\operatorname{NE}}(\mathbb{F}_{n})=\mathbb{R}_{\geqslant 0}[E_{n}]+\mathbb{R}_{\geqslant 0}[F_{n}]
+	\]
+
+\end{exa}
+
+\subsection{Sarkisov program}
+Let $f:X\to S$ and $g:Y\to T$ be two Mori fibre spaces as outcomes of $(K_{W}+B_{W})$-MMP on $W$.
+
+\begin{thm}
+	Let $ f:(X, B)\to S$ and $f':(X', B')\to S' $ be two MMP-related $ \mathbb{Q} $-factorial klt log Mori fibre spaces with the induced  birational map $\Phi$:
+	\[
+		\xymatrix{
+			(X,B)\ar[d]_f\ar@{.>}[r]^\Phi&(X',B')\ar[d]^{f'}\\
+			S&S'}
+	\]
+	Then modulo isomorphisms, $ \Phi  $ can be decomposed into a sequence of the following four types of Sarkisov links:
+
+	$\textbf{I}$:
+	$\xymatrix{
+			Z\ar[d]_p\ar@{.>}[r]&X_1\ar[d]^{f_1}\\
+			X\ar[d]_f&S_1\ar[dl]^{t}\\
+			S &}$
+	$\textbf{II}$:
+	$\xymatrix{
+			Z\ar[d]_p\ar@{.>}[r]&Z'\ar[d]^{q}&\\
+			X\ar[d]_{f}&X_1\ar[d]^{f_1}\\
+			S\ar[r]^{\sim}&S_1}$
+	$\textbf{III}$:
+	$
+		\xymatrix{
+		X\ar@{.>}[r]\ar[d]_f& Z\ar[d]^q& \\
+		S\ar[rd]_{s}         & X_{1}\ar[d]^{f_{1}}&\\
+		&S_{1}
+		}
+	$
+	$\textbf{IV}$:
+	$\xymatrix{
+			X\ar[d]_f\ar@{.>}[rr]&&X_1\ar[d]^{f_1}\\
+			S\ar[dr]_{s}&&S_1\ar[dl]^{t}\\
+			&T &}$
+	where all $ f:(X, B)\to S $ and $ f_1:(X_1, B_1)\to S_1 $ are log Mori fibre spaces, all $ p,q $ are divisorial contractions, and all dash arrows are a composition of flips (or flops).
+\end{thm}
+
+Focus on the Sarkisov program for birational maps of $\mathbb{P}^{n}$.
+
+\textbf{Setting:}
+\begin{itemize}
+	\item Suppose $\Phi: \mathbb{P}^{n}\dashrightarrow \mathbb{P}^{n} $ is defined by
+	      \[
+		      [x_{0}:\ldots :x_{n}] \mapsto [F_{0}:\ldots :F_{n}]
+	      \]
+	      where $F_{i}$ are homogenous polynomials of degree $d$. Then we fix a divisor $H=\sum_{i}h_{i}S_{i}$ where $S_{i}=\Phi^{-1}(x_{i}=0)$  and $\sum_{i}h_{i}=1$.
+
+	      For each lift $ \Phi_{k}=X_{k}\dashrightarrow \mathbb{P}^{n}=Y$, we take $H_{k}=\sum_{i}h_{i}\Phi^{-1}(x_{i}=0)$
+
+	      Note that we can take other hyperplanes $H_{i}$ in $Y$ and $h_{i}$.
+	\item Define Sarkisov degree $(\mu,\lambda,e)$ as following:
+	      \begin{enumerate}
+		      \item \textbf{Nef threshold $ \mu $}: Let $ C_{i}\subset X_{i}  $ be a curve contracted by $ f_{i}:X_{i}\to S_{i} $, then
+		            \[ \mu:=-\frac{H.C}{(K_X).C} \]
+		            that is, $ K_X+\frac{1}{\mu} H \equiv_S0$;
+		      \item \textbf{log canonical threshold  $ \frac{1}{\lambda} $}: $\lambda=0$ if $ \mathcal{H} $ is base point free; otherwise,
+		            \[ \frac{1}{\lambda}:=\max\{t:a(E;X,tH)\geqslant 0,  \forall \ E\text{ exceptional over }X \}\]
+		      \item \textbf{Number of $(K_{X}+\frac{1}{\mu}H)$-crepant divisors}: Let $ e=0 $ if $ \mathcal{H} $ is base point free (and hence $ \lambda=0 $), otherwise
+		            \[ e=\#\{E; E \text{ is exceptional and } a(E;X,\frac{1}{\lambda} H)=0 \} \]
+	      \end{enumerate}
+\end{itemize}
+Criterion for isomorphism.
+\begin{thm}
+	If $ \mu \geqslant \lambda $ and $ (K_X+\frac{1}{\mu} H) $ is nef, then $\Phi$ is an isomorphism of Mori fibre spaces. That is, we have a commutative diagram:
+	\[ \xymatrix{
+			X\ar[r]^\sim_\Phi\ar[d]_f&X'\ar[d]^{f'}\\
+			S\ar[r]^\sim& S' } \]
+\end{thm}
+\textbf{Program:}
+\begin{prop}
+	\begin{enumerate}
+		\item If $ \lambda\leqslant\mu $ and $ K_X+\frac{1}{\mu}H $ is not nef, then there is a contraction $f:X \to T$ and a Sarkisov link $\psi_{1}:X\dashrightarrow X_{1}$ of type III or IV;
+		\item  If $ \lambda>\mu $, then there is a divisorial extraction $p:Z\to X$ and a Sarkisov link $ \psi_{1}:X\dashrightarrow X_{1}$ of type I or II.
+	\end{enumerate}
+\end{prop}
+
+\section{Examples}
+Let $\Phi$ be an automorphism of $\mathbb{A}^{2}$ defined by
+\begin{align*}
+	\Phi: \mathbb{A}^{2} & \longrightarrow \mathbb{A}^{2}      \\
+	(x_{1},x_{2})        & \longmapsto (x_{1},x_{2}+x_{1}^{2})
+	.\end{align*}
+
+Then it extends to a birational map (automorphism) $ \Phi:X\dashrightarrow X' $ of $\mathbb{P}^{2}$  defined by
+\[ \Phi:[x_0:x_1:x_2]\dashrightarrow [x_0^2:x_0x_1:x_1^2+x_0x_2] \]
+Let $ X=\mathbb{P}^2 $ with coordinates $ [x_0:x_1:x_2] $ and $ X'=\mathbb{P}^2 $ with coordinates $ [y_0:y_1:y_2] $.
+\subsection{Common resolution}
+
+There is a  common resolution $\sigma: W\to X$ and $\sigma':W\to X'$, which are both compositions of three blow-ups at indeterminacy points.
+Precisely, $\pi_{1}:W_{1}\to X$ is the blow-up at the indeterminacy point $P_{1} \in B$ of $\Phi$. Identify $B$ with its strict transform on $W_{1}$ and let $E_{1}$ be the exceptional divisor of $\pi_{1}$.
+$\pi_{2}:W_{2}\to W_{1}$ is the blow-up at $P_{2}=E_{1} \cap B$. Identify $B$ and $E_{1}$ with their strict transforms on $W_{2}$ and let $E_{2}$ be the exceptional divisor of $\pi_{2}$.
+$\pi_{3}:W=W_{3}\to W_{2}$ is blow-ups at a point $P_{3} \in E_{2} \setminus (B\cup E_{1})$. Identify  $B, E_{1}$ and $E_{2}$ with their strict transforms   on $W_{3}$ and let $E_{3}$ be the exceptional divisor of $\pi_{3}$.
+Then $ \sigma=\pi_{3}\circ \pi_{2} \circ \pi_{1} $ and $ W=W_3 $ is a common resolution of $\Phi$. Moreover, $ \sigma':W\to X' $ is the composition of the blowing-down curves  $W=W'_{3}\xrightarrow{\pi'_{3}} W'_{2}\xrightarrow{\pi'_{2}} W'_{1} \xrightarrow{\pi'_{1}} X'$ in the order of $ B,E_2,E_1 $.
+
+We establish some notations of varieties:
+\begin{itemize}
+	\item Let $W_{2}\to Z_{0}$ be the contraction of $E_{1}$ on $W_{2}$, then $Z_{0} \to X_{1}$ is the contraction of $B$  and $Z_{0}\to X_{0}$ is the extraction of $E_{2}$ on $X$;
+	\item Let $W'_{2}\to Z_{1}$ be the contraction of $E_{1}$ on $W'_{2}$, then $Z_{1} \to X_{1}$ is the extraction of $E_{3}$ on $X_{1}$, and $Z_{1}\to X'$ is the contraction of $E_{2}$;
+	\item $W\to Z$ be the contraction of $E_{1}$ and $E_{2}$ on $W$, then $Z\to X$ is the extraction of $E_{3}$ and $Z\to X'$ is the contraction of $B$.
+\end{itemize}
+That is
+\[ \xymatrix{&&&W_3\ar[ld]\ar@{=}[r]&W\ar[ddd]\ar@{=}[r]&W_3'\ar[rd]\\
+		&&W_2\ar[ld]\ar[rd]&&&&W_2'\ar[rd]\ar[dl]\\
+		&W_1\ar[ld]&&Z_0\ar[llld]\ar[rd]&&Z_1\ar[ld]\ar[rrrd]&&W_1'\ar[rd]\\
+		X_0&&&&X_1&&&&X'
+	} \]
+and
+\[\xymatrix{
+		&W\ar[d]\ar[ddl]_{\sigma}\ar[ddr]^{\sigma'}&\\
+		&Z\ar[dl]\ar[dr]\\
+		X&&X' }  \]
+
+\subsection{Decomposition}
+There are 3 different decomposition:
+\begin{enumerate}
+	\item
+	      \[ \xymatrix{
+		      &&W_2\ar[ld]\ar[rd]&&W_2'\ar[ld]\ar[rd]\\
+		      &X_1=\mathbb{F}_1\ar@{.>}[rr]^{\psi_{1}}\ar[d]&&X_2=\mathbb{F}_2\ar@{.>}[rr]^{\psi_{2}}\ar[d]&&X_3=\mathbb{F}_1\ar[d]\ar[rd]^{\psi_{3}}\\
+		      X=X_0=\mathbb{P}^2\ar[d]\ar@{.>}[ru]^{\psi_{0}}&\mathbb{P}^1\ar[ld]\ar@{=}[rr]&&\mathbb{P}^1\ar@{=}[rr]&&\mathbb{P}^1\ar[rd]&X_4=X'=\mathbb{P}^2\ar[d]\\
+		      \text{pt}&&&&&&\text{pt} } \]
+	\item
+
+	      \[
+		      \xymatrix{
+		      &Z_{0}\ar[rd]\ar[ld] & &Z_{1}\ar[rd]\ar[ld]\\
+		      X\ar[d]\ar@{.>}[rr]^{\psi_{0}}& &X_{1}\ar@{.>}[rr]^{\psi_{1}}\ar[d]&&X'\ar[d]\\
+		      \text{pt}&&\text{pt}&&\text{pt}
+		      }
+	      \]
+	\item
+	      \[
+		      \xymatrix{
+			      &Z\ar[rd]\ar[ld] & \\
+			      X_{1}\ar@{.>}[rr]^{\Phi}\ar[d]& &X'\ar[d]\\
+			      \text{pt}&&\text{pt}
+		      }
+	      \]
+\end{enumerate}
+\end{document}

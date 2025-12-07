@@ -1,0 +1,74 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Jordan property for Cremona group}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Examples}
+For $\dim 1$ case, we have $ \operatorname{Aut}(X)=\operatorname{Bir}(X) $, and
+\begin{itemize}
+	\item For $C=\mathbb{P}^1$ with $g(C)=0$ and $ \operatorname{kdim}(C) =-\infty$, and
+		\[
+			\operatorname{Aut}(C) =\operatorname{PGL}_2
+		\]
+	\item For $C=E$ is an elliptic curve with $g(C)=1$ and $ \operatorname{kdim}(C) =0$, and
+		\[
+			\operatorname{Aut}(C) = E \rtimes \text{finite group}
+		\]
+	\item For $C$ is curve of general type with $g(C)=2$ and $ \operatorname{kdim}(C) =1$, and
+		\[
+			\operatorname{Aut}(C) =\text{finite group}
+		\]
+\end{itemize}
+\section{Jordan Property}
+\begin{defn}
+	A group $G$ is called \textbf{Jordan} if there is $J=J(G)$ such that
+	any finite subgroup $H$ has a abelian normal subgroup $N$, with index $ [H:N]\leqslant J $
+\end{defn}
+\textbf{Results}
+\begin{itemize}
+	\item $ \operatorname{GL}_n $ is Jordan;
+	\item $ \operatorname{Aut}(X) $ is Jordan for $ X/\mathbb{C} $ smooth projective variety;
+	\item $ \operatorname{Bir}(X) $ for $ X\cong E \times \mathbb{P}^1 $ is \underline{NOT} Jordan where $ E $ is abelian variety with $ \dim E\geqslant 0 $;
+	\item $ \operatorname{Cr}_n/\mathbb{C} $ is Jordan.
+	\item Some are not Jordan.
+\end{itemize}
+
+\begin{proof}[Sketch for 2-dimensional case]
+	To show that $\operatorname{X}$ is Jordan for smooth projective surface $X$, 
+	\begin{enumerate}[(1)]
+		\item Any subgroup $ G\subset \operatorname{Cr}_2 $, there is a smooth surface $ X $ such that
+			$ G\subset \operatorname{Cr}_2 $;
+		\item Run $ G $-MMP on $X$ and reduce to del Pezzo surface or Conic bundle;
+		\item \begin{itemize}
+				\item for conic bundle $ \pi: X\to B $, we have SES:
+						\[
+							1\to G_F \to G \to G_B\to 1
+						\]
+				\item For del Pezzo case, consider the $(-1)$-curves, and automorphism group of Petersen graph.
+			\end{itemize}
+	\end{enumerate}
+\end{proof}
+\end{document}

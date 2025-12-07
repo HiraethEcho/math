@@ -1,0 +1,232 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\newcommand{\Spec}{\mathrm{Spec}\,}
+\newcommand{\Proj}{\mathrm{Proj}\,}
+\newcommand{\Hom}{\mathrm{Hom}\,}
+\newcommand{\NE}{\mathrm{NE}}
+\newcommand{\isoto}{\xrightarrow{\sim}}
+
+\title{1}
+\author{Yanze Wang}
+\date{}
+
+\begin{document}
+\maketitle
+Basics of $ Quot $ and construction of $ Gr $.
+\section{Introduction}
+\begin{defn}
+  Let $ S $ be a \emph{noetherian} scheme, then we define a functor  $ Quot_{\mathcal{E}/X/S} $ from category of \emph{locally noetherian schemes} over $ S $ to category of sets, where $ \pi:X\to S $ is a finite type scheme, and $ \mathcal{E} $ is a coherent sheaf over $ X $:
+  $$ T\mapsto \left\{ \mathcal{E}_T\twoheadrightarrow \mathcal{F} | \mathcal{F}\in \mathfrak{Coh}(X_T)  \text{ is parametrised by } T \right\}/\sim $$
+  ''$ \sim $'' means commutative diagram
+  $$ \xymatrix{
+    \mathcal{E}_T\ar@{->>}[r]\ar@{=}[d]&\mathcal{F}\ar[d]^{\sim}\\
+    \mathcal{E}_T\ar@{->>}[r]&\mathcal{F}'\\
+  } $$
+  parametrised by $ T $ means schematic support of $ \mathcal{F} $ is proper over $ T $, and $ \mathcal{F} $ is flat over $ T $.
+  
+  In particular,
+  \begin{enumerate}
+    \item $ Hilb_{X/S}:=Qout_{\mathcal{O}_X/X/S} $
+    
+    $ \mathcal{O}_X\twoheadrightarrow \mathcal{F} $ gives a closed subscheme $ i:Y\hookrightarrow X $ defined by ideal sheaf $ \ker (\mathcal{O}_X\twoheadrightarrow \mathcal{F}) $. In fact, $ i_*\mathcal{O}_Y=\mathcal{F} $. Therefore $ Hilb_{X/S}(T) $ parametrised all closed subscheme of $ X_T $ that are proper and flat over $ T $.
+    \item $ Qout_{\mathcal{O}_{\mathbb{P}^n}^r}:=Qout_{\mathcal{O}_{\mathbb{P}^n}^r / \mathbb{P}^n/\Spec \mathbb{Z}} $.
+    \item $ Hilb_{\mathbb{P}^n}:=Hilb_{\mathbb{P}^n/\Spec \mathbb{Z}} $.
+  \end{enumerate}
+\end{defn}
+
+Functor $ Quot_{\mathcal{E}/X/S} $ is a zariski and fppf sheaf, and is proper over $ S $.
+
+\begin{defn}
+  Notations as above, let $ P\in \mathbb{Q}[t] $ be a polynomial and $ \mathcal{L} $ be a invertible sheaf over $ X $, then we have functor $ Quot_{\mathcal{E}/X/S}^{P,\mathcal{L}} $ s.t. $ \mathcal{F}\in Quot_{\mathcal{E}/X/S}^{P,\mathcal{L}}(T)  $ satisfying $ \forall t\in T, \mathcal{F}_t $ has hilbert polynomial $ P $ w.r.t. $ \mathcal{L}_t $.
+  
+  In particular, we have a functor $ Hilb^P_r=Hilb^{P,\mathcal{O}(1)}_{\mathbb{P}^r/\mathbb{Z}} $.
+  
+  Clearly we have coproduct
+  $$ Quot_{\mathcal{E}/X/S}=\coprod_{P\in \mathbb{Q}[t]} Quot_{\mathcal{E}/X/S}^{P,\mathcal{L}}  $$
+\end{defn}
+
+Functor $ Quot_{\mathcal{E}/X/S} $ is a zariski and fpqc sheaf, and is proper over $ S $.
+
+\section{Grassmannian}
+
+We can define Grassmannian scheme as a special Quot:
+\begin{defn}
+  $$ Gr_S(d,r):=Qout_{\mathcal{O}^r/S/S}^{d,\mathcal{O}} $$
+  In particular, $ S=\Spec \mathbb{Z} $.
+  $ Gr(r,d):=Gr_\mathbb{Z}(r,d):=Quot_{\mathcal{O}_\mathbb{Z}^r/\mathbb{Z}/\mathbb{Z}}^{d,\mathcal{O}_\mathbb{Z}}  $
+\end{defn}
+
+Notice that  if $ \mathcal{O}^r\twoheadrightarrow\mathcal{F} $ and $ \mathcal{F} $ has constant hilbert polynomial $ d $ w.r.t $ \mathcal{O} $, then $ \mathcal{F} $ is alocally free sheaf of rank $ d $. 
+
+To construct Quot scheme, we need to show $ Gr(r,d) $ is representable.
+
+\subsection{construction}
+\emph{Idea}: let $ V $ be a vector space of dimension $ r $, then $ Gr(d,V)=Gr(d,r) $ is set of all $ d $-dimensional subvector spaces of $ V $. One can verify a subspace by a $ d\times r $ metrix of rank $ d $, of course up to equivalence. Then $ Gr(d,r)=\bigcup_I\{ M_{d\times r} : \text{I-th minor is of rank d }\}/\sim=\bigcup U^I $, where $ I\subset \{ 1,2,\ldots ,r \} , \#I=d $. For each equivalent class in of $ U^I $, one can choose a metrix $ M $ representing it, whose $ I $-th minor is $ E $, then $ U^I\cong k^{d\times (r-d)} $, i.e. coordinates outside the $ I $-th minor are free. However $ \bigcup U^I $ is not a disjoint union, we have to glue these sets.
+
+Now construct $ \mathcal{G}r_\mathbb{Z}(r,d) $ as follows: Let $ X^I $ be a matrix whose $ I $-th minor is identity matrix $ E $, and other coordinates $ x^I_{pq} $ are independent variables, and $ X^I_J $ means its $ J $-th minor. Let $ \mathbb{Z}[x^I] $ be the polynomial ring in variables $ x^I_{pq} $ and let $ U^I:=\Spec \mathbb{Z}[x^I]\cong \mathbb{A}^{d\times(r-d)} $, an $ A $-point of which is a matrix $ M^I(A) $ with coordinates in ring $ A $ and $ I $-th minor being identity martix.  Let  $ P^I_J=\det X^I_J\in \mathbb{Z}[x^I] $,   then $ U^I_J=\Spec \mathbb{Z}[x^I,1/P^I_J] $ is an open subscheme of $ U^I $, whose $ A $-point is a matrix $ M^I(A) $ with $ J $-th minor invertible. Then we will glue $ U^I $ through isomorphisms $ U^I_J\to U^J_I $. For any ring $ A $, there is a  functorial bijection  $ U^I_J(A)\to U^J_I(A) , M^I(A)\mapsto (M^I_J(A))^{-1}M^I(A) $, hence a natural isomorphism $ \Hom(\Spec -,U^I_J)\to \Hom(\Spec-,U^J_I) $, and therefore an isomorphism   $ U^I_J\to U^J_I $ (acturally this is the map $X^I \mapsto (X^I_J)^{-1}\cdot X^I $). Furthermore, over $ U^I $ we have a quotient of locally free sheaves 
+$$ \bigoplus_{i=1}^r \mathcal{O}e_i\to \bigoplus_{j=1}^{d}\mathcal{O}u_j, e_i\mapsto \sum_{j=1}^dx_{ji}u_j $$ 
+Gluing $ U^I $ and the quotient we have a scheme $ \mathcal{G}r(r,d) $ and a quotient $ \bigoplus_{i=1}^r\mathcal{O}\to \mathcal{U} $, where $ \mathcal{U} $ is locally free of rank $ d $ (trival over open subschemes $ U^I $).
+\subsection{representibility}
+To show this scheme indeed represents the functor, we have to show the quotient is universal, which is difficult. However, one can prove these by a criterion for representability.
+
+If a functor $ F:\mathfrak{Sch}_S\to \mathfrak{Set}  $ is representable, then it is a sheaf w.r.t. zariski and fpqc topology on $ \mathfrak{Sch} $ ( FGA section 2.3.6). Conversely, we have a criterion for a functor:
+
+  
+\begin{defn}
+  Let $ F\to G $ be a natural transform of functors in $ [\mathfrak{Sch}^{op},\mathfrak{Set}] $. It is a \emph{open/closed/locally closed subfunctor}, if for any scheme $ T $, $ F(T)\to G(T) $ is injective, and $ F\times_{G}h_T $ is represented by an open/closed/locally closed subscheme $ T' $ of  $ T $.
+  
+  Open subfunctors $ \{F_i\} $ of $ F $ forms an \emph{open covering}, if for any scheme $ T $, corresponding open subschemes $ T_i $ forms an open covering of $ T $.
+\end{defn}
+
+\begin{thm}
+  A functor $ F:\mathfrak{Sch}_S\to \mathfrak{Set}  $ is representable, if
+  \begin{enumerate}
+    \item $ F $ is a sheaf w.r.t. zatiski topology over $ \mathfrak{Sch}_S $, and
+    \item $ F $ has an open covering $ \{F_i\} $ s.t. each $ F_i $ is representable.
+  \end{enumerate} 
+\end{thm}
+\begin{proof}
+  \emph{Hint}: Glue schemes $ X_i $ in the way functors $ F_i $.
+  
+  Assume $ X_i $ represents $ F_i $ and $ x_i\in F_i(X_i) $ corresponds to $ 1_{X_i} $. For any $ i,j $, since $ F_j $ is an open subscheme, $ h_{X_i}\times_FF_j $ is represented by an open subscheme $ U_{ij} $ of $ X_i $, and is isomorphic to $ F_{ij}:=F_i\times _FF_j $.
+  
+  $$\xymatrix{  %pull back
+    h_{U_{ij}}\ar[r]\ar[d]^\sim&h_{X_i}\ar[d]^\sim\\
+    F_{ij}\ar[r]\ar[d]&F_i\ar[d]\\
+    F_j\ar[r]&F
+  }$$
+  However, we also have $ F_{ij}\cong h_{U_{ji}} $ for an open subscheme $ U_{ji} $ of $ X_{ji} $. Therefore we have an isomorphism $ f_{ij}:U_{ij}\to U_{ji} $ and its inverse$ f_{ji}:U_{ji}\to U_{ij} $, satisfying cocycle condition. Gluing $ X_i $ through $ f_{ij} $ we obtain a scheme $ X $. To show $ X $ represents $ F $, using Yoneda lemma: for any scheme $ T $ and $ h_T\to F $ given by a element $ y\in F(T) $, we have an open covering $ T_i $ ($ h_{T_i}\cong h_T\times_FF_i $) of $ T $ and $ (f_i: T_i\to X_i)\in F_i(T_i) $. Gluing $ f_i $ we have $ f:T\to X $. This means $ \Hom (h_T,F)=\Hom(h_T,h_X) $ for any $ T $.
+\end{proof}
+
+Back to the Grassmannin, using the theorem above. Define subfuncors $ F_I $ of $ Gr(d,r) $: for each $ I=\{i_1,\ldots,i_d\}\subset \{1,\ldots,r\} $, we have an injection $ s_I:\bigoplus_{k=1}^d\mathcal{O}e_{i_k}\to\bigoplus_{i=1}^{r}\mathcal{O}e_i $. Define subfuctor
+$$ F_I(T)=\{ <\mathcal{F},q>|\text{composition }\bigoplus_{k=1}^d\mathcal{O}e_{i_k}\xrightarrow{s_I}\bigoplus_{i=1}^{r}\mathcal{O}e_i\xrightarrow{q} \mathcal{F} \text{ is surjective} \} $$
+Need to show $ F_I $ are representable and form an open covering. 
+\begin{enumerate}
+  \item This is  represented by $ \mathbb{A}^{d(r-d)} $(In fact this is $ U^I $ defined above): take an open affine covering $\{ T_\alpha \cong \Spec A_\alpha \} $ of $ T $ such that $ \mathcal{F} $ is trival over $ T_\alpha $, then we have a surjection $ \bigoplus_{k=1}^dA_\alpha e_{i_k}\to \mathcal{F}(T_\alpha)\cong A_\alpha^d $. But both are  free $ A_\alpha $-modules of rank $ d $, this in fact is an isomorphism, and images of $ e_{ij} $ form a basis $ u_j $ of $ \mathcal{F}(T_\alpha)\cong \bigoplus_{j=1}^d A_\alpha u_j $. Then  $ q|_{T_\alpha}:\bigoplus_{i=1}^{r} A_\alpha e_i \to \bigoplus_{j=1}^d A_\alpha u_j$ is give by $ e_i\mapsto \sum_{j=1}^d a_{ji}u_j,a_{ji}\in A_\alpha $, cooresponds to an $ A_\alpha $-point of $  \mathbb{A}^{d(r-d)} $, i.e. a morphism $ T_\alpha \to  \mathbb{A}^{d(r-d)} $. Gluing all these maps we have a morphism $ T\to  \mathbb{A}^{d(r-d) }$, which implies $ \mathbb{A}^{d(r-d)} $ represents $ F_I $. 
+  \item Let $ T $ be a scheme and $ h_T\to Gr $ be a natural transform given by a quotient of locally free sheaves $ \bigoplus_{i=1}^{r}\mathcal{O}_Te_i\xrightarrow{q} \mathcal{F} $ over $ T $. Let $ q_I $ be the composition of $ (\bigoplus_{k=1}^d\mathcal{O}_Te_{i_k}\xrightarrow{s_I}\bigoplus_{i=1}^{r}\mathcal{O}_Te_i\xrightarrow{q} \mathcal{F}) $ and $ \mathcal{K}=\mathrm{coker}(q_I)  $. Then $ q_I $ is surjective over $ T_I:= T-\mathrm{Supp}\mathcal{K} \underset{open}{\subset} T$. This open subscheme actually has a universal property that a map $ U\to T $ factors through if and only if pull back of $ q_I $ is surjective, which implies $ h_T\times_{Gr}F_I\cong h_{T_I} $, hence $ F_I $ is an open subfunctor.
+  \item To show $ F_I $ forms an open covering, need to show $ T_I $ covers $ T $. Indeed, any point $ t\in T $, pull back of $ q $ is a surjection $ \bigoplus_{i=1}^{r}k(t)e_i\xrightarrow{q} k(t)^d $ of vector space over the  reside field $ k(t) $. There is a subspace $ \bigoplus_{k=1}^d k(t)e_{i_k} $ for some $ I=\{i_1,\ldots,i_d\} $ and the  compotision is an isomorphism. This implies $ t\in T_I $, hence $ T_I $ covers $ T $.
+\end{enumerate}
+
+By the criterion for representibility, one can glue these $ \mathbb{A}^{d(r-d)} $s and represents $ Gr(r,d) $. In fact, this is exact the same way we construct $ \mathcal{G}r(r,d) $ above.
+
+Construct $ Quot $.
+\section{Construct}
+
+\subsection{lemmas} 
+We will show that functor $ Quot_{\mathcal{E}/X/S} $ is represented for some special cases.
+
+\begin{thm}
+  \emph{FGA,5.15} Let $ S $ be a noetherian scheme, and $ \mathcal{V,W} $ two locally free sheaves over it. Take $ \pi:X=\mathbb{P}(V)\to S $ and $ \mathcal{E}=\pi^*\mathcal{W} $,$ \mathcal{L}=\mathcal{O}_X(1) $, then $ Q=Quot^{\Phi ,\mathcal{L}}_{\mathcal{E}/X/S} $ is represented.
+\end{thm}
+\begin{proof}
+  \emph{Hint:} We will prove it in several steps. 
+  \begin{enumerate}
+    \item Given a morphism $ f:T\to S $  and 
+    $$ 0\to \mathcal{K}\hookrightarrow\mathcal{E}_T\twoheadrightarrow \mathcal{F}\to 0 $$
+    over $ X_T $ s.t. for any point $ t\in T $  we have $ h_{\mathcal{F}_t}=\Phi $ (i.e an element in $ Q(T) $). Then  there is an integer $ m $ depended only on rank of $ \mathcal{V,W} $ and $ \Phi $, s.t. over $ T $ we have SES of locally free sheaves $$ 0\to\pi_{T*}\mathcal{K}(m)\pi_{T*}\mathcal{E}_T(m)\twoheadrightarrow\pi_{T*}\mathcal{F}(m)\to 0 $$
+    In particular, $ \pi_{T*}\mathcal{E}_T(m)\cong f^*(\mathrm{Sym}^m\mathcal{V}\otimes \mathcal{W}) $ and $ \mathrm{rk}\,\pi_{T*}\mathcal{F}(m)=\Phi(m) $. Furthermore, $ \pi^*_T\pi_{T*}\mathcal{K}(m)\twoheadrightarrow \mathcal{K}(m) $ is surjective, and so is $ \mathcal{E}_T(m), \mathcal{F}(m) $. 
+    $$ \xymatrix{
+    0\ar[r]&\pi^*_T\pi_{T*}\mathcal{K}(m)\ar[r]\ar@{->>}[d]\ar@{-->}[dr]^h&\pi^*_T\pi_{T*}\mathcal{E}_T(m)\ar[r]\ar@{->>}[d]&\pi^*_T\pi_{T*}\mathcal{F}(m)\ar[r]\ar@{->>}[d]&0\\
+    0\ar[r]&\mathcal{K}(m)\ar[r]&\mathcal{E}_T(m)\ar[r]&\mathcal{F}(m)\ar[r]&0
+    } $$
+  
+    Define a map from $ Q(T) $ to $ G(T):=Gr_S(\mathrm{Sym}^m\mathcal{V}\otimes \mathcal{W},\Phi(m))(T) $. This is an injective map: Given any element $ (0\to\mathcal{G}\to \pi_{T*}\mathcal{E}(m)\to \mathcal{Q}\to 0 )$ in the image of the map , one can recover $ \mathcal{F}(m) $ from cokernel of $$ h:\pi_T^*\pi_{T*}\mathcal{K}(m)=\pi^*\mathcal{G}\to \pi_T^*\pi_{T*}\mathcal{E}(m)\to\mathcal{E}(m) $$. 
+    Hence $ Q $ is a subfunctor of $ G $.
+    
+    \item Functor $ G $ is represented by a projective scheme $ \mathcal{G} $ embedded into a projective space $ \mathbb{P}(\wedge^{\Phi(m)}\mathcal{W}\otimes \mathrm{Sym}^m\mathcal{V}) $.
+    
+    
+    \item   Now we have a subfunctor $ Q\to G $, need to show this is a locally closed subfunctor. A map $ h_T\to G $ is determined by an element in $ G(T) $, i.e. $   \pi_{T*}\mathcal{E}(m)\to \mathcal{H}  $.
+    $$ \xymatrix{
+      h_T\times_{G}Q\ar[r]\ar[d]&h_T\ar[d]\\
+      Q\ar[r]&G
+    } $$
+    We need to show there is a locally closed subscheme $ T'\to T $ s.t. a morphism $ U\to T $ factors through $ T' $ if and only if the corresponding $ \mathcal{E}_U\twoheadrightarrow\mathcal{F} $ is in $ Q(U) $. This is given by flattening stratification theorem.
+    \item Hence functor $ Q $ is represented by a locally closed subscheme $ \mathcal{Q}\to \mathcal{G} $. Since $ Q $ is proper over $ S $, $ \mathcal{Q} $ is a closed subscheme of $ \mathcal{G} $, hence is a projective scheme. 
+  \end{enumerate}
+\end{proof}
+
+\subsection{m-regular}
+\begin{lem}
+  \emph{numerical polynomial, Hartshorne}: $ P(t)\in\mathbb{Q}[t] $ is a \emph{numerical polynomial} if $ P(n)\in \mathbb{Z} $ for $ n\gg0 $.
+  \begin{enumerate}
+    \item If $ P $ is a numercial polnomial, then there are \emph{integers} $ c_0,\ldots,c_r $  s.t.
+    $$ P(n)=c_0\binom{n}{r}+c_1\binom{n}{r-1}+\cdots+c_r $$
+    \item If function $ f:\mathbb{Z}\to \mathbb{Z} $ satisfying $ \Delta f(n)=f(n+1)-f(n)=Q(n) $ for $ n\gg0 $ and $ Q $ numerical polynomial, then $ f(n)=P(n) ,n\gg0$ for some numerical polynomial $ P $. 
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  \emph{Hint}: Induction on degree of the polynomial.
+\end{proof}
+\begin{defn}
+  A coherent sheaf $ \mathcal{F} $  on the projective space $ \mathbb{P}^n_k $ over a field $ k $ is called \emph{$ m $-regular} if 
+  $$ H^i(\mathbb{P}^n_k,\mathcal{F}(m-i))=0,i>0 $$
+\end{defn}
+\begin{rmk}
+  By taking base change, WMA $ k $ is an infinite field ( this change is flat and cohomology groups well behaved), then one can take a hyperplane $ H $ passing through none of asscoiated points of $ \mathcal{F} $, thus we have a SES
+  $$ 0\to \mathcal{F}(-1)\to \mathcal{F}\to \mathcal{F}_H\to 0 $$
+  ( injectivity follows from the choice of $ H $ ) and hence 
+  $$ 0\to \mathcal{F}(r-1)\to \mathcal{F}(r)\to \mathcal{F}_H(r)\to 0 $$
+  Taking LES, one can show $ \mathcal{F}_H $ is $ m $-regular for same $ m $.
+\end{rmk}
+\begin{lem}
+  If $ \mathcal{F} $ is $ m $-regular, then
+  \begin{enumerate}
+    \item $ H^0(\mathbb{P}^n,\mathcal{F}(r))\times H^0(\mathbb{P}^n,\mathcal{O}(1))\to H^0(\mathbb{P}^n,\mathcal{F}(r+1)) $ is surjective for $ r\geqslant m $;
+    \item $ \mathcal{F} $ is $ m' $-regular for all $ m'>m $;
+    \item $ \mathcal{F}(r) $ is globally generated, and higher cohomologies vanish for $ r\geqslant m $.
+  \end{enumerate}
+\end{lem}
+
+\begin{rmk}
+  SES: $ 0\to\mathcal{F}'\to \mathcal{F}\to \mathcal{F}''\to 0 $, if $ \mathcal{F}',\mathcal{F}'' $ are $ m $-regular, then so is $ \mathcal{F} $; if $ \mathcal{F}' $ is $ (m+1) $-regular and $ \mathcal{F} $ is $ m $-regular, then $ \mathcal{F}'' $ is $ m $-regular; if $ \mathcal{F} $ is $ m $-regular and $ \mathcal{F}'' $ is $ (m-1) $-regular, then $ \mathcal{F}' $ is $ m $-regular.
+\end{rmk}
+
+\begin{thm}\label{m-regular poly}
+  \emph{$ m $-regular}: For any integers $ n,p $, there is a polynomial $ F_{p,n} $ in $ n+1 $ varibles satisfying:
+  
+  For any coherent sheaf $ \mathcal{F} $ on the projective space $ \mathbb{P}^n_k $  isomorphic to a subsheaf of $ \mathcal{O}_{\mathbb{P}^n}^{\oplus p} $, with hilbert polynomial
+  $$ \chi (\mathcal{F}(r))=\sum_{i=0}^{n}a_i\binom{r}{i} $$
+  where $ a_i\in \mathbb{Z} $, $ \mathcal{F} $ is $ m $-regular for $ m=F_{p,n}(a_0,\ldots,a_n) $. 
+\end{thm}
+
+\section{flattening stratification}
+
+\begin{lem}
+  Let $ A $ be a noetherian domain, $ B $ a finitely generated $ A $-algebra, and $ M $ a finitely generated $ B $-module. Then there is a nonzero element $ f\in A $ s.t. $ M_f $ is a free $ A_f $-module. 
+\end{lem}
+
+\begin{thm}
+  \emph{FGA,5.12} Let $ S $ be a noetherian integral scheme, and $ X\to S $ of finite type. Let $ \mathcal{F} $ be a coherent sheaf over $ X $, then there is a nonempty open subset $ U\subset S $ s.t. $ \mathcal{F}_U $ flat over $ U $.
+\end{thm}
+
+\begin{thm}
+  \emph{FGA,5.13} Let $ \mathcal{F} $ be a coherent sheaf over $ \mathbb{P}^n_S $, where $ S $ is a noetherian scheme, let $ \mathcal{P} $ be the set of hilbert polynomials of restrictions  $ \mathcal{F}_s $ of $ \mathcal{F} $ to the fibres of $ \pi:\mathbb{P}^n_S\to S $. Then $ \#\mathcal{P}<\infty $ and for each $ P\in\mathcal{P} $ there is a locally closed subscheme $ S_P\hookrightarrow S $, satisfying
+  \begin{enumerate}
+    \item $ \forall s\in S_P$, hilbert polynomial $ h_{\mathcal{F}_s}=P $, and $ \cup_{P\in \mathcal{P}} \mathrm{sp}(S_p)=\mathrm{sp}(S) $ as sets;
+    \item  $ S'=\coprod_{P\in\mathcal{P}}S_P\to S $ has a universal property: any $ T\to S $ factors through $ S'\to S $ if and only if $ \mathcal{F}_T $ flat over $ T $.
+    \item Define $ P\leqslant Q $ if $ P(n)\leqslant Q(n) $ for $ n\gg0 $, then $ \overline{\mathrm{sp}(S_P)}\subset \cap_{P\leqslant Q}\mathrm{sp}(S_Q) $.
+  \end{enumerate}
+\end{thm}
+
+\end{document}

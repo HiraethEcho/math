@@ -1,0 +1,252 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{enumerate}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+
+\newcommand{\Spec}{\mathrm{Spec}\,}
+\newcommand{\Proj}{\mathrm{Proj}\,}
+\newcommand{\NE}{\mathrm{NE}}
+\newcommand{\isoto}{\xrightarrow{\sim}}
+\newcommand{\Hom}{\mathrm{Hom}\,}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+
+\title{Seminar: GIT}
+\author{Wang Yanze}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{GIT}
+\subsection{Group and actions}
+\subsubsection{in general}
+\begin{defn}
+	Group scheme over $ S $ is $ \pi:G\to S $ and $ e:S\to G,\mu:G\times_S G \to G,i:G\to G$ s.t.
+	\begin{enumerate}
+		\item $ \mu\circ 1_G\times \mu=\mu \circ\mu\times 1_g:G\times_S G\times_S G\to G $
+		$$\xymatrix{
+			G\times_S G\times_S G\ar[d]_-{\mu \times 1_G}\ar[r]^-{1_G\times \mu} & G\times_S  G\ar[d]_-{\mu} \ar[d]_-{\mu}\\
+			G\times_S G\ar[r]^-{\mu} & G 
+		}$$
+		\item $ \mu \circ (e \times1_G )\circ (\pi \times 1_G)=1_G:G\to S\times_S G\to G\times_S G\to G $
+		
+		$ \mu \circ (1_G \times e)\circ ( 1_G\times \pi)=1_G:G\to G\times_S S\to G\times_S G\to G $
+		\item $ \mu \circ (i \times 1_G ) \circ \Delta=e\circ \pi : G\to G\times_S G\to G\times_S G \to G$ 
+		
+		$ \mu \circ ( 1_G\times i ) \circ \Delta=e\circ \pi : G\to G\times_S G\to G\times_S G \to G $
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}
+	Group action:$ \pi :G\to S $ and $p: X\to S $, $ G\curvearrowright X  $ is $ S $-morphism $ \sigma :G\times_S X\to X $ s.t.
+	\begin{enumerate}
+		\item $ \sigma \circ (\mu \times 1_G)=\sigma \circ ( 1_G\times\sigma  ):G\times_S G\times_S X\to G $
+		\item $ \sigma \circ (e\times 1_X)\circ (p\times 1_X)=1_X:X\to S\times_S X \to G\times_S X \to X $
+	\end{enumerate}
+\end{defn}
+
+
+\begin{defn}
+	Orbit: $ \sigma :G\times_S X\to X $ and  $ T $-point $ f:T\to S $ of $ X $, define $$ \psi_f^G=(\sigma\circ (1_G\times f))\times p_2:G\times _S T\to X\times_ST  $$
+	image of $ \psi_f^G $ called orbit of $ f $, denoted by $ G(f) $; when $ f=1_X $,denoted by $ \Psi $;
+	$$ \Psi=(\sigma,p_2):G\times_SX\to X\times_SX $$	
+	stabilizer of $ f $: $ G_f=(G\times_S T)\times_{X\times_S T} T $
+	$$\xymatrix{
+		G_f \ar[d] \ar[r] & T \ar[d]^-{f\times 1_T} \\
+		G\times_S T \ar[r]_-{\psi _f} & X\times_S T
+	}$$
+	In particular $ T=\mathrm{Spec}\,k $, $ f $is a $ k $-point$ x $ of $ X $, denote $ G(f)=Gx,G_f=G_x $
+\end{defn}
+
+From now on we only consider algebraic groups:
+\begin{defn}
+	$ G $ is an algebraic group over $ k $, if $ G $ is a variety over $ k $, and is a group scheme over $ k $.
+\end{defn}
+
+\begin{fact}
+	All algebraic groups are linear algebraic group, i.e. closed subgroup of $ GL_k(n) $; hence all algebraic groups are affine varieties.
+	
+	(Cartier) All algebraic groups are smooth, if $ \chi(k)=0 $.
+\end{fact}
+\subsubsection{affine case}
+Algebraic groups acting on affine varieties:
+
+\emph{Geometry $ \rightsquigarrow $ AG:}
+
+For example, $ GL(n,k)\curvearrowright V $ where $ V $ is $ n $-dimensionl vector space. To give $ \sigma:G\times_kX\to X $, where $ G=GL_k(n)=\Spec k[x_{ij},1/x], X=\Spec k[x_i] $ ($ x $ is determination of matrix), we can consider the natural transform of corresponding varieties: for any $ k $-algebra $ A $,
+$$ \underline{G\times_kX}(A)=\underline{G}(A)\times_{\underline{k}(A)}\underline{X}(A)\to \underline{X}(A) $$
+  $ G(A)=GL(n,A),X(A)=V(A),\underline{k}(A)=\{k\to A \}=\{* \} $. The  natural transform is clear, and so is the $ k $-algebra homomorphism:
+  
+  $$ k[x_i]\to k[x_i]\otimes_kk[x_{ij},1/x], x_i\to \sum_{j}x_{ij}\otimes x_j $$
+
+\emph{AG $ \rightsquigarrow $ Algebra:}
+
+ For $ G\curvearrowright X=\Spec A $, define $ A\curvearrowleft G $ (right action) by: $ f\in A $ gives $ F:X\to \mathbb{A}^1, k[x]\to A, x\mapsto f $, then $ fg $ is given by 
+$$ X\cong k\times_kX\to G\times X\to X\xrightarrow{F} \mathbb{A}^1 $$
+\begin{lem}(M15 Lemma 3.8)
+	$ G $ algebraic group acts on affine scheme $ X $, then any $ f\in \mathcal{O}(X) $ is contained in a finite-dimensional $ G $-invariant subspace of $ \mathcal{O}(X) $; any finite dimensional subspace $ W $ is contained in a finite dimensional $ G $-invariant subspace of $ \mathcal{O}(X) $.
+\end{lem}
+
+
+\begin{lem}(Intro to GIT, D.I.V, lemmma 3.1)
+	$ G $ algebraic group acting on affine variety $ X $, and $ W $  finite-dimentional $ k $-sub vector space, then:
+	\begin{enumerate}
+		\item if $ W $ is invariant, then action of $ G $ on $ W $ is given by a rational representation ($ \rho: G\to GL(W) $);
+		\item in any case, $ W $ is containde in a finite-dimensional invariant $ k $-sub vector space of $ A $. 
+	\end{enumerate}
+\end{lem}
+\begin{defn}
+	Algebraic group $ G $ acts on a $ k $-algebra $ A $ (on the right) $ A\curvearrowleft G $ is called rational, if:
+	\begin{enumerate}
+		\item $ f^{gh}=(f^g)^h, f^e=f $;
+		\item $ (g:A\to A)\in Aut_k(A) $;
+		\item any $ a\in A $, $ a $ is contained in a finite-dimensional $ G $-invariant subspace, on which $ G $ acts by a rational representation.
+	\end{enumerate}
+	\texttt{cf. Intro to GIT, D.I.V, Chap III}
+\end{defn}
+
+\begin{fact}
+	All action $ A\curvearrowleft G $ from $ G\curvearrowright X=\Spec A $ is rational.
+\end{fact}
+\subsubsection{projective case}
+Only focus on sample case. But we will mension then general case.
+
+\emph{linearization:}
+
+Let $ G $ be an algebraic group, act on a scheme  $ X $ over $ k $ (not necessary projective) by $ \sigma: G\times_kX\to X $, then a linearization of a line bundle $ L\to X $ is an action $ \bar{\sigma} $ defined by composition of isomorphism  $ G\times_kL\isoto (G\times_kX)\times_{X}L $ and projection:
+$$ \xymatrix{
+	G\times_kL\ar[r]^{\sim}\ar@/^3ex/[rr]^{\bar{\sigma}}\ar[rd]_{pr_1}&(G\times_kX)\times_{X}L\ar[r]\ar[d]&L\ar[d]\\
+	&G\times_kX\ar[r]^{\sigma}&X
+	} $$
+
+\emph{In this Note:}
+
+To apply on hypersurfaces: Consider $ V \curvearrowleft G $ by $ \rho: G\to GL_k(n) $ for $ (n+1) $-dimensional $ k $-vector space $ V $ on the right , then we have $ G\curvearrowright V: gv=vg^{-1} $, and $ G\curvearrowright V^\vee$ , induces $ G\curvearrowright \mathrm{Sym} V^* :=S$ and $ G\curvearrowright S_d=\mathrm{Sym}^dV^* $. Denote $ X_f=Z(f) $ for $ f\in S_d $ homogenerous polynomial, and $G\curvearrowright \mathbb{P}^N=\mathrm{Sym}^dV^*-0/\sim $ ( parametrized space of hypersurface of degree $ d $), $ G\curvearrowright \mathbb{P}^n=V-0/\sim $ (projective space that hypersurfaces lie in). We have $ g[X_f]=[gX_f]=[X_{gf}] $.
+\subsection{quotient}
+\subsubsection{general case}
+\begin{defn}
+	category quotient:
+		$$
+	\xymatrix{
+		G\times_S X \ar[d]_-{p_2} \ar[r]^-{\sigma} & X \ar[d]^-{f }\ar@/^3ex/[ddr]^-{f'}\\
+		X \ar[r]_-{f}\ar@/_3ex/[rrd]_-{f'} & X/G \ar@{-->}[dr]|-{\pi } \\
+		& & Y 
+	}
+	$$
+\end{defn}
+
+\begin{defn}
+	geometric quotient:$ \phi: X\to Y  $ s.t.
+	\begin{enumerate}
+		\item $$
+		\xymatrix{
+			G\times_S X \ar[d]_-{p_2} \ar[r]^-{\sigma} & X \ar[d]^-{\phi }\\
+			X \ar[r]_-{\phi} & Y 
+		}
+		$$
+		\item $ \phi $ surjective, and image of $ \Psi:G\times _SX\to X\times_SX $ is $ X\times_YX $
+		
+		(if $ G,X $ of finite type over $ S $ and $ S $, equivalently  geom fibre of $ \phi $ are precisely orbits of geom points of $ X $)
+		\item $ \phi $ submersive, i.e. $ f^{-1}(V)=U $ open iff $ V $ open;
+		\item $ \mathcal{O}_Y=(\phi_*\mathcal{O}_X)^G $, where $ f\in(\phi_*\mathcal{O}_X)^G(V)  $ means
+		$$ 	\xymatrix{
+			G\times_S U \ar[d]_-{p_2} \ar[r]^-{\sigma} & U \ar[d]^-{F }\\
+			U \ar[r]_-{F} & \mathbb{A}^1
+		}$$
+	commute.
+	\end{enumerate}
+\end{defn}
+
+\begin{prop}
+	geometric quotient is category quotient.
+\end{prop}
+\begin{proof}
+	For any such $ f:X\to Z $, take affine cover $ \{W_i\} $ of $ Z $, construct $ Y\to Z $ on $ \phi(f^{-1}(W_i))=V_i\to W_i $, where $ \{ V_i \} $ open cover of $ Y $.
+\end{proof}
+
+\subsubsection{affine case}
+
+\begin{defn}
+	algebraic group $ G $ is:
+	\begin{enumerate}
+		\item \underline{reductive}, if radical (maximal connected sovable normal subsroup) is a torus (or: every smooth unipotent normal algebraic subgroup is trival);
+		\item  \underline{linearly reductive}, if every reprensation $ \rho: G\to GL(n) $ is completely reducible ( or: every invariant point $ v\in k^n $, there is an invariant linear polynomial $ f $ s.t. $ f(v)\ne 0 $ );
+		\item \underline{geometrically reductive}, if every invariant point $ v\in k^n $, there is an invariant homogenerous polynomial $ f (\in \mathrm{Sym}^d V^\vee  )$ s.t. $ f(v)\ne 0 $ .
+	\end{enumerate}
+\end{defn}
+
+\begin{thm}
+	\begin{enumerate}
+		\item linear reductive$ \Rightarrow $ geometrically reductive;
+		\item if $ \chi(k)=0 $, then reductive $ \Rightarrow $ linearly reductive;
+		\item if $ G $ sm, then reductive $ \Leftrightarrow $ geomtrical reductive.
+	\end{enumerate}
+\end{thm}
+\begin{rmk}
+	$ \chi(k)=p $, then $ GL(n,k), SL(n,k), PGL(n,k) $ is not linearly reductive for $ n>1 $;
+	
+	Over $ \mathbb{C} $, reductive group is linearly reductive.
+\end{rmk}
+
+
+
+\begin{thm}
+	$ G\curvearrowright X=\Spec A, X/G:=\Spec A^G $ is category quotient.
+\end{thm}
+
+ \textbf{examples}:
+ 
+ $ \mathbb{G}_m\curvearrowright X=\mathbb{A}^2, t(x,y)=(tx,ty) $;
+ 
+  $ \mathbb{G}_m\curvearrowright X=\mathbb{A}^2, t(x,y)=(tx,t^{-1}y) $;
+
+More properties:
+\begin{prop}
+		For reductive group $ G\curvearrowright X=\mathrm{Spec}\,A $, orbit $ Gx\subset \overline{Gx} $ contains a unique proper orbit, and is of lowest dim in $ \overline{Gx} $. 
+		
+		$ \phi:X\to X/G $.$ G $-stable subset $ Z\subset{X} $, then $ f(Z) \subset X/G $ closed, and if $ Z_1,Z_2\subset X,Z_1\cap Z_2=\varnothing  $, then $ f(Z_1)\cap f(Z_2)=\varnothing $; $ f^{-1}(y) $ contains a unique proper orbit.
+\end{prop}
+
+\begin{defn}
+	good quotient:
+	\begin{enumerate}
+		\item $ \mathcal{O}_Y=(f_*\mathcal{O}_X)^G $;
+		\item $ \phi:X\to X/G $.$ G $-stable subset $ Z\subset{X} $, then $ f(Z) \subset X/G $ closed, and if $ Z_1,Z_2\subset X,Z_1\cap Z_2=\varnothing  $
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}
+	geometric quotient: if furthermore every fiber of closed point is exactly closed orbit of closed point.
+\end{defn}
+
+\begin{prop}
+	If $ G $ finite, then $ X/G $ geometric
+\end{prop}
+
+\subsubsection{affine case}
+
+
+\subsubsection{projective case}
+
+\section{GIT for Hypersurface}
+
+
+\section{Moduli space}
+
+
+\end{document}

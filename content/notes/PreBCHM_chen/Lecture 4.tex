@@ -1,0 +1,236 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\title{Notes of Seminar of MMP}
+\author{wyz}
+\date{}
+
+\begin{document}
+	\maketitle
+9.10
+
+ref: KM98, Intro to Mori program;
+
+Singularities
+\section{Define Discrepancy}
+Let $ X $ be a normal variety such that $ mK_X $ is a cartier divisor with $ m>0 $. Suppose $ f:Y\to X $ is a birational morphism (NOT necessary proper) and $ mK_Y $ is cartier. Let $ E $ be an irreducible exceptional divisor, locally defined by $ y_1=0 $, where $ y_1,\ldots ,y_n $ are local coordinates near a general point $ e\in E $. Assume $ mK_X $ is defined by $ \phi=0 $near $ f(e)=x $, then near $ e $ we have
+$$ f^*(\phi)=y_1^{m\cdot a(E,X)}\cdot (\text{unit})\cdot (dy_1\wedge\cdots\wedge y_n)^{\otimes m} $$
+Then $ a(E,X) $ is called discrepancy of $ E $ with respect to $ X $. If $ f:Y\to X $ is birational proper morphism from a normal varity $ Y $ and $ K_Y $ is $ \mathbb{Q} $-cartier, then
+$$ K_Y\equiv f^*K_X+\sum_i a(E_i,X)E_i $$
+\begin{rmk}
+	$ a(E,X) $ is independent to the choice of $ f:Y\to X $: since $ Y $ is birational to $ X $, they have same rational function field $ K(X)=K(Y) $. Let $ \eta  $ be the generic point of $ E $, then $ \mathcal{O}_{Y,\eta}=R\subset K(Y)=K(Y) $ is a valuation ring, independent on the choice of $ Y $. Assume $ mK_X $ is defined by $ \phi $ locally, then $ m\cdot a(E,X)=v_R(\phi) $.
+\end{rmk}
+
+\begin{defn}
+	Let $ X $ be a variety, a divisor $ E $ is called over $ X $ if there is a birational map $ f:Y\to X $ from a normal variety $ Y $ and $ E\subset Y $ is an irreducible divisor on $ Y $. The closure of $ f(E) $ is called center of $ E $, denoted as $ center_E $, which is dependent only on the valuation but not the choice of $ f:Y\to X $.
+\end{defn}
+
+Now we consider the pairs: let $ X $ be a normal variety and $ B=\sum_ia_iD_i $ sum of prime divisors (here $ a_i\in \mathbb{Q} $ are arbitrary). $ (X,B) $ is a pair and $ B $ is the boundary. Assume $ m(K_X+B) $ is cartier and $ f:Y\to X $ is a birational map from a normal variey $ Y $. Take $ f^{-1}_*B=\sum_ia_if^{-1}_*D_i $ and $ E=\mathrm{Exc}\,f $ ($ f^{-1}:X\dashrightarrow Y $ is a rational map and $ f^{-1}_*D_i $ is the pushforward of weil divisor $ D_i $), then 
+$$ \mathcal{O}_Y(m(K_Y+ f^{-1}_*B))|_{Y-E}\cong f^*\mathcal{O}_X(m(K_X+B))|_{X-f(E)} $$
+naturally. Let $ E_i\subset E $ be irreducible exceptional divisors, then we can define dicrepency $ a(E_i;X,B) $ of $ E_i $ w.r.t. $ (X,B) $ by
+$$ \mathcal{O}_Y(m(K_Y+ f^{-1}_*B))\cong f^*\mathcal{O}_X(m(K_X+B))\otimes\mathcal{O}_Y(m\sum_ia(E_i;X,B)E_i ) $$
+or more clearly
+$$ K_Y+f^{-1}_*B\equiv f^*(K_X+B)+\sum_{E_i\text{ exceptional divisors}}a(E_i;X,B)E_i $$
+or 
+$$ K_Y\equiv f^*(K_X+B)+\sum_{E_i\text{ arbitrary}}a(E_i;X,B)E_i $$
+Then we can define the discrepany of pair $ (X,B) $:
+$$ discrep(X,B)=\inf \{a(E;X,B):E \text{ is exceptional divisor}\} $$
+and
+$$ totdiscrep(X,B)=\inf \{a(E;X,B):E \text{ arbitrary divisor}\} $$
+\section{Compute discrepancy}
+Let $ (X,B) $ be a pair, $ X $ is a normal variety.
+\begin{lem}
+	Assume $ B' $ is an effective $ \mathbb{Q} $-cartier divisor, then $$ a(E;X,B)\geqslant a(E;X,B+B') $$
+	and strictly inequality holds if and only if $ center_E\subset \mathrm{Supp}\, B' $.
+\end{lem}
+\begin{proof}
+	Compare
+	$$ K_Y+f^{-1}_*B\equiv f^*(K_X+B)+\sum_{E_i\text{ exceptional divisors}}a(E_i;X,B)E_i $$
+	and
+	$$ K_Y+f^{-1}_*B+f^{-1}_*B'\equiv f^*(K_X+B+B')+\sum_{E_i\text{ exceptional divisors}}a(E_i;X,B+B')E_i $$
+	we have
+	$$ \sum_{E_i\text{ exceptional divisors}}[a(E;X,B)- a(E;X,B+B')]=f^*B'-f^{-1}_*B' $$
+\end{proof}
+ To compute the discrepancy, we need to know how it behaves under blowing up:
+ \begin{lem}
+ 	Let $ (X,B=\sum_ia_iD_i) $ be a pair and $ X $ is smooth. Let $ Z\subset X $ be a smooth subvariety of codimension $ k $. Blowing up  $ X $ along the smooth center $ Z $ we obtain a birational proper map: $ p:Y=\mathrm{Bl}_ZX\to X $. Then $ E=\mathrm{Exc}\, p $ is an irreducible exceptional divisor and
+ 	$$ a(E;X,B)=k-1-\sum_ia_i\mathrm{mult}_ZD_i $$
+ \end{lem}
+\begin{proof}
+	This is local, we may assume $ X=\mathbb{A}^n $, $ D_i $ is defined by $ (f_i),f_i\in \mathbb{C}[x_1,\ldots,x_n] $ and $ Z=V(x_1,\ldots,x_{k}) $. Then $ Y\hookrightarrow X\times \mathbb{P}^{k-1} $ is defined by $ \{ x_iy_j-x_jy_i\} $. Take an open subset 
+	$$ V=\{ y_1=1 \} =\mathrm{Spec}\frac{\mathbb{C}[x_1,\ldots,x_n,1,y_2,\ldots,y_k]}{\left <x_j-y_jx_1 \right >_{1\leqslant j\leqslant k}}$$
+	 of $ Y $, then 
+	 \begin{equation*}
+	 	\begin{aligned}
+	 	 p^*(dx_1\wedge\cdots\wedge dx_n)&=dx_1\wedge (d(y_2x_1)\wedge\cdots\wedge d(y_kx_1))\wedge dx_{k+1}\wedge\cdots\wedge dx_n\\
+	 	 &=x_1^{k-1}dx_1\wedge (dy_2\wedge\cdots\wedge y_k)\wedge dx_{k+1}\wedge\cdots\wedge dx_n 
+	 	\end{aligned}
+	 \end{equation*}
+	 And $ m_i=\mathrm{mult}_ZD_i $, $ f_i\in I^{m_i}-I^{m_i+1}, I=\left <x_1,\ldots,x_k\right > $
+\end{proof}
+
+Assume $ f:Y\to X $ is a proper birational map between normal varieties such that $ K_Y+B_Y=f^*(K_X+B_X) $ and $ f_*B_Y=B_X $, where $ B_X $ ($ B_Y $) is $ \mathbb{Q} $-cariter divisor on $ X $ ($ Y $), then is called "crepancy". Then
+\begin{lem}
+	For any divisor $ F $ over $ X $ (which is also over $ Y $), 
+	$$ a(F;X,B_X)=a(F;Y,B_Y) $$. 
+\end{lem}
+
+Let $ (X,B=\sum_ia_iD_i) $ be  a pair. We can take a log resolution $ f:Y\to X $ such that $ \mathrm{Exc}\,f\cap \mathrm{Supp}f^{-1}_*B $ is snc and $ Y $ is smooth, by blowing up along smooth centers.
+
+\begin{cor}
+	Assume $ B $ is $ \mathbb{Q} $-cartier, then
+	\begin{enumerate}[(1)]
+		\item Either $ a(E;X,B)=-\infty $ or 
+		$$ -1\leqslant \mathrm{totdiscrep}(X,B)\leqslant \mathrm{discrep }(X,B)\leqslant 1 $$
+		\item If $ X $ is smooth, then $ \mathrm{discrep}X=1 $;
+		\item Assume $ X $ is smooth and $ \sum_i D_i $ is snc and $ a_i\leqslant 1 $, then
+		$$ \mathrm{discrep}(X,B)=\min \{  \min_{D_i\cap D_j\neq \emptyset,i\neq j}\{1-a_i-a_j\}, \min\neq \{1-a_i\},1\} $$ 
+	\end{enumerate}
+\end{cor} 
+\begin{proof}
+	\begin{enumerate}[(1)]
+		\item Take a smooth subvariety $ Z\subset X $ of codimension $ 2 $ which intersects $ X-\mathrm{Sing}\,X-\mathrm{Supp}\,B $. Then by the lemma above, the exceptional divisor $ E $ has discrepency $ a(E;X,B)=1 $, thus $ \mathrm{discrep }(X,B)\leqslant 1  $;
+		
+		If $ -1>\mathrm{totdiscrep}(X,B) $, there is a divisor $ E$ over $ X $ such that $ a(E;X,B)=-1-c,c>0 $. By taking a smooth resolution $ f:Y\to X $ we may assume $ center_YE $ is a dvisor on $ Y $, and denote $ K_Y+B_Y=f^*(K_X+B_X)$ . Then construct a series exceptional divisors by blowing up: let $ Z_0 $ be a smooth subvariety of codimension $ 2 $ contained in $ E $ but not intersects with other exceptional divisors or $ B_Y $. Blowing up smooth center $ Z_0 $  we get $ g_1:Y=\mathrm{Bl}_{Z_0}Y\to Y $, and let $ E_1 $ be the exceptional divisor. Coefficient of $ E $ in $ B_Y $ is $ 1+c $. Apply the lemma and we have 
+		$$ a(E_1;Y,B_Y)=a(E_1;X,B_X)=2-1-(1+c)\mathrm{mult}_{Z_0}E=-c $$
+		Consider the pair $ (Y_1,B_1=g_1^*(K_Y+B_Y)-K_{Y_1}) $, then coefficient of $ E_1 $ in $ B_{Y_1} $ is $ c $. Let $ Z_1 $ be the intersection of $ E_1 $ and strict transform of $ E $,  and blow up $ Y_1 $ along $ Z_1 $, then we have $ g_2:Y_2=\mathrm{Bl}_{Z_1}Y_1\to Y_1 $ with exceptional divisor $ E_2 $. Then
+		$$ a(E_2;Y_2,B_{Y_2})=a(E_2;X,B_X)=2-1-(c\cdot\mathrm{mult}_{Z_1}E_1+(1+c)\mathrm{mult}_{Z_1}E)=-2c $$  
+		Inductively, blowing up $ E_i\cap E $ and $ a(E_{i+1};X,B_X)=-(i+1)c $, therefore Either $ a(E;X,B)=-\infty $.
+		
+		By definition, $ \mathrm{totdiscrep}(X,B)\leqslant \mathrm{discrep }(X,B) $ .
+		\item This is a consequence of $ (3) $;
+		\item Let $ r=r(X,B) $ be the right hand of the equation. First we prove $ \mathrm{discrep}(X,B)\leqslant r $: For every $ D_i\cap D_j\neq \emptyset $, blowing up $ D_i\cap D_j $ , which is a smooth locus since $ B $ is snc, we get a birational map $ g:Y_{ij}\to X $ and exceptional divisor $ E_{ij} $ such that 
+		$$ a(E_{ij};X,B)=2-1-(a_i+a_j)=1-a_i-a_j $$
+		For any $ D_i $, take a smooth subvariety $ Z $ of $ D_i $, which has no intersection with other $ D_j $. Blow it up and we get $ Y_i\to X $ and exceptional divisor $ E_i $ such that
+		$$ a(E_i;X,B)=1-a_i $$
+		Therefore,  $ \mathrm{discrep}(X,B)\leqslant r $.
+		Then we prove $ \mathrm{discrep}(X,B)\geqslant r $. Only need to show for any exceptional divisor $ E $, $ a(E;X,B)\geqslant r $. Assume $ E\subset Y\to X $ where $ g:Y\to X $ is composition of $ t $ blowing up along smooth centers. Induction on $ t $: 
+		
+		$ t=1 $, i.e. $ g:Y\to X $ is blowing up a smooth center. By shrinking $ X $ (notice that $ r(X,B) $ does not decrease ) we may assume $ g(E) $ is a smooth closed subvariety on $ X $. Blow up $ X $ along $ g(E) $ : $ h_1: X_1\to X $ with exceptional divisor $ E_1 $,  and  shrink $ X $ such that $ E_1\cap h^{-1}_{1*}B $ is snc. Then  we have a rational map $ Y\dashrightarrow X $. Shrink $ Y $ and we may assume $ g_1:Y\to X_1 $ is a morphism. Then actually $ a(E;X,B)=a(E_1;X,B) $
+		$$ \xymatrix{
+		Y\ar[d]_{g_1}\ar[rd]^g&\\
+		X\ar[r]_{h_1}&X }$$
+		Since $ E $ is an exceptional divisor,  denote $ \mathrm{codim}\, g(E)=k\geqslant 2 $. Assume $ g(E)\subset D_i  $ if and only if $ i\leqslant b $ for some $ b\leqslant k $ (This is because $ \sum D_i $ is snc, if $ g(E)\subset \cap_{i=1}^m $ then $ \mathrm{codim}\, g(E)\geqslant m $). By the lemma, we have 
+		$$ a(E_1;X,B)=k-1-\sum_{i=1}^{i=b}a_i $$
+		\begin{itemize}
+			\item $ b=0 $, then $ a(E_1;X,B)=k-1\geqslant 1\geqslant r $;
+			\item $ b=1 $, then $ a(E_1;X,B)=k-1-a_1\geqslant 1-a_i\geqslant r  $;
+			\item $ b\geqslant 2 $, then 
+			
+			$ a(E_1;X,B)=(k-b-1)+\sum_{i=1}^{i=b}(1-a_i)\geqslant -1+(1-a_i)+(1-a_2)\geqslant r  $.
+		\end{itemize}
+	Therefore $ t=1 $ case is done. Denote $ B_1 $ by $ K_{X_1}+B_1=h_1^*(K_X+B) $, then
+	\begin{equation*}
+		\begin{aligned}
+		r(X_1,B_1)&\geqslant\min\{ r(X,B),1+a(E_1;X,B)-\max_{D_i\cap g(E)\neq \emptyset}a_i  \}\\
+					&\geqslant\min\{  r(X,B),  a(E_1;X,B) \}\geqslant r(X,B)
+		\end{aligned}
+	\end{equation*}
+	
+	By induction, replace $ (X,B) $ by $ (X_1,B_1) $, then $ a(E;X,B)\geqslant r(X_1,B_1)\geqslant r(X,B) $.
+	\end{enumerate}
+\end{proof}
+
+\begin{cor}
+	Given $ X $ normal, let $ f:Y\to X $ be a smooth resolution, and  $E_i\subset  E $ irreducible componets of exceptional divisor. Suppose $ 1\geqslant \min\{a(E_i,X)\}\geqslant 0 $, then
+	$$ \mathrm{discrep}(X)=\min\{a(E_i,X)\} $$
+\end{cor}
+\begin{proof}
+	Denote $ K_Y+B=f^*K_X $, and $ B=-\sum_ia(E_i;X)E_i\leqslant0 $. By lemma, $ \mathrm{discrep}\,(Y,B)\geqslant \mathrm{discrep}\,Y=1 $, then
+	$$ \mathrm{discrep}\,(X)=\min\{ \mathrm{discrep}\,(Y,B), \min\{a(E_i,X)\}\} =\min\{a(E_i,X)\}$$
+\end{proof}
+\begin{cor}
+	Given  $ X $ normal and boundary $ B=\sum_ia_iD_i $ with $ a_i\leqslant 1 $. Take a resolution $ f:Y\to X $ such that $ Y $ is smooth and $ f^{-1}_*D_i $ smooth, $ \sum f^{-1}_*D_i \cup E$ snc. Suppose $ a(E_j;X,B)\geqslant -1 $ for every irreducible exceptional divisor $ E_j $, then
+	$$ \mathrm{discrep}\, (X,B)=\min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\} $$
+\end{cor}
+\begin{proof}
+	Denote $ K_Y+B_Y=f^*(K_X+B) $, and $ b_j=-a(E_j;X,B)\leqslant 1 $ is coefficient of $ E_j $ in $ B_Y $. Again we have
+	\begin{equation*}
+	\begin{aligned}
+	\mathrm{discrep}\,(X,B)&=\min\{ \mathrm{discrep}\,(Y,B_Y), \min\{a(E_i,X,B)\}\}\\
+	&=\min\{ \mathrm{discrep}\,(Y,B), \min\{-b_j\}\}
+	\end{aligned}
+	\end{equation*}
+	By proposition,  notice that $ B_Y $ has componets $ f^{-1}_*D_i $ and $ E_j $, then
+	
+	$$ \mathrm{discrep}\,(Y,B_Y)=\min \{ 1-a_i-b_j, 1-b_j-b_{j'}, 1-a_i, 1-b_j,1 \} $$
+	There is no $ 1-a_i-a_{i'} $ since $ f^{-1}_*D_i $ and $ f^{-1}_*D_{i'} $ are disjoint. Furthermore, $ -b_j\leqslant 1-b_j-b_{j'} $ and $ -b_j\leqslant 1-b_j-a_i $, then 
+	\begin{equation*}
+	\begin{aligned}
+	&\mathrm{discrep}\, (X,B)\\
+	=&\min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\}\\
+	=&\min\{ \min \{ 1-a_i-b_j, 1-b_j-b_{j'}, 1-a_i, 1-b_j,1 \}, \min\{-b_j\}\} \\
+	=&\min\{  1-a_i,-b_j,1 \} \\
+	=&\min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\}
+	\end{aligned}
+	\end{equation*}
+	
+\end{proof}
+
+
+
+%10.6 补充 start
+\section{singularities}
+
+\begin{defn}
+	([KM98], Definition 2.34) Let $ (X,B) $ be a pair where $ X $ is a normal variety and $ B=\sum a_iD_i $ is sum of distinct prime divisors with rational coefficients. Assume $ (K_X+B) $ is $ \mathbb{Q} $-cartier, then we call $ (X,B) $ is 
+	\begin{itemize}
+		\item \textbf{terminal} if $ \mathrm{discrep}(X,B) >0$;
+		\item \textbf{canonical} if $ \mathrm{discrep}(X,B) \geqslant 0$;
+		\item \textbf{klt} if $ \mathrm{discrep}(X,B) >-1$ and $ a_i<1 $;
+		\item \textbf{plt} if $ \mathrm{discrep}(X,B) >-1$;
+		\item \textbf{lc} if $ \mathrm{discrep}(X,B) \geqslant -1 $. 
+		\item If $ B=0 $, then klt, plt, dlt coincide, and is called \textbf{log terminal};
+	\end{itemize}
+\end{defn}
+
+\begin{prop}
+	([KM98], 2.35) Let $ (X,B) $ be a pair, and $ B' $ be  an effective $ \mathbb{Q} $-cartier divisor, then
+	\begin{enumerate}
+		\item If $ (X, B+B') $ is terminal/canonical/klt/plt/lc, then so is $ (X,B) $;
+		\item If $ (X,B) $ is terminal/klt, then so is $ (X,B+\epsilon B') $ for $ 0<\epsilon\ll 1 $;
+		\item If $ (X,B) $ is plt, then so is $ (X,B+\epsilon B') $ for $ 0<\epsilon\ll 1 $, assuming $ B $ and $ B' $ have no common irreducible components;
+		\item Suppose $ (X,B) $ is terminal, then $ (X,B+B') $ is canonical if and only if $ (X,B+cB') $ is terminal for all $ 0<c<1 $;
+		\item Suppose $ (X,B) $ is klt/plt, then $ (X,B+B') $ is lc if and only if $ (X,B+cB') $ is klt/plt for all $ 0<c<1 $.
+	\end{enumerate}
+\end{prop}
+	rmk: (4),(5) is strange
+	
+\begin{proof}
+	\begin{enumerate}
+		\item by lemma which says $ a(E;X,B)\geqslant a(E;X,B+B') $;
+		\item klt/terminal is an 'open' condition, and by corollary saying
+		
+		Given  $ X $ normal and boundary $ B=\sum_ia_iD_i $ with $ a_i\leqslant 1 $. Take a resolution $ f:Y\to X $ such that $ Y $ is smooth and $ f^{-1}_*D_i $ smooth, $ \sum f^{-1}_*D_i \cup E$ snc. Suppose $ a(E_j;X,B)\geqslant -1 $ for every irreducible exceptional divisor $ E_i $, then
+		$$ \mathrm{discrep}\, (X,B)=\min\{\min\{a(E_i;X,B)\},\min\{1-a_i\},1\} $$
+		\item Take a log resolution $ (Y,B_Y) $ of $ (X,B) $, then consider $ (Y,B_Y+\epsilon B') $, using corollary above;
+		\item 
+		\item  
+	\end{enumerate}
+\end{proof}
+
+
+
+
+
+%10.6 补充 end
+\end{document}

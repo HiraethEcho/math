@@ -1,0 +1,98 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usepackage{float}
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{assertion}[definition]{Assertion}
+\newtheorem{example}[definition]{Example}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+\setcounter{section}{0}
+
+\title{Fano Threefold}
+\author{}
+%\date{\today}
+
+\begin{document}
+\maketitle
+%\tableofcontents
+%\newpage
+\section{singularities of pairs}
+
+\begin{remark}
+  terminal $ \subset $ canonical $ \subset $ klt $ \subset $ lc $  \subset $ slc $ \subset $ qlc $ \subset $ DB
+\end{remark}
+A ref: Miles Reid 1975, 25 years of 3-folds an old person's view
+
+\begin{remark}
+  $ -K_{X} $ is nef and big, then \(X\) is weak fano.
+\end{remark}
+
+\begin{remark}
+  Let \(Y\) be canonical, then there is terminalization $ f: X \to Y $ and $ f^{*}K_{Y}=K_{X} $.
+  If \(Y\) is Fano, then \(X\) weak fano.
+\end{remark}
+
+\begin{remark}
+  $\mathbb{Q} $-factorialization always exists for klt varieties.
+\end{remark}
+
+\(X\) fano var with at most canonical singularities, called canonical Fano varieties.
+
+Goal: classify canonical Fano 3-folds under some invariant:
+
+\begin{itemize}
+  \item Picard number \( \rho(X) \)
+  \item Fano index
+  \item degree $ c_{1}(X)^{3}=(-K_{X})^{3} $
+\end{itemize}
+
+About picard group $ \operatorname{Pic}(X) $ Finitely generated torison-free. and $/ \sim_{\mathbb{Q} } $ coincides with $ /\equiv $, thus
+\[
+  \mathbb{Z}^{\rho{X}} \cong \operatorname{Cl}(X)/\sim_{\mathbb{Q} } \cong \operatorname{Cl}(X)/\equiv
+\]
+
+Weil Fano index $ q_{W}= \max \{ -K_{X}\sim qA, A\in \operatorname{Cl}(X) \} $, and $\mathbb{Q} $-index $ q_{\mathbb{Q} }= \max \{ -K_{X}\sim_{\mathbb{Q} } qA, A\in \operatorname{Cl}(X) \} $
+Then
+\begin{itemize}
+  \item $ q_{W},q_{\mathbb{Q} } \in \mathbb{Z}  $
+  \item $ q_{W} | q_{\mathbb{Q} } $
+  \item \(X\) smooth, then $ q_{W}=q_{\mathbb{Q} }=i(X) =\max \{ -k_{X}\sim_{\mathbb{Q} }qH, H \in \operatorname{Pic}(X)\}$
+\end{itemize}
+
+\begin{theorem}
+  \(X\) weak Fano 3-fano, then $ q_{\mathbb{Q} }(X) \leqslant 66 $
+\end{theorem}
+\begin{remark}
+  isolated can $ q_{\mathbb{Q} }(X) \leqslant 61 $, and $ q_{\mathbb{Q} }(X)=66 $ by $ X= \mathbb{P}(5,6,22,33) $
+\end{remark}
+
+\begin{remark}
+  New tech
+  \begin{itemize}
+    \item A new R-R
+    \item kawamata-Miyaoka type inequality, and Foliation of rank 2.
+  \end{itemize}
+\end{remark}
+
+\section{Kawamata-Miyaka type inequality}
+
+\end{document}

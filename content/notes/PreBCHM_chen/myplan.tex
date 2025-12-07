@@ -1,0 +1,164 @@
+%!TeX program = xelatex
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}%画箭头用的包
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Introduction to klt MMP}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+%\tableofcontents
+%\newpage
+\section{Pairs}
+\subsection{Divisors}
+\subsubsection{Intersection}
+\subsubsection{Cohomologies of divisors}
+% TODO: weak R-R
+\subsubsection{Cone of divisors}
+% TODO: definitions of ample, nef, big;
+% TODO: criterion for ampleness etc
+% TODO: kodaira lemma etc
+\subsection{Pairs}
+\subsubsection{Resolution}
+
+\begin{lem}[coefficients after blowup]
+  Let $ (X,B=\sum_i a_i D_i) $ be a pair and $ X $ is smooth. Let $ Z\subset X $ be a smooth subvariety of codimension $ k $. Blowing up  $ X $ along the smooth center $ Z $ we obtain a birational proper map: $ p:Y=\mathrm{Bl}_ZX\to X $. Then $ E=\mathrm{Exc}\, p $ is an irreducible exceptional divisor and
+  \[ a(E;X,B)=k-1-\sum_ia_i\mathrm{mult}_ZD_i \]
+\end{lem}
+\begin{proof}
+  This is local, we may assume $ X=\mathbb{A}^n $, $ D_i $ is defined by $ (f_i),f_i\in \mathbb{C}[x_1,\ldots,x_n] $ and $ Z=V(x_1,\ldots,x_{k}) $. Then $ Y\hookrightarrow X\times \mathbb{P}^{k-1} $ is defined by $ \{ x_iy_j-x_jy_i\} $. Take an open subset
+  \[ V=\{ y_1=1 \} =\mathrm{Spec}\frac{\mathbb{C}[x_1,\ldots,x_n,1,y_2,\ldots,y_k]}{\left <x_j-y_jx_1 \right >_{1\leqslant j\leqslant k}}\]
+  of $ Y $, then
+  \begin{equation*}
+    \begin{aligned}
+      p^*(dx_1\wedge\cdots\wedge dx_n) & =dx_1\wedge (d(y_2x_1)\wedge\cdots\wedge d(y_kx_1))\wedge dx_{k+1}\wedge\cdots\wedge dx_n \\
+                                       & =x_1^{k-1}dx_1\wedge (dy_2\wedge\cdots\wedge y_k)\wedge dx_{k+1}\wedge\cdots\wedge dx_n
+    \end{aligned}
+  \end{equation*}
+  And $ m_i=\mathrm{mult}_ZD_i $,
+  \[
+    f_i\in I^{m_i}-I^{m_i+1}, I=\left <x_1,\ldots,x_k\right >
+  \]
+\end{proof}
+
+\begin{cor}[discrepancy by resolution]
+  Given  $ X $ normal and boundary $ B=\sum_ia_iD_i $ with $ a_i\leqslant 1 $. Take a resolution $ f:Y\to X $ such that $ Y $ is smooth and $ f^{-1}_*D_i $ smooth, $ \sum f^{-1}_*D_i \cup E$ snc. Suppose $ a(E_j;X,B)\geqslant -1 $ for every irreducible exceptional divisor $ E_j $, then
+  \[ \mathrm{discrep}\, (X,B)=\min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\} \]
+\end{cor}
+\begin{proof}
+  Denote $ K_Y+B_Y=f^*(K_X+B) $, and $ b_j=-a(E_j;X,B)\leqslant 1 $ is coefficient of $ E_j $ in $ B_Y $. Again we have
+  \begin{equation*}
+    \begin{aligned}
+      \mathrm{discrep}\,(X,B) & =\min\{ \mathrm{discrep}\,(Y,B_Y), \min\{a(E_i,X,B)\}\} \\
+                              & =\min\{ \mathrm{discrep}\,(Y,B), \min\{-b_j\}\}
+    \end{aligned}
+  \end{equation*}
+  By proposition,  notice that $ B_Y $ has componets $ f^{-1}_*D_i $ and $ E_j $, then
+
+  \[ \mathrm{discrep}\,(Y,B_Y)=\min \{ 1-a_i-b_j, 1-b_j-b_{j'}, 1-a_i, 1-b_j,1 \} \]
+  There is no $ 1-a_i-a_{i'} $ since $ f^{-1}_*D_i $ and $ f^{-1}_*D_{i'} $ are disjoint. Furthermore, $ -b_j\leqslant 1-b_j-b_{j'} $ and $ -b_j\leqslant 1-b_j-a_i $, then
+  \begin{equation*}
+    \begin{aligned}
+        & \mathrm{discrep}\, (X,B)                                                  \\
+      = & \min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\}                                \\
+      = & \min\{ \min \{ 1-a_i-b_j, 1-b_j-b_{j'}, 1-a_i, 1-b_j,1 \}, \min\{-b_j\}\} \\
+      = & \min\{  1-a_i,-b_j,1 \}                                                   \\
+      = & \min\{\min\{a(E_j;X,B)\},\min\{1-a_i\},1\}
+    \end{aligned}
+  \end{equation*}
+
+\end{proof}
+
+\begin{lem}[resolution keep $H^0$]
+  Let $ f:Y\to X $ be a proper birational morphism of varieties, and $ X $ a normal variety. Let $ D $ be a cartier divisor on $ X $, and $ F $ an exceptional effecitve cartier divisor on $ Y $, and $ E=\mathrm{Exc}(f) $, then 
+  \[ H^0(X,D)\cong H^0(Y,f^*D+F) \] 
+\end{lem}
+\begin{proof}
+  Since $ f $ is birational proper, then $  \underline{\mathrm{Spec}}f_*\mathcal{O}_Y\xrightarrow{\sim}X $, and $ f_*\mathcal{O}_Y\cong \mathcal{O}_X $. By projection formula, 
+  \[ H^0(Y,f^*\mathcal{O}_X(D))=H^0\left(X,f_*\left(f^*\mathcal{O}_X(D)\otimes \mathcal{O}_Y\right)\right)=H^0(X,\mathcal{O}_X(D))\]
+  Since $ F $ is effective,
+  \[ H^0(Y,f^*D)\subset H^0(Y,f^*D+F) \]
+  Since $ F $ is exceptional, i.e. $ F\subset E $,
+  \[ H^0(Y,f^*D+F)\subset H^0(Y-E,f^*D) \]
+  Notice that $ Y-E\cong X-f(E)  $,
+  \[ H^0(Y-E,f^*D)= H^0(X-f(E),D) \]
+  But $ X $ is normal, and $ \mathrm{codim} f(E)\geqslant 2 $,
+  \[  H^0(X-f(E),D) =H^0(X,D) \]
+  Now we have 
+  \[ H^0(X,D) \subset H^0(Y,f^*D+F)\subset H^0(X,D) \]
+\end{proof}
+
+\subsubsection{Singularity}
+
+\begin{defn}[singularities]
+  ([KM98], Definition 2.34) Let $ (X,B) $ be a pair where $ X $ is a normal variety and $ B=\sum a_iD_i $ is sum of distinct prime divisors with rational coefficients. Assume $ (K_X+B) $ is $ \mathbb{Q} $-cartier, then we call $ (X,B) $ is 
+  \begin{itemize}
+    \item \textbf{terminal} if $ \mathrm{discrep}(X,B) >0$;
+    \item \textbf{canonical} if $ \mathrm{discrep}(X,B) \geqslant 0$;
+    \item \textbf{klt} if $ \mathrm{discrep}(X,B) >-1$ and $ a_i<1 $;
+    \item \textbf{plt} if $ \mathrm{discrep}(X,B) >-1$;
+    \item \textbf{lc} if $ \mathrm{discrep}(X,B) \geqslant -1 $. 
+    \item If $ B=0 $, then klt, plt, dlt coincide, and is called \textbf{log terminal};
+  \end{itemize}
+\end{defn}
+
+\section{X-method}
+
+\section{Non-vanishing Theorem}
+
+\begin{thm}
+  Let $ X $ be a projective smooth variety of dimension $ n $ over $ \mathbb{C} $, and let  $ A $ be an ample divisor. Then
+  \[ H^i(X,-A)=0,i<n \]
+  or by serre duality, equivalent to
+  \[ H^i(X,K_X+A)=0,i>0  \]
+\end{thm}
+
+Our main method to prove such theorem is to find another better variety $ f:Y\to X $ and line bundle $ A' $ on $ Y $, such that
+\begin{itemize}
+  \item $ H^i(Y,-A')=0,i<n  $ or $ H^i(Y,K_Y+A')=0,i>0  $;
+  \item $ H^i(Y,-A')=0 \Rightarrow H^i(X,-A)=0,i<n  $  or
+  
+  $ H^i(Y,K_Y+A')=0 \Rightarrow  H^i(X,K_X+A)=0,i>0 $.
+\end{itemize}
+
+\section{Rationality Theorem}
+
+\section{Base Point Free Theorem}
+
+\section{Cone Theorem}
+
+\section{MMP}
+
+\subsection{Contraction}
+
+\subsection{Flip}
+
+\end{document}

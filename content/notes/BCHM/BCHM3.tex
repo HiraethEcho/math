@@ -1,0 +1,95 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{ulem}
+\usepackage{tikz}  
+\usetikzlibrary{arrows.meta}%画箭头用的包
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{defn}{Definition}[section]
+\newtheorem{prop}[defn]{Proposition}
+\newtheorem{lem}[defn]{Lemma}
+\newtheorem{thm}[defn]{Theorem}
+\newtheorem{cor}[defn]{Corollary}
+\newtheorem{rmk}[defn]{Remark}
+\newtheorem{fact}[defn]{Fact}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+
+\setcounter{section}{0}
+
+\title{Lecture 3: PL flips}
+\author{wyz}
+\date{\today}
+
+\begin{document}
+  \maketitle
+  % \tableofcontents
+  % \newpage
+\textbf{Existence and Finiteness of minimal model $(n-1)$ implies Exitence of PL filps$(n)$}: By Hacon-McKovenen shokuov and Extension thm. Reference: Kawamata book, section 3.2.1 and 3.2.2. and This is the theorem 3.2.1 in this book.
+
+Recall  pl flip: $(X,B)$ is $\mathbb{Q}$-factorial dlt, a small flipping 
+\[
+  \xymatrix{
+    X,B\ar[rd] \ar[rr] & & X^+,B^+\ar[ld] \\
+    & S &
+  }
+\]
+such that $ -\left\lfloor B \right\rfloor$ is ample over $S$.
+WMA 
+\begin{itemize}
+  \item $B$ is $\mathbb{Q}$-divisor
+  \item $\left\lfloor B \right\rfloor=Y$ is prime divisor. Since $\rho(X/S)= q$. And  $Y \to f(Y)$ is birational.
+\end{itemize}
+Note that Flip exits iff 
+\[
+  R(X/S,K_{X+B})
+\]
+is finite generated $\mathcal{Q}_{S}$-algebra. and we may assume $S$ is affine.
+
+\textbf{adjunction}: $K_{X}+B|_{Y}=K_{Y}+B_{Y}$. and is klt.
+we have restricton map
+\[
+  \phi:R(X/S,K_{X}+B) \to R(Y/S,K_{Y}+B_{Y})
+\]
+If  $\phi$ is surjectivem then $R(Y/S,K_{Y}+B_{Y})$ finite generated implies $R(X/S,K_{X}+B)$ finite generated.
+
+\textbf{Claim}: $R(X/S,K_{X}+B)$ finite generated iff $\operatorname{Im}(\phi) \subset R(Y/S,K_{Y}+B_{Y})$ is finite generated $\mathcal{O}_{S}$-algebra. This is left as an excerise.
+\begin{proof}
+  $m_{0}(K_{X}+B)\sim _{S}m_{1}Y $ then 
+\begin{itemize}
+  \item $R(X/S,K_{X}+B)$ finite generated 
+  \item iff $\oplus f_*\mathcal{O}_{X}(mm_0(K_{X}+B))$ f.g.
+  \item iff $\oplus f_*\mathcal{O}_{X}(mm_1(Y))$ f.g.
+\end{itemize}
+ETS:  
+\[
+  \oplus \operatorname{Im}\left(H^{0}\left(X,mm_{0}\left(K_{X}+B\right)\right)\to H^{0}\left(Y,mm_{0}\left(K_{Y}+B_{Y}\right)\right)\right)
+\]
+is finitely generated
+\begin{enumerate}[Step1]
+  \item construct $\mu_{m}: X_{m}\to X$ birational such that 
+    \begin{itemize}
+      \item $\mu_{m}^*(K_{X}+B)=K_{X_{m}}+B_{m}$
+      \item $Y'\cong Y_{m}'=\mu^{-1}_{m}Y$ independent on $m$
+      \item $Y' \leqslant B_{m}' \leqslant  B_{m}^+$
+      \item $H^0\left(mm_{0}\left(K_{X}+B\right)\right)\cong H^0(mm_{0}(K_{X_{m}}+B_{m}^+)) \cong H^0\left(mm_{0}\left(K_{X_{m}}+B_{m}'\right)\right) $
+      \item $K_{X_{m}}B_{m}' =: K_{Y'}+B_{Y',m}$ klt pair;
+      \item $m_{1}B_{Y',m_{1}}+m_{2}B_{Y',m_{2}}\leqslant \left(m_{1}+m_{2}\right)B_{Y',m_{1}+m_{2}}$
+      \item $B_{Y'}:= \lim_{m \to \infty} B_{Y',m} $, then $(Y',B_{Y'})$ is klt.
+    \end{itemize}
+  This is Proposition 3.2.5 in Kawamata's book.
+\end{enumerate}
+\textbf{Goal:} $B_{Y',m}=B_{Y}$, for $m \gg 0$.
+Using Induction assumption: finiteness of minimal models. There is common minimal model for pairs $(Y',B_{Y',m})$
+\end{proof}
+\end{document}
