@@ -1,0 +1,73 @@
+# genealogy
+
+- Phillip Augustus Griffiths
+  - Joseph Daniel Harris
+    - James McKernan
+    - Kieran O'Grady
+    - Ravi Vakil
+- Kunihiko Kodaira
+  - Shigeru Iitaka
+    - Yujiro Kawamata
+      - Shinnosuke Okawa
+      - Chen Jiang
+      - Noboru Nakayama
+      - Yusuke Nakamura
+      - Nobuyoshi Takahashi
+  - Yoichi Miyaoka
+- Tadasi Nakayama
+  - Masayoshi Nagata
+    - Shigefumi Mori
+      - Osamu Fujino
+        - Haidong Liu
+        - Keisuke Miyamoto
+      - Kento Fujita
+- Andrei Nikolayevich Kolmogorov
+  - Yuri Vasilevich Prokhorov
+- Teruhisa Matsusaka
+  - János Kollár
+    - Alessio Corti
+      - Vladimir Lazić
+    - Yuchen Liu
+    - Ziquan Zhuang
+    - Chenyang Xu
+      - Guodu Chen
+      - Chuyu Zhou
+      - Jingjun Han
+- Yuri Ivanovich Manin
+  - Vasili Alexeevich Iskovskih
+    - Yuri Gennad'evich Prokhorov
+  - Vyacheslav Vladimirovich Shokurov
+    - Caucher Birkar
+    - Sung Rok Choi
+    - Ivan Cheltsov
+    - Florin Ambro
+    - Yifei Chen
+      - me
+- William Fulton
+  - Robert Kendall Lazarsfeld
+    - Christopher Derek Hacon
+      - Jihao Liu
+      - Junpeng Jiao
+      - Lingyao Xie
+
+- Alexander Grothendieck
+  - Michel Raynaud
+    - Xiao Gang
+  - Pierre René Deligne
+    - Miles Anthony Reid
+  - Luc Illusie
+    - Weizhe Zheng
+- Oscar Ascher Zariski
+  - David Bryant Mumford
+    - Larry Griffith
+    - David Harris
+    - Ian Lewis Morrison
+    - Tadao Oda
+  - Heisuke Hironaka
+  - Robin Cope Hartshorne
+- Arnaud Beauville
+  - Gang Xiao
+  - Baohua Fu
+    - Qifeng Li
+    - Zhijun Luo
+    - Feng Shao
