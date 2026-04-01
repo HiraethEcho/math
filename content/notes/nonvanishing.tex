@@ -1,0 +1,110 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage[all]{xy}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usepackage{float}
+
+\usepackage{geometry}
+\geometry{a4paper,left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{remark}[definition]{Remark}
+\newtheorem{fact}[definition]{Fact}
+\newtheorem{assertion}[definition]{Assertion}
+\newtheorem{example}[definition]{Example}
+\newtheorem{problem}{Problem}
+\newtheorem*{ques}{Question}
+\setcounter{section}{0}
+
+\title{Non-vanishing}
+\author{}
+%\date{\today}
+
+\begin{document}
+\maketitle
+%\tableofcontents
+%\newpage
+
+\section{Non-vanishing}
+
+For terminal threefolds, by Miyaoka \cite{Miy88}:
+\begin{theorem}
+  Let \(X\) be a normal projective threefold defined over the complex numbers. Assume that the singular points of \(X\) are all terminal and that the canonical divisor $ K_{X} \in \operatorname{Pic}(X)\otimes \mathbb{Q}   $ is numerically effective. Then $ \kappa (X) \geqslant 0 $, i.e., there is a positive integer \(m\) such that $mK_X$ is integral with $|mK_{X}| \neq \emptyset $.
+
+\end{theorem}
+
+For klt threefold pairs, by \cite{KMM94}:
+\begin{theorem}[Log aboundance]
+  Let the pair $ (X,B) $ consist of a threefold \(X\) and boundary \(B\), such that $ K_{X}+B $ is nef and log canonical. Then $  |m(Kx + A)| $ is basepoint free for some \(m\).
+\end{theorem}
+
+\begin{corollory}
+  Let \(X\) be a minimal threefold whose canonical divisor is numerically trivial (for example, a Calabi-Yau manifold). Then any effective nef divisor is semiample.
+\end{corollory}
+
+\begin{theorem}
+  Let the pair $ (X,B) $ consist of a threefold and boundary $ B $ such  that $ K_{X}+B $ is nef and Kawamata log terminal. Then  $ \kappa (K_{X}+B) \geqslant 0 $.
+\end{theorem}
+
+Anti-canonical non-vanishing, by \cite{LMPTX23}:
+
+\begin{theorem}
+  Let $ (X,B) $ be a projective log canonical pair of dimension \(3\) such that $ -(K_{X}+B) $ is nef. Assume that \(X\) is $\mathbb{Q} $-factorial or that it has rational singularities. Then the following hold.
+  \begin{enumerate}
+    \item
+      The numerical class of $ -(K_{X}+B) $ is effective.
+    \item If \(X\) is uniruled, then the numerical class of any nef Cartier divisor on \(X\) is effective.
+  \end{enumerate}
+\end{theorem}
+\begin{corollary}
+  Let $ X $ be a projective, $\mathbb{Q} $-factorial, log canonical pair of dimension \(3\), let $ \epsilon \in \{ -1,1 \} $, and assume that $ \epsilon(K_{X}+B) $ is nef. Then the numerical class of  $ \epsilon(K_{X}+B) $ is effective.
+\end{corollary}
+
+For positive characteristic, by \cite{XZ19}:
+
+\begin{theorem}
+  Let \(X\) be a terminal projective minimal threefold over an algebraically closed field \(k\) of characteristic $p > 5$. Then $ \kappa(X,K_{X})\geqslant 0 $; that is, nonvanishing holds for \(X\).
+\end{theorem}
+
+\section{Non-vanishing and aboundance}
+If dlt extension and non-vanishing hold, then aboundance holds, by \cite{DHP13}.
+
+If $ \nu(X)=1 $ and non-vanishing holds, then aboundance holds, by \cite{LX25}.
+\section{KM non-vanishing}
+
+For all dimensions with additional conditions. By \cite{KM98},
+\begin{theorem}
+  If \(X\) is a projective variety with klt singularities and \(L\) is a nef Cartier divisor on \(X\) such that \(L - (K_X + \Delta)\) is nef and big for some effective \(\mathbb{Q}\)-divisor \(\Delta\) such that \((X, \Delta)\) is klt, then \(H^0(X, L) \neq 0\).
+\end{theorem}
+
+By \cite{BP11}
+\begin{theorem}
+  Let $(X/Z, B)$ be a klt pair where $B$ is big$/Z$. If $K_X + B$ is pseudo-effective$/Z$, then $(X/Z, B)$ is effective. That is, there is an $ \mathbb{R} $ -divisor $M \geqslant 0$ such that $K_X + B \equiv M/Z$.
+\end{theorem}
+\section{Others}
+
+For Kahler threefolds, see \cite{HLL25}:
+
+\begin{thebibliography}{99}
+  \bibitem[Miy88]{Miy88} Yoichi Miyaoka. \newblock On the {Kodaira} dimension of minimal threefolds. \newblock {\em Mathematische Annalen}, 281(2):325--332, June 1988.
+  \bibitem[KMM94]{KMM94} Sean Keel, Kenji Matsuki, and James McKernan. \newblock Log abundance theorem for threefolds. \newblock {\em Duke Mathematical Journal}, 75(1), July 1994.
+  \bibitem[LMPTX23]{LMPTX23} Vladimir Lazić, Shin-ichi Matsumura, Thomas Peternell, Nikolaos Tsakanikas, and Zhixin Xie. \newblock The {Nonvanishing} {Problem} for varieties with nef anticanonical bundle. \newblock {\em Documenta Mathematica}, 28(6):1393--1440, November 2023.
+  \bibitem[XZ19]{XZ19} Chenyang Xu and Lei Zhang. \newblock Nonvanishing {For} 3-{Folds} {In} {Characteristic} {P} {\textgreater} 5. \newblock {\em Duke Mathematical Journal}, 168(7):1269--1301, May 2019.
+  \bibitem[DHP13]{DHP13} Jean-Pierre Demailly, Christopher~D. Hacon, and Mihai Păun. \newblock Extension theorems, non-vanishing and the existence of good minimal models. \newblock {\em Acta Mathematica}, 210(2):203--259, 2013.
+  \bibitem[LX25]{LX25} Jihao Liu and Zheng Xu. \newblock Non-vanishing implies numerical dimension one abundance, July 2025. \newblock arXiv:2505.05250 [math].
+  \bibitem[KM98]{KM98} J. Koll\'{a}r and S. Mori, \textit{Birational geometry of algebraic varieties}, Cambridge Tracts in Math. \textbf{134} (1998), Cambridge Univ. Press.
+  \bibitem[BP11]{BP11} C. Birkar and M. P\u aun, Minimal models, flips and finite generation: a tribute to V. V. Shokurov and Y.-T. Siu, in {\it Classification of algebraic varieties}, 77--113, EMS Ser. Congr. Rep., Eur. Math. Soc., Z\"urich, ; MR2779468
+  \bibitem[HLL25]{HLL25} Andreas Höring, Vladimir Lazić, and Christian Lehn. \newblock Nonvanishing results for {Kähler} varieties, October 2025. \newblock arXiv:2508.14634 [math] version: 2.
+\end{thebibliography}
+\end{document}
