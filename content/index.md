@@ -18,9 +18,7 @@ Specific Questions
 
 ## Working On
 
-审稿
-
-改稿
+Toric criterion
 
 ## Interested In
 
