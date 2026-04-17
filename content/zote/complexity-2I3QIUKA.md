@@ -4,7 +4,7 @@ tags: []
 parent: 'A geometric characterization of toric varieties'
 categories:
     - AlgebraicGeometry
-$version: 60286
+$version: 60305
 $libraryID: 1
 $itemKey: 2I3QIUKA
 
