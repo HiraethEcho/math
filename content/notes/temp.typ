@@ -23,7 +23,7 @@
 )
 #let rmk = thmbox("thm", "Remark").with(numbering: none)
 #let eg = thmbox("thm", "Example", inset: (y: 2em)).with(
-  inset: (y: 1.2em),
+  inset: (x: 1.2em, top: 1em, bottom: 2em),
   fill: rgb("#fff0aa"),
   numbering: none,
 )
