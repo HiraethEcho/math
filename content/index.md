@@ -4,7 +4,7 @@ title: Home
 
 # My Math notes
 
-This is my math notes, by quartz, netlify, cloudflare pages, obsidian, zotero etc.
+These are my math notes, utilizing Quartz, Netlify, Cloudflare Pages, Obsidian, Zotero, and more.
 
 ## Guide
 
